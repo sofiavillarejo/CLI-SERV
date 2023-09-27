@@ -39,6 +39,6 @@ function calcula() {
 	console.log(resultado);
 
 	//mostrar el resultado
-	document.getElementById("salida2").innerHTML = resultado; //resultado tiene el calculo que acabo de hacer y con esto, se busca algo que su id es salida
+	document.getElementById("salida").innerHTML = resultado; //resultado tiene el calculo que acabo de hacer y con esto, se busca algo que su id es salida
 	//y con el innerHTML (que es el contenido del parrafo) se mete el resultado obtenido
 }
