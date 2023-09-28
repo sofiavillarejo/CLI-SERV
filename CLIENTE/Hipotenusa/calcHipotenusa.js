@@ -11,7 +11,7 @@ function calcula() {
 	console.log(c2);
 
 	//asignamos a resultado la operacion (raiz cuadrada de la suma de los catetos)
-	resultado = Math.sqrt(c1*c1+c2*c2)
+	resultado = Math.sqrt(c1*c1+c2*c2).toFixed(2);
 	//mostramos en la consola el resultado
 	console.log(resultado);
 	//mostramos el resultado por pantalla

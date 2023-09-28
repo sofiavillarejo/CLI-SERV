@@ -20,14 +20,14 @@
 
         <div class="col bg-success text-light">
             <p class="display-1 text-center">Calculadora de IMC</p>
-            <form action="calculadora.py" method="get">
+            <form>
                 <div class="mb-3 mt-3">
                     <label class="form-label" for="peso">¿Cuánto pesas?</label>
-                    <input class="form-control" type="number" name="peso" id="peso" placeholder="Introduce tu peso en kg" required><br />
+                    <input class="form-control" type="float" name="peso" id="peso" placeholder="Introduce tu peso en kg" required><br />
                 </div>
                 <div class="mb-3 mt-3">
                     <label class="form-label" for="altura">Altura</label>
-                    <input class="form-control" type="number" name="altura" id="altura"  placeholder="Introduce tu altura en metros"  required><br />
+                    <input class="form-control" type="float" name="altura" id="altura"  placeholder="Introduce tu altura en metros"  required><br />
                 </div>
 
                 <div class="mb-3 mt-3">
@@ -38,7 +38,6 @@
         <div class="col">
             <p class="display-1 text-center">IMC</p>
             <p class="display-1 text-center" id="IMC"></p>
-
         </div>
 
     </div>        
