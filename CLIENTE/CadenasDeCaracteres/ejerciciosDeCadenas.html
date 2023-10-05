@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicios de Strings</title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Latest compiled JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>    
+
+    <script type="text/javascript" src="ejerciciosdecaracteres.js"></script>
+</head>
+<body>
+    <div class="row mt-3">
+        <div class="col"></div>
+        <div class="col bg-secondary text-light">
+            <p class="display-6 text-center">Cadenas de carácteres</p>
+            <form>
+                <div class="mb-3 mt-3">
+                    <label class="form-label" for="texto">Dato</label>
+                    <input class="form-control" type="text" name="texto" id="texto" placeholder="Introduce un texto" value="ABCD EFGH IJKL"><br />
+                    <label class="form-label" for="texto">Palabra</label>
+                    <input class="form-control" type="text" name="palabra" id="palabra" placeholder="Introduce una palabra" value="IJKL"><br />
+                    <label class="form-label" for="letra">Letra</label>
+                    <input class="form-control" type="text" name="letra" id="letra" placeholder="Introduce una letra" value="A"><br />
+                    <button type="button" onclick="separaEnLineas()" class="btn btn-light"
+                    >Separa en lineas</button>                    
+                    <button type="button" onclick="contarLetras()" class="btn btn-light">Contar solo las letras</button>
+                    <button type="button" onclick="darLaVuelta()" class="btn btn-light">Dar la vuelta</button>
+                    <button type="button" onclick="buscarPalabra()" class="btn btn-light">Buscar la palabra</button>
+                    <button type="button" onclick="contarLetrasEnFrase()" class="btn btn-light">Contar letras que hay en el texto</button>
+                    <button type="button" onclick="contarVocales()" class="btn btn-light">Contar vocales en el texto</button>
+                    <button type="button" onclick="divPal()" class="btn btn-light">Dividir en palabras</button>
+                    <button type="button" onclick="divPal()" class="btn btn-light">Dividir en palabras</button>
+                </div>
+            </form>
+            <div class="mb-3 mt-3">
+                <p class="display-6 text-center">Resultado</p>
+                <div class="text-center" id="salida1">
+                </div>
+            </div>            
+        </div>
+        <div class="col"></div>
+    </div>        
+</body>
+</html>

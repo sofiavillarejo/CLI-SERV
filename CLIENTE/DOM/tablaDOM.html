@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Crear tabla</title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Latest compiled JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script type="text/javascript" src="js/calculadora.js"></script>
+
+</head>
+<body>
+    <div class="row mt-3">
+
+        <div class="col"></div>
+
+        <div class="col bg-secondary text-light">
+            <p class="display-1 text-center">Crear Tabla</p>
+            <form action="calculadora.py" method="get">
+                <div class="mb-3 mt-3">
+                    <label class="form-label" for="fila">Filas</label>
+                    <input class="form-control" type="number" name="fila" id="fila" value="0"required><br />
+                </div>
+                <div class="mb-3 mt-3">
+                    <label class="form-label" for="columna">Columnas</label>
+                    <input class="form-control" type="number" name="columna" id="columna" value="0" required><br />
+                </div>
+                <div class="mb-3 mt-3">
+                    <label class="form-label" for="color">Color</label>
+                    <input class="form-control" type="text" name="color" id="color" value="red" required><br />
+                </div>
+                <p>¿Quieres que lleve borde?</p>
+                <div class="mb-3 mt-3 form-check">
+                    <input type="radio" class="form-check-input" id="si" name="borde" value="s" checked>
+                    <label class="form-label" for="si">Si</label>
+                </div>
+                <div class="mb-3 mt-3 form-check">
+                    <input type="radio" class="form-check-input" id="no" name="borde" value="n">
+                    <label class="form-label" for="no">No</label>
+                </div>
+
+                <div class="mb-3 mt-3 text-center">
+                    <button type="button" onclick="crearTablaDOM()" class="btn btn-light">Crear Tabla</button>
+                </div>
+            </form>
+        </div>
+        <div class="col">
+        </div>
+    </div>
+    </div>        
+</body>
+</html>
+
