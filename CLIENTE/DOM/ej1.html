@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>ejercicios DOM</title>
+	 <!-- Latest compiled and minified CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Latest compiled JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script type="text/javascript" src="ej.js"></script>
+</head>
+<body>
+	<div class="row mt-2">
+        <div class="col bg-success text-light">
+            <p class="display-1 text-center">Añadir párrafo</p>
+             <form>
+                <div class="mb-3 mt-3">
+                    <label class="form-label" for="entradaTexto">Introduce texto</label>
+                    <input class="form-control" type="text" name="entradaTexto" id="entradaTexto"><br />
+                </div>
+                <div class="mb-3 mt-3">
+                    <button type="button" onclick="crearParrafo()" class="btn btn-light">Crear parrafo</button>
+                    <button type="button" onclick="lista()" class="btn btn-light">Añadir li</button>
+                    <button type="button" onclick="enlace()" class="btn btn-light">Visitar W3School</button>
+                    <button type="button" onclick="cambiaColor()" class="btn btn-light">Cambiar color</button>
+                     <button type="button" onclick="cambiarTexto()" class="btn btn-light">Cambiar tamaño texto</button>
+                     
+                     <button type="button" onclick="ocultarElem()">Ocultar Elemento</button>
+                </div>
+            </form>
+        </div>
+        <div class="col bg-success">
+            <p class="display-1 text-center ">Resultado</p>
+            <p class="display-1 text-center" id="miDiv"></p>
+            <ul id="lista">
+            </ul>
+            <p id="miTexto">Holaaa</p>
+            <div id="elementoOculto">Este es el elemento que se mostrará u ocultará.</div>
+            <p id="textoCambiante" style="color: maroon;" onmouseover="textoCambiante1()" onmouseleave="textoCambiante2()">Pasa el ratón sobre este texto</p>
+
+
+
+        </div>
+        <div class="mb-3 mt-3"
+        id="miElemento" style="width: 200px; height: 200px; background-color: lightgray;"></div>
+
+    
+	</div>
+</body>
+</html>

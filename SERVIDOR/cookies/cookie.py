@@ -19,26 +19,26 @@ if(usuario == "pepe") and (passwd == "1234"):
 if not dentro:
     print("Content-type: text/html\n")
     print("""
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cookies</title>
-</head>
-<body>
-    <h1>Cookies</h1>
-    <h3> ERROR EN LA AUTENTICACIÓN
-    <form action="cookie.py" method="get">
-        <label for="usuario">Usuario</label>
-        <input type="text" name="usuario" id=""><br />
-        <label for="passwd">Password</label>
-        <input type="text" name="passwd" id=""><br />
-        <input type="submit" value="Entrar">
-    </form>
-</body>
-</html>
-""")
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Cookies</title>
+    </head>
+    <body>
+        <h1>Cookies</h1>
+        <h3> ERROR EN LA AUTENTICACIÓN
+        <form action="cookie.py" method="get">
+            <label for="usuario">Usuario</label>
+            <input type="text" name="usuario" id=""><br />
+            <label for="passwd">Password</label>
+            <input type="text" name="passwd" id=""><br />
+            <input type="submit" value="Entrar">
+        </form>
+    </body>
+    </html>
+    """)
 else:
     print("Content-type: text/html")
     cookie = http.cookies.SimpleCookie()
