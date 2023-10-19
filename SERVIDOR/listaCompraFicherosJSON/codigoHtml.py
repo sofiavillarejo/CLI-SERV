@@ -19,7 +19,7 @@ def finHtml():
 
 def formulario():
     print("""
-    <form action="productoNuevo.py" method="get">
+    <form action="productoNuevoJson.py" method="get">
           <label for="nombre">nombre del producto:</label>
           <input type="text" name="producto"/><br/>
           <label for="cantidad">Cantidad del producto:</label>
@@ -35,7 +35,7 @@ def htmlRecarga():
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="refresh" content="3; listaCompra.py">
+        <meta http-equiv="refresh" content="3; listaCompraJson.py">
         <title>Cesta de la compra</title>
     </head>
     <body>

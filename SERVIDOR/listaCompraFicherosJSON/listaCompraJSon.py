@@ -2,7 +2,7 @@
 
 print("Content-Type: text/html\n")
 
-import os, codigoHtml
+import os, codigoHtml, json
 try:
     #abrir el fichero en modo lectura
     fich = open("datos/listaCompra.dat") 
@@ -13,7 +13,8 @@ except:
 
 #leemos el contenido del fichero en una lsta de productos si no está vacío
 if os.path.getsize("datos/listaCompra.dat") != 0: 
-    productos = fich.readlines()
+    productos = json.load(fich)#lee el contendio del fichero y lo mete en productos -> el contenido convertido en una lista
+    
 else:
     productos = []
 #cerrar fichero
@@ -22,13 +23,10 @@ fich.close()
 def listaDeProductos():
     if len(productos) != 0:#si hay productos, se crea la lista
         print("<ol>")
-        prod = [p.strip('\n') for p in productos] #quitar saltos de linea de la lista
-        for p in prod:
-            #separamos el producto de la caantidad por ;
-            elem = p.split(";")
-            print(f"<li>{elem[1]}  de  {elem[0]} </li>")
+        for p in productos:
+            print(f"<li>{p[1]} de {p[0]} </li>")
         print("</ol>")
-    else:
+    else: #si la lista no tiene productos
         print("<h3>Lista de la compra vacía</h3>")
     print("<hr/>")
 
@@ -43,6 +41,3 @@ codigoHtml.formulario()
 
 #crear fin del html
 codigoHtml.finHtml()
-
-
-
