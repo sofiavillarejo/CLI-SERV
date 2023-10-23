@@ -1,10 +1,8 @@
-#!C:\Users\zx22student3329\AppData\Local\Programs\Python\Python311\python.exe
-
+#!C:\Users\Sofía\AppData\Local\Programs\Python\Python312\python.exe
 print("Context-Type: text/html\n")
 
 import os,json
 from urllib.parse import urlparse, unquote, parse_qs
-
 import codigoHtml
 
 ru = os.environ.get("REQUEST_URI")
@@ -36,7 +34,6 @@ else:
         codigoHtml.ingRet()
     else:
         codigoHtml.error()
-
 
 
 
