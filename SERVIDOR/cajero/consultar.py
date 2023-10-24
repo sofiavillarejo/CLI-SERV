@@ -1,5 +1,4 @@
-#!C:\Users\Sofía\AppData\Local\Programs\Python\Python312\python.exe
-print("Context-Type: text/html\n")
+#!C:\Users\zx22student3329\AppData\Local\Programs\Python\Python311\python.exeprint("Context-Type: text/html\n")
 
 import os,json, codigoHtml
 from urllib.parse import urlparse, unquote, parse_qs

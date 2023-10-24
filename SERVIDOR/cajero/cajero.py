@@ -1,5 +1,4 @@
-#!C:\Users\Sofía\AppData\Local\Programs\Python\Python312\python.exe
-
+#!C:\Users\zx22student3329\AppData\Local\Programs\Python\Python311\python.exe
 print("Content-Type: text/html\n")
 
 import os, codigoHtml, json
