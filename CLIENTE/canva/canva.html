@@ -11,26 +11,33 @@
 		.row{
 			align-content: center;
 		}
+		a{
+			color: white;
+			text-decoration: none;
+		}
 	</style>
-
 </head>
 <body>
 	<div class ="row">
-		<div class="col-3">
+		<div class="col-4">
         </div>
-        <div class="col-3 text-center">
-            <h1 class="display-2"><mark>Tres en raya</mark></h1>
+        <div class="col-4 text-center">
+            <h1 class="display-2 text-center"><mark>Tres en raya</mark></h1>
         </div>
-        <div class="col-3">
-        	<p class="display-5" id="salida"></p>
+        <div class="col-4">
+        	<p class="display-2" id="salida"></p>
         </div>
+
     </div>
 	<div class ="row">
 		<div class="col-3">
         </div>
-		<div class="col-3 text-center">
+		<div class="col-6 text-center">
 			<canvas id="miCanvas" width="600" height="600" style="border:3px solid lightblue;">Canva no soportado</canvas>
 		</div>
+		<div class="col-3">
+	        	<button type="submit" class="btn btn-warning"><a href="canva.html">Reiniciar</a></button>
+	        </div>
 	</div>
 </body>
 </html>

@@ -1,6 +1,6 @@
 #!C:\Users\zx22student3329\AppData\Local\Programs\Python\Python311\python.exe
 
-import cgi, os, csv
+import cgi, os
 import cgitb; cgitb.enable()
 
 form = cgi.FieldStorage()
@@ -29,6 +29,6 @@ def tabla(fn):
             
 if fileitem.filename:
     fn = os.path.basename(fileitem.filename)
-    open("ficheros/" + fn, 'wb').write(fileitem.file.read())
-    tablaImprimir = tabla("ficheros/'"+ fn)
+    open("img/" + fn, 'wb').write(fileitem.file.read())
+    tablaImprimir = tabla("img/'"+ fn)
     print(tablaImprimir)
