@@ -118,7 +118,6 @@ function jugada(evento){
 			}
 		}
 	}
-	
 
 function turnos(posicion) {
 	if(!partidaFin && tablero[posicion] == " "){
