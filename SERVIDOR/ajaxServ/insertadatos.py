@@ -29,11 +29,13 @@ miCursor = midb.cursor()
 
 #crear consulta
 #cambiar la consulta que esta MAL########################
-insercion = f"INSERT dato1,dato2 INTO datos VALUES('{t}',{n})" #insertar datos del cliente
+insercion = f"INSERT INTO datos (dato1, dato2) VALUES('{t}',{n})" #insertar datos del cliente
 
 #ejecutamos la consulta
 miCursor.execute(insercion) 
 
+#crear commit necesario
+midb.commit()
 #cerrar cursos y conector
 miCursor.close()
 midb.close()

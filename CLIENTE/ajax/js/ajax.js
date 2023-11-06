@@ -63,7 +63,7 @@ function insertaAjax() {
 
 	let httprq = new XMLHttpRequest();
 
-	let peticion = "/SERVIDOR/ajaxServ/pedirdatos.py?texto="+txt+"&numero="+num
+	let peticion = "/SERVIDOR/ajaxServ/insertadatos.py?texto="+txt+"&numero="+num
 
 	httprq.onreadystatechange = function () {
 	//esta linea siempre es asi
@@ -73,6 +73,7 @@ function insertaAjax() {
 			//console.log(JSON.parse(this.responseText));//texto que me envia el servidor y que tengo que convertir en objeto de json
 			let datos = JSON.parse(this.responseText);
 			alert(datos); //creo una funcion que contiene todo lo que me ha enviado el servidor
+			crearSalida(datos);
 		} else{ // la peticion tiene un error
 			console.log("estado: " +this.readyState+", respuesta servidor: "+this.status);
 		}
