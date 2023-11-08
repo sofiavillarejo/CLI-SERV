@@ -84,6 +84,24 @@ class BDVideojuegos:
         #cerrar cursos y conector
         miCursor.close()
 
+    def modificar(self, id,nombre,empresa,tematica,numJug,anio):
+        miCursor = self.bdconex.cursor()
+        #crear consulta
+        #OTRA FORMA DE HACER CONSULTAS
+        consulta = "UPDATE videojuegosantiguos SET nombre=%s,empresa=%s,tematica=%s,numero_de_jugadores=%s,publicacion=%s WHERE id=%s" 
+        val=(nombre,empresa,tematica,int(numJug),int(anio),int(id))
+        #se escribe en error.log y lo usamos para saber si la consulta se esta ejecutando bien
+        sys.stderr.write("======================"+consulta+"======================")
+        #ejecutamos la consulta
+        miCursor.execute(consulta,val) #EXECUTEMANY -> SI VAMOS A AÑADIR UNA LISTA DE TUPLAS POR EJEMPLO
+        ###################################
+
+
+        #actualizamos la tabla haciendo un commit IMPORTANTE
+        self.bdconex.commit()
+        #cerrar cursos y conector
+        miCursor.close()
+
     def seleccionarPorId(self, id):
         miCursor = self.bdconex.cursor()
         #crear consulta
