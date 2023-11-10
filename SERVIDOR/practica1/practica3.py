@@ -23,6 +23,5 @@ x, y, z = "hola","que tal", "adios"
 print(x)
 print(y)
 print(z)
-
 print (x, y, z)
 print (x + y + z)#lo imprime todo junto

@@ -31,16 +31,17 @@ salida = "El resultado de la {} de {} {} {} es {}" #esta línea es para la divis
 
 if oper == "s":
     #print(int(n1) + int(n2))
-    print("El resultado de la suma de " + str(n1) + " más " + str(n2) + " es " + str(n1 + n2))
+    print("El resultado de la suma de " + str(n1) + " más " + str(n2) + " es " + str(n1 + n2)+"<br>")
+    print(salida.format("suma", n1, "más", n2, n1+n2))
 
 if oper == "r":
     #print(int(n1) - int(n2))
     print("El resultado de la resta de " + str(n1) + " menos " + str(n2) + " es " + str(n1 - n2))
 
-if oper == "m":
+if oper == "multiplicacion":
     #print(int(n1) * int(n2))
-    print("El resultado de la multiplicación de " + str(n1) + " por " + str(n2) + " es " + str(n1 * n2))
-
+    print("El resultado de la multiplicación de " + str(n1) + " por " + str(n2) + " es " + str(n1 * n2)+ "<br>")
+    print(f"El resultado de la {oper} de {n1} por {n2} es {n1+n2}")
 if oper == "d":
     #print(int(n1) / int(n2))    
     #print("El resultado de la división de " + str(n1) + " entre " + str(n2) + " es " + str(n1 / n2))
