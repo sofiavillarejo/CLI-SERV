@@ -1,5 +1,16 @@
 #!C:\Users\zx22student3329\AppData\Local\Programs\Python\Python311\python.exe
 
+
+#abrir ficheros -> open(nombreFichero, modo)
+# "r"-> leer, saca un error si el fichero no existe
+# "a"-> añadir, crea el fichero si no existe
+# "w"-> escribir, crea el fichero si no existe
+# "x"-> crear, devuelve un error si el fichero no existe 
+
+# además, se puede especificar si el archivo debe ser manejado como texto o como binario
+# "t"-> texto, por defecto
+# "b"-> binario
+
 print("Content-type: text/plain\n")
 
 import os

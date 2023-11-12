@@ -1,3 +1,4 @@
+# importamos del archivo persona, la clase Persona
 from persona import Persona
 
 class Alumno(Persona):

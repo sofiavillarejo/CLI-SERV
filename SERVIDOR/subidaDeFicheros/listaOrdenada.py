@@ -21,8 +21,8 @@ def crearLista(nomFich):
         
         lista+="<ol>"
 
-        for li in datos[1:]:
-            lista += f"<li>{li}</li>\n"
+        for li in datos[1:]: #recorrer desde la segunda posicion 
+            lista += f"<li>{li}</li>\n" 
         lista+="</ol>"
         lista+="</li>"
         lista+="</ol>"

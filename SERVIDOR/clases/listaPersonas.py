@@ -1,10 +1,13 @@
 #!C:\Users\zx22student3329\AppData\Local\Programs\Python\Python311\python.exe
 
+# IMPORTAMOS DE CADA ARCHIVO, LA CLASE
 from persona import Persona
 from alumno import Alumno
 from profesor import Profesor
 
+#creamos un objeto de la clase Persona
 per1 = Persona("Juan", "Rodriguez Garcia", 33)
+#para imprimir texto en pantalla
 print("Content-type: text/plain\n")
 
 print(per1.nombreCompleto())

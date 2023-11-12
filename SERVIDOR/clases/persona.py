@@ -10,3 +10,5 @@ class Persona:
     
     def __str__(self):
         return self.nombre + " "+ self.apellidos + ", "+ str(self.edad)
+
+#CLASE PERSONA QUE ES USADA EN TODAS LAS DEMAS COMO MODELO

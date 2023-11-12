@@ -48,9 +48,10 @@ def aplicacion(texto, enlace):#le pasamos texto para poder escribir en los if y 
           <h3>
     ''')
     print(texto) #le pasamos texto para poder escribir en los if y que saque algun mensaje
-    print('''
+    #h3 con el texto "pagina 1" indicado en pagina1.py
+    print(''' 
         </h3>
-        <a href="
+        <a href=" 
     ''')
     print(enlace)
     print('''">Enlace a otra pagina</a>

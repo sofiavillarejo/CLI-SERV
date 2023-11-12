@@ -56,6 +56,7 @@ class BDVideojuegos:
 
         #devolver los datos
         return miResultado
+    
     def borrarPorId(self,id):
         miCursor = self.bdconex.cursor()
         #crear consulta
