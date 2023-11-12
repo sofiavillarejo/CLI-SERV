@@ -4,7 +4,9 @@ import http.cookies, os
 
 print("Content-type: text/html")
 cookie = http.cookies.SimpleCookie()
+
 cookie["CONTADOR"] = 1
+#asignar fechad e vencimiento a la cookie para que una vez pase esa fecha, se borre sola
 cookie["CONTADOR"]["expires"] = "Wed, 11 Oct 2024 07:28:00 GMT"
 print(cookie["CONTADOR"])
 print()

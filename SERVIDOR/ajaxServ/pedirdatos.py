@@ -23,7 +23,7 @@ consulta = "SELECT * FROM datos" #seleccionamos todos los campos de la tabla dat
 #ejecutamos la consulta
 miCursor.execute(consulta) 
 
-#devuelve todas las filas que haya en la tabla y se guardan en la variable
+#devuelve todas las filas que haya en la tabla y se guardan en la variable // 
 miResultado = miCursor.fetchall() 
 
 #traza para ver el objeto miResultado
@@ -38,10 +38,6 @@ print("Content-Type: application/json\n") #se va a devolver siempre texto plano,
 #que vamos a devolver datos en ese tipo de formato
 
 print(json.dumps(miResultado)) #lo devuelve en json porque asi lo tenemos en js, sino no imprime nada
-
-
-
-
 
 
 '''

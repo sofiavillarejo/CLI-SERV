@@ -1,11 +1,11 @@
 #!C:\Users\zx22student3329\AppData\Local\Programs\Python\Python311\python.exe
 
-import http.cookies, os
+import http.cookies
 
 print("Content-type: text/html")
 cookie = http.cookies.SimpleCookie()
 cookie["CONTADOR"] = 1
-cookie["CONTADOR"]["expires"] = "Wed, 11 Oct 2022 07:28:00 GMT"
+cookie["CONTADOR"]["expires"] = "Wed, 11 Oct 2022 07:28:00 GMT" #cambiamos fecha de expiracion a una antigua que ya ha apsado para que se borre
 print(cookie["CONTADOR"])
 print()
 

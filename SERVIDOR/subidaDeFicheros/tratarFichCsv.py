@@ -18,7 +18,7 @@ def tabla(fn):
                 for encabezado in header:
                     tabla += f"<th>{encabezado}</th>"
                 tabla += "</tr>\n"
-                for linea in lineas[1:]:
+                for linea in lineas[1:]: #empieza el bucle desde la segunda linea del fichero ( la primera son encabezados)
                     datos = linea.strip().split(";")  # Divide cada línea en campos por punto y coma
                     tabla += "<tr>"
                     for campo in datos:
@@ -26,9 +26,15 @@ def tabla(fn):
                     tabla += "</tr>\n"
                 tabla += "</table>"
                 return tabla
-            
+
+#comprobar si el nombre del archivo del cliente esta presente 
 if fileitem.filename:
+    #asignar a una variable y obtenemos el nombre del archivo
     fn = os.path.basename(fileitem.filename)
+    #abrir archivo desde la carpeta img, con el nombre recibido en modo escritura binaria porque es una imagen y se escribe el contendio del archivo cargado
+    #en el archivo recien creado
     open("img/" + fn, 'wb').write(fileitem.file.read())
+    #variable para imprimir la tabla. Llamamos a la funcion tabla y le pasamos la ruta del archivo recien creado
     tablaImprimir = tabla("img/'"+ fn)
+    #imprimir todo para que se muestre en forma de tabla
     print(tablaImprimir)

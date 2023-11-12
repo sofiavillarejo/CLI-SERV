@@ -1,4 +1,6 @@
 #!C:\Users\zx22student3329\AppData\Local\Programs\Python\Python311\python.exe
+
+#codigo que contiene la pagina de recarga de que la operacion se esta realizando
 print("Content-Type: text/html\n")
 
 import os, codigoHtml, json

@@ -1,0 +1,4 @@
+Producto; Cantidad
+Albaricocque;2
+Manzana;4
+Pera;3

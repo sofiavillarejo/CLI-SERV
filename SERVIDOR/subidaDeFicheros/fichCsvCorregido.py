@@ -27,8 +27,13 @@ def crearTabla(nomFich):
     print("</table>")
 
 fileitem = form['filename']#nombre de archivo del cliente
- 
+
+#comprobar si el nombre del archivo del cliente esta presente 
 if fileitem.filename:
+    #asignar a una variable y obtenemos el nombre del archivo
     fn = os.path.basename(fileitem.filename)
+    #abrir archivo desde la carpeta img, con el nombre recibido en modo escritura binaria porque es una imagen y se escribe el contendio del archivo cargado
+    #en el archivo recien creado
     open("img/" + fn, 'wb').write(fileitem.file.read())
+    #variable para imprimir la tabla. Llamamos a la funcion tabla y le pasamos la ruta del archivo recien creado
     crearTabla("img/"+ fn)

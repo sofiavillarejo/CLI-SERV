@@ -57,7 +57,7 @@ def finHtml(): #Devuelve al cliente el final del HTML
 
 def separaLetrasLineas(t):
     for l in t:
-            print(l+"<br/>")
+        print(l+"<br/>")
 
 def contarLetras(t):
     contador = 0
@@ -69,6 +69,12 @@ def contarLetras(t):
     print(contador)
         
 def reverseTexto(t):
+    #range() devuleve una secuencia de numeros que empieza por 0 de forma predeterminda y aumenta en 1 de forma predeterminada tambien y termina antes de un numero en especifico
+    #range(start, stop, step)
+    # x = range(3,6)
+    # for n in x:    ESTO CREA UNA SECUENCIA DE NUMEROS DEL 3 AL 5
+    #     print(n)
+
     tam = len(t) #calculo del tamaño de t
     salida = "" #variable con el texto revertido
     for pos in range(tam): #bucle con range -> de la secuencia 0,1..,13
@@ -83,8 +89,10 @@ def reverseTexto(t):
     print(t[::-1])
 
 def encontrarPalabra(t, p):
+    #find() encuentra la primera aparicion del valor especificado 
+    # t.find(value, start, end)
     encontrada = False
-    if t.find(p) != -1:
+    if t.find(p) != -1: 
         encontrada = True
     return encontrada
 

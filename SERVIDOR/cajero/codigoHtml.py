@@ -1,3 +1,4 @@
+#codigo para mostrar el principio del html
 def cabeceraHtml():
     print("""
     <!DOCTYPE html>
@@ -15,13 +16,15 @@ def cabeceraHtml():
         <h1 class="display-1">Bienvenido al cajero automatico</h1>
         </div>
     """)
-    
+
+#codigo para cerrar el html
 def finHtml():
     print("""
     </body>
     </html>
     """)
 
+#codigo que nos lleva a la página de recarga
 def htmlRecarga():
     print("""
     <!DOCTYPE html>
@@ -42,6 +45,7 @@ def htmlRecarga():
     </html>
     """)
 
+#codigo del boton de crearCuenta
 def crearCuenta():
     print("""
         <form action="crearCuenta.py" method="get">
@@ -50,6 +54,7 @@ def crearCuenta():
         <hr/>
     """)
 
+#codigo que muestra el numero de cuenta y la cantidad para operar con ella y el boton de operar
 def operar():
     print("""
     <form action='operar.py' method="get">
@@ -63,6 +68,7 @@ def operar():
     </form>
     """)
 
+#pagina de recarga cuando estamos operando (ingresando o retirando dinero)
 def ingRet():
     print("""
     <!DOCTYPE html>
@@ -82,6 +88,8 @@ def ingRet():
     </body>
     </html>
     """)
+
+#pagina que se muestra si ha habido algún error
 def error():
     print("""
     <!DOCTYPE html>
@@ -98,6 +106,7 @@ def error():
     </html>
     """)
 
+#pagina para consultar los datos y cantidad de la cuenta, le pasamos los valores que vamos a utilizar
 def consultarCuenta(numCuenta, historial):
     print("""
     <!DOCTYPE html>

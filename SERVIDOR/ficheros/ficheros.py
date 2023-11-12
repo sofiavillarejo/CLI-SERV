@@ -6,12 +6,19 @@ import os
 
 dir = "datos/" #variable directorio
 nombreFich = "palabras.dat" #variable del fichero
+
 '''
-fich = open(dir+nombreFich) #abrimos el fichero y accedemos a él
-#contenido = fich.read() #oermite leer todo el contenido del fichero
-#contenido2 = fich.readline()
+ABRIR FICH Y ACCEDER A EL
+fich = open(dir+nombreFich) 
+
+#contenido = fich.read() #permite leer todo el contenido del fichero
+
+#contenido2 = fich.readline() LEER UNA LINEA
+
 #print(contenido)
-#print(fich.read())#leer e imprimir el fichero
+
+LEER E IMPRIMIR EL FICHERO 
+#print(fich.read())
 
 #bule for para ir leyendo todo el contenido
 #for contenido in fich: MEJOR FORMA PARA RECORRER FICHEROS

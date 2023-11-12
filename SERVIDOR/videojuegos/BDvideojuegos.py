@@ -1,5 +1,9 @@
 import mysql.connector, sys
 
+#####################################################
+##################LO DE API ES PARA CLIENTE###############################
+#BORRAR TABLA-> DROP TABLE nombreTabla
+
 #clase que implementa las operaciones con la base de datos
 class BDVideojuegos:
     #contructor del objeto para conectar con la base de datos
@@ -77,7 +81,6 @@ class BDVideojuegos:
         #ejecutamos la consulta
         miCursor.execute(consulta,val) #EXECUTEMANY -> SI VAMOS A AÑADIR UNA LISTA DE TUPLAS POR EJEMPLO
         ###################################
-
 
         #actualizamos la tabla haciendo un commit IMPORTANTE
         self.bdconex.commit()
