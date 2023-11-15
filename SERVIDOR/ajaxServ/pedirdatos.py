@@ -1,5 +1,4 @@
-#!C:\Users\zx22student3329\AppData\Local\Programs\Python\Python311\python.exe
-
+#!C:\Users\Sofía\AppData\Local\Programs\Python\Python312\python.exe
 import mysql.connector
 import sys,json
 
@@ -10,9 +9,9 @@ sys.stderr.write("Dentro del pedirdatos.py--------\n") #esto escribe en el archi
 #creamos objeto
 midb = mysql.connector.connect( 
     host = "localhost",
-    user = "pruebaAjax",
-    password = "pruebaAjax",
-    database = "pruebaAjax"
+    user = "pruebajax",
+    password = "pruebajax",
+    database = "pruebajax"
 )
 
 #cursos para hacer peticiones -> objeto que permite hacer consultas a la BBDD

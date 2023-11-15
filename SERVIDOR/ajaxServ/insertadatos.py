@@ -1,5 +1,4 @@
-#!C:\Users\zx22student3329\AppData\Local\Programs\Python\Python311\python.exe
-
+#!C:\Users\Sofía\AppData\Local\Programs\Python\Python312\python.exe
 import mysql.connector
 import sys,json
 import os
@@ -19,9 +18,9 @@ n = param["numero"][0]
 #creamos objeto que contiene todos los datos para conectarnos a la BBDD
 midb = mysql.connector.connect( 
     host = "localhost",
-    user = "pruebaAjax",
-    password = "pruebaAjax",
-    database = "pruebaAjax"
+    user = "pruebajax",
+    password = "pruebajax",
+    database = "pruebajax"
 )
 
 #cursos para hacer peticiones -> objeto que permite hacer consultas a la BBDD
@@ -44,7 +43,7 @@ midb.close()
 print("Content-Type: application/json\n") #se va a devolver siempre texto plano, pero lo hemo scambiado a applicaction json para indicar
 #que vamos a devolver datos en ese tipo de formato
 
-print(json.dumps("ok"))#imprimir ok convertido a JSON
+print(json.dumps("ok"))#imprimir ok convertido a JSON -> esto es el alert(datos) en ajax.js insertaAjax()
 
 
 

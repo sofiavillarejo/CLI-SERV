@@ -16,8 +16,9 @@ function llamadaAjax() {
 		if(this.readyState == 4 && this.status == 200){ //si la respuesta es correcta, se ejecuta este codigo
 			//para ver la diferencia entre texto normal y  el json
 			console.log(this.responseText);
-			//console.log(JSON.parse(this.responseText));//texto que me envia el servidor y que tengo que convertir en objeto de json
-			let datos = JSON.parse(this.responseText);
+			//console.log(JSON.parse(this.responseText));
+			//texto que me envia el servidor y que tengo que convertir en objeto de json
+			let datos = JSON.parse(this.responseText);//lo que me devuelve el python
 			crearSalida(datos); //creo una funcion que contiene todo lo que me ha enviado el servidor
 		} else{ // la peticion tiene un error
 			console.log("estado: " +this.readyState+", respuesta servidor: "+this.status);
@@ -28,30 +29,32 @@ function llamadaAjax() {
 	 * peticion al servidor
 	***********/
 	//construir peticion
-	httprq.open("GET", "/SERVIDOR/ajaxServ/pedirdatos.py", true) //tiene 3 parametros: tipo de petición, que quiero pedir y ejecucion sincrona o asincrona
+	httprq.open("GET", "/2DAW/SERVIDOR/ajaxServ/pedirdatos.py", true) //tiene 3 parametros: tipo de petición, que quiero pedir y ejecucion sincrona o asincrona
 
 	//ejecuto la peticion
 	httprq.send();
 }
 
 function crearSalida(datos) {
-	/*
+	
 	let listaHtml = "<ul>"; //declaramos que esta variable va a abrir la lista
 	for (d of datos){ //recorremos los datos
 		listaHtml += "<li>" + d + "</li>" //añadimos a la variable de la lista la apertura de la lista y ademas, cada elemento + los datos
 	}
  	listaHtml += "</ul>"
- 	*/
- 	let tablaHTML = "<table border='1px solid black'>";
- 	for (d of datos){ //recorremos los datos
-		tablaHTML += "<tr>"; 
-		for (elem of d){
-			tablaHTML += "<td>" +elem+ "</td>";
-		}
-		tablaHTML += "</tr>"; //añadimos a la variable de la lista la apertura de la lista y ademas, cada elemento + los datos
-	}
- 	tablaHTML += "</table>";
- 	document.getElementById('salida').innerHTML = tablaHTML;
+ 	
+ 	// let tablaHTML = "<table border='1px solid black'>";
+ 	// for (d of datos){ //recorremos los datos
+	// 	tablaHTML += "<tr>"; 
+	// 	for (elem of d){
+	// 		tablaHTML += "<td>" +elem+ "</td>";
+	// 	}
+	// 	tablaHTML += "</tr>"; //añadimos a la variable de la lista la apertura de la lista y ademas, cada elemento + los datos
+	// }
+ 	// tablaHTML += "</table>";
+ 	// document.getElementById('salida').innerHTML = tablaHTML;
+	document.getElementById('salida').innerHTML = listaHtml;
+
 }
 
 function insertaAjax() {
@@ -63,17 +66,17 @@ function insertaAjax() {
 
 	let httprq = new XMLHttpRequest();
 
-	let peticion = "/SERVIDOR/ajaxServ/insertadatos.py?texto="+txt+"&numero="+num
+	let peticion = "/2DAW/SERVIDOR/ajaxServ/insertadatos.py?texto="+txt+"&numero="+num
 
 	httprq.onreadystatechange = function () {
 	//esta linea siempre es asi
 		if(this.readyState == 4 && this.status == 200){ //si la respuesta es correcta, se ejecuta este codigo
 			//para ver la diferencia entre texto normal y  el json
 			console.log(this.responseText);
-			//console.log(JSON.parse(this.responseText));//texto que me envia el servidor y que tengo que convertir en objeto de json
+			//texto que me envia el servidor y que tengo que convertir en objeto de json
 			let datos = JSON.parse(this.responseText);
 			alert(datos); //creo una funcion que contiene todo lo que me ha enviado el servidor
-			crearSalida(datos);
+			llamadaAjax();
 		} else{ // la peticion tiene un error
 			console.log("estado: " +this.readyState+", respuesta servidor: "+this.status);
 		}

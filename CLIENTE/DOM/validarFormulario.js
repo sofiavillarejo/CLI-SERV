@@ -10,5 +10,5 @@ function validar() {
 		param1.style.background = "red"
 	}
 
-	return respuesta;
+	return respuesta
 }

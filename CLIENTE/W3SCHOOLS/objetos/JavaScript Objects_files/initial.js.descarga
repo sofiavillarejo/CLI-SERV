@@ -1,0 +1,264 @@
+/**
+     *
+     * @param {string} element : Es el elemento DOM donde tenemos el texto que queremos partir
+     * @returns {void}
+     */
+var size = '300x600';
+var timeFrame = 9;
+var framesshow;
+var stopped = 0;
+var creative = {};
+creative.init = function () {
+  creative.setupDOMElements();
+
+  if (Enabler.isInitialized()) {
+    creative.enablerInitHandler();
+  } else {
+    Enabler.addEventListener(
+      studio.events.StudioEvent.INIT,
+      creative.enablerInitHandler);
+  }
+};
+
+creative.setupDOMElements = function () {
+  creative.domElements = {};
+  creative.domElements.capaclick = document.getElementById('capaclick');
+
+};
+
+creative.enablerInitHandler = function (event) {
+  creative.dynamicDataAvailable();
+
+  creative.domElements.capaclick.addEventListener('click', creative.exitClickHandler);
+
+  if (Enabler.isPageLoaded()) {
+    creative.pageLoadHandler();
+  } else {
+    Enabler.addEventListener(
+      studio.events.StudioEvent.PAGE_LOADED,
+      creative.pageLoadHandler);
+  }
+};
+
+var dynamicContent = {};
+creative.dynamicDataAvailable = function () {
+    Enabler.setProfileId(1083353);
+
+    dynamicContent.NH_content= [{}];
+    dynamicContent.NH_content[0]._id = 0;
+    dynamicContent.NH_content[0].Id = 1;
+    dynamicContent.NH_content[0].Report_label = "IC-Default-Belgium";
+    dynamicContent.NH_content[0].Destination_Id = "";
+    dynamicContent.NH_content[0].Destino = "";
+    dynamicContent.NH_content[0].Default = false;
+    dynamicContent.NH_content[0].StartDate = {};
+    dynamicContent.NH_content[0].StartDate.RawValue = "2016/03/03 00:00 (+01:00)";
+    dynamicContent.NH_content[0].StartDate.UtcValue = 1456959600000;
+    dynamicContent.NH_content[0].EndDate = {};
+    dynamicContent.NH_content[0].EndDate.RawValue = "2016/04/03 23:59 (+01:00)";
+    dynamicContent.NH_content[0].EndDate.UtcValue = 1459724340000;
+    dynamicContent.NH_content[0].Active = true;
+    dynamicContent.NH_content[0].Loop = 1;
+    dynamicContent.NH_content[0].TimeFrame = 4;
+    dynamicContent.NH_content[0].Imagenes_fondo = {"background_980x90_3.gif":{"Type":"file","Url":"https://s0.2mdn.net/ads/richmedia/studio/63009/63009_20161228084715401_background_980x90_3.gif"},"background_980x90_2.gif":{"Type":"file","Url":"https://s0.2mdn.net/ads/richmedia/studio/63009/63009_20161228084708366_background_980x90_2.gif"},"background_980x90_1.gif":{"Type":"file","Url":"https://s0.2mdn.net/ads/richmedia/studio/63009/63009_20161228084701300_background_980x90_1.gif"},"background_970x250_3.gif":{"Type":"file","Url":"https://s0.2mdn.net/ads/richmedia/studio/63009/63009_20161228035822910_background_970x250_3.gif"},"background_970x250_2.gif":{"Type":"file","Url":"https://s0.2mdn.net/ads/richmedia/studio/63009/63009_20161228035817031_background_970x250_2.gif"},"background_970x250_1.gif":{"Type":"file","Url":"https://s0.2mdn.net/ads/richmedia/studio/63009/63009_20161228035809973_background_970x250_1.gif"},"background_970x90_3.gif":{"Type":"file","Url":"https://s0.2mdn.net/ads/richmedia/studio/63009/63009_20161228043028403_background_970x90_3.gif"},"background_970x90_2.gif":{"Type":"file","Url":"https://s0.2mdn.net/ads/richmedia/studio/63009/63009_20161228042950389_background_970x90_2.gif"},"background_970x90_1.gif":{"Type":"file","Url":"https://s0.2mdn.net/ads/richmedia/studio/63009/63009_20161228042942380_background_970x90_1.gif"},"background_336x280_3.gif":{"Type":"file","Url":"https://s0.2mdn.net/ads/richmedia/studio/63009/63009_20161228084552028_background_336x280_3.gif"},"background_336x280_2.gif":{"Type":"file","Url":"https://s0.2mdn.net/ads/richmedia/studio/63009/63009_20161228084544951_background_336x280_2.gif"},"background_336x280_1.gif":{"Type":"file","Url":"https://s0.2mdn.net/ads/richmedia/studio/63009/63009_20161228084537868_background_336x280_1.gif"},"background_320x480_3.gif":{"Type":"file","Url":"https://s0.2mdn.net/ads/richmedia/studio/63009/63009_20161228084530092_background_320x480_3.gif"},"background_320x480_2.gif":{"Type":"file","Url":"https://s0.2mdn.net/ads/richmedia/studio/63009/63009_20161228084522796_background_320x480_2.gif"},"background_320x480_1.gif":{"Type":"file","Url":"https://s0.2mdn.net/ads/richmedia/studio/63009/63009_20161228084516297_background_320x480_1.gif"},"background_250x250_3.gif":{"Type":"file","Url":"https://s0.2mdn.net/ads/richmedia/studio/63009/63009_20161228084426492_background_250x250_3.gif"},"background_250x250_2.gif":{"Type":"file","Url":"https://s0.2mdn.net/ads/richmedia/studio/63009/63009_20161228084418447_background_250x250_2.gif"},"background_250x250_1.gif":{"Type":"file","Url":"https://s0.2mdn.net/ads/richmedia/studio/63009/63009_20161228084410644_background_250x250_1.gif"},"background_728x90_3.gif":{"Type":"file","Url":"https://s0.2mdn.net/ads/richmedia/studio/63009/63009_20161228035803109_background_728x90_3.gif"},"background_728x90_2.gif":{"Type":"file","Url":"https://s0.2mdn.net/ads/richmedia/studio/63009/63009_20161228035756241_background_728x90_2.gif"},"background_728x90_1.gif":{"Type":"file","Url":"https://s0.2mdn.net/ads/richmedia/studio/63009/63009_20161228035750156_background_728x90_1.gif"},"background_300x600_3.gif":{"Type":"file","Url":"https://s0.2mdn.net/ads/richmedia/studio/63009/63009_20161228035721650_background_300x600_3.gif"},"background_300x600_2.gif":{"Type":"file","Url":"https://s0.2mdn.net/ads/richmedia/studio/63009/63009_20161228035714562_background_300x600_2.gif"},"background_300x600_1.gif":{"Type":"file","Url":"https://s0.2mdn.net/ads/richmedia/studio/63009/63009_20161228035707055_background_300x600_1.gif"},"background_300x250_3.gif":{"Type":"file","Url":"https://s0.2mdn.net/ads/richmedia/studio/63009/63009_20161228035659040_background_300x250_3.gif"},"background_300x250_2.gif":{"Type":"file","Url":"https://s0.2mdn.net/ads/richmedia/studio/63009/63009_20161228035652092_background_300x250_2.gif"},"background_300x250_1.gif":{"Type":"file","Url":"https://s0.2mdn.net/ads/richmedia/studio/63009/63009_20161228035645656_background_300x250_1.gif"},"background_160x600_3.gif":{"Type":"file","Url":"https://s0.2mdn.net/ads/richmedia/studio/63009/63009_20161228035637977_background_160x600_3.gif"},"background_160x600_2.gif":{"Type":"file","Url":"https://s0.2mdn.net/ads/richmedia/studio/63009/63009_20161228035632428_background_160x600_2.gif"},"background_160x600_1.gif":{"Type":"file","Url":"https://s0.2mdn.net/ads/richmedia/studio/63009/63009_20161228035626048_background_160x600_1.gif"},"background_120x600_3.gif":{"Type":"file","Url":"https://s0.2mdn.net/ads/richmedia/studio/63009/63009_20161228043859812_background_120x600_3.gif"},"background_120x600_2.gif":{"Type":"file","Url":"https://s0.2mdn.net/ads/richmedia/studio/63009/63009_20161228043852761_background_120x600_2.gif"},"background_120x600_1.gif":{"Type":"file","Url":"https://s0.2mdn.net/ads/richmedia/studio/63009/63009_20161228023315364_background_120x600_1.gif"},"background_200x600_3.gif":{"Type":"file","Url":"https://s0.2mdn.net/ads/richmedia/studio/63009/63009_20161228035743206_background_200x600_3.gif"},"background_200x600_2.gif":{"Type":"file","Url":"https://s0.2mdn.net/ads/richmedia/studio/63009/63009_20161228035736069_background_200x600_2.gif"},"background_200x600_1.gif":{"Type":"file","Url":"https://s0.2mdn.net/ads/richmedia/studio/63009/63009_20161228035728869_background_200x600_1.gif"},"background_728x90_2.jpg":{"Type":"file","Url":"https://s0.2mdn.net/ads/richmedia/studio/44955789/63009_20160822240213577_background_728x90_2.jpg"},"background_728x90_1.jpg":{"Type":"file","Url":"https://s0.2mdn.net/ads/richmedia/studio/41578076/63009_20160223045231135_background_728x90_1.jpg"},"background_300x600_2.jpg":{"Type":"file","Url":"https://s0.2mdn.net/ads/richmedia/studio/44956054/63009_20160822240148410_background_300x600_2.jpg"},"background_300x600_1.jpg":{"Type":"file","Url":"https://s0.2mdn.net/ads/richmedia/studio/42561308/63009_20160414022125934_background_300x600_1.jpg"},"background_300x250_2.jpg":{"Type":"file","Url":"https://s0.2mdn.net/ads/richmedia/studio/44955691/63009_20160822240135785_background_300x250_2.jpg"},"background_300x250_1.jpg":{"Type":"file","Url":"https://s0.2mdn.net/ads/richmedia/studio/42559880/63009_20160414022114832_background_300x250_1.jpg"},"background_200x600_2.jpg":{"Type":"file","Url":"https://s0.2mdn.net/ads/richmedia/studio/44955944/63009_20160822240120674_background_200x600_2.jpg"},"background_200x600_1.jpg":{"Type":"file","Url":"https://s0.2mdn.net/ads/richmedia/studio/42560965/63009_20160414022105387_background_200x600_1.jpg"},"background_160x600_2.jpg":{"Type":"file","Url":"https://s0.2mdn.net/ads/richmedia/studio/44956051/63009_20160822240107748_background_160x600_2.jpg"},"background_160x600_1.jpg":{"Type":"file","Url":"https://s0.2mdn.net/ads/richmedia/studio/42561306/63009_20160414022054774_background_160x600_1.jpg"},"background_120x600_3.jpg":{"Type":"file","Url":"https://s0.2mdn.net/ads/richmedia/studio/41694160/63009_20160229011704039_background_120x600_3.jpg"},"background_120x600_2.jpg":{"Type":"file","Url":"https://s0.2mdn.net/ads/richmedia/studio/41693763/63009_20160229011657648_background_120x600_2.jpg"},"background_120x600_1.jpg":{"Type":"file","Url":"https://s0.2mdn.net/ads/richmedia/studio/41693981/63009_20160229011652339_background_120x600_1.jpg"},"background_728x90_3.jpg":{"Type":"file","Url":"https://s0.2mdn.net/ads/richmedia/studio/41587847/63009_20160223090318581_background_728x90_3.jpg"},"background_300x600_3.jpg":{"Type":"file","Url":"https://s0.2mdn.net/ads/richmedia/studio/42117744/63009_20160321053906139_background_300x600_3.jpg"},"background_300x250_3.jpg":{"Type":"file","Url":"https://s0.2mdn.net/ads/richmedia/studio/41582978/63009_20160223075456112_background_300x250_3.jpg"},"background_160x600_3.jpg":{"Type":"file","Url":"https://s0.2mdn.net/ads/richmedia/studio/41582976/63009_20160223075420784_background_160x600_3.jpg"},"background_200x600_3.jpg":{"Type":"file","Url":"https://s0.2mdn.net/ads/richmedia/studio/41586582/63009_20160223090219858_background_200x600_3.jpg"}};
+    dynamicContent.NH_content[0].youtube_ids = "";
+    dynamicContent.NH_content[0].youtube_frame = "";
+    dynamicContent.NH_content[0].btn_color = "#003262";
+    dynamicContent.NH_content[0].acelerador_color = "#f0a321,#003262";
+    dynamicContent.NH_content[0].frame_cierre_color = "#003262";
+    dynamicContent.NH_content[0].frame_1_active = true;
+    dynamicContent.NH_content[0].frame_1_tit_1 = "";
+    dynamicContent.NH_content[0].frame_1_tit_2 = "Plus de 383 h\u00F4tels dans 29 pays";
+    dynamicContent.NH_content[0].frame_1_tit_order = "";
+    dynamicContent.NH_content[0].frame_1_text = "";
+    dynamicContent.NH_content[0].frame_1_align = "";
+    dynamicContent.NH_content[0].frame_1_top = "";
+    dynamicContent.NH_content[0].frame_1_oferta = false;
+    dynamicContent.NH_content[0].frame_1_btn = "";
+    dynamicContent.NH_content[0].frame_1_cierre = false;
+    dynamicContent.NH_content[0].frame_1_cierre_texto = "";
+    dynamicContent.NH_content[0].frame_1_acelerador = false;
+    dynamicContent.NH_content[0].frame_1_acelerador_texto = "";
+    dynamicContent.NH_content[0].frame_2_active = true;
+    dynamicContent.NH_content[0].frame_2_tit_1 = "";
+    dynamicContent.NH_content[0].frame_2_tit_2 = "";
+    dynamicContent.NH_content[0].frame_2_tit_order = "";
+    dynamicContent.NH_content[0].frame_2_text = "";
+    dynamicContent.NH_content[0].frame_2_align = "";
+    dynamicContent.NH_content[0].frame_2_top = "";
+    dynamicContent.NH_content[0].frame_2_oferta = true;
+    dynamicContent.NH_content[0].frame_2_btn = "R\u00C9SERVEZ";
+    dynamicContent.NH_content[0].frame_2_cierre = false;
+    dynamicContent.NH_content[0].frame_2_cierre_texto = "";
+    dynamicContent.NH_content[0].frame_2_acelerador = false;
+    dynamicContent.NH_content[0].frame_2_acelerador_texto = "";
+    dynamicContent.NH_content[0].frame_3_active = true;
+    dynamicContent.NH_content[0].frame_3_tit_1 = "";
+    dynamicContent.NH_content[0].frame_3_tit_2 = "";
+    dynamicContent.NH_content[0].frame_3_tit_order = "";
+    dynamicContent.NH_content[0].frame_3_text = "";
+    dynamicContent.NH_content[0].frame_3_align = "";
+    dynamicContent.NH_content[0].frame_3_top = "";
+    dynamicContent.NH_content[0].frame_3_oferta = true;
+    dynamicContent.NH_content[0].frame_3_btn = "R\u00C9SERVEZ";
+    dynamicContent.NH_content[0].frame_3_cierre = false;
+    dynamicContent.NH_content[0].frame_3_cierre_texto = "";
+    dynamicContent.NH_content[0].frame_3_acelerador = false;
+    dynamicContent.NH_content[0].frame_3_acelerador_texto = "";
+    dynamicContent.NH_content[0].frame_4_active = false;
+    dynamicContent.NH_content[0].frame_4_tit_1 = "";
+    dynamicContent.NH_content[0].frame_4_tit_2 = "";
+    dynamicContent.NH_content[0].frame_4_tit_order = "";
+    dynamicContent.NH_content[0].frame_4_text = "";
+    dynamicContent.NH_content[0].frame_4_align = "";
+    dynamicContent.NH_content[0].frame_4_top = "";
+    dynamicContent.NH_content[0].frame_4_oferta = false;
+    dynamicContent.NH_content[0].frame_4_btn = "";
+    dynamicContent.NH_content[0].frame_4_cierre = false;
+    dynamicContent.NH_content[0].frame_4_cierre_texto = "";
+    dynamicContent.NH_content[0].frame_4_acelerador = false;
+    dynamicContent.NH_content[0].frame_4_acelerador_texto = "";
+    dynamicContent.NH_content[0].frame_4_idioma = "";
+    dynamicContent.NH_content[0].oferta_txt_1 = "Jusqu\'\u00E0";
+    dynamicContent.NH_content[0].oferta_desc = 25;
+    dynamicContent.NH_content[0].oferta_txt_2_1 = "";
+    dynamicContent.NH_content[0].oferta_txt_2_2 = "de r\u00E9duction avec NH Rewards";
+    dynamicContent.NH_content[0].oferta_nota = "";
+    dynamicContent.NH_content[0].url_destino = {};
+    dynamicContent.NH_content[0].url_destino.Url = "http://www.nh-hotels.fr/?campid=%ebuy!&ct=%eaid!";
+    Enabler.setDevDynamicContent(dynamicContent);
+
+    creative.dynamicData = dynamicContent.NH_content[0];
+
+    var urlSuffix = Enabler.getParameter('exit_suffix');
+    var url = creative.dynamicData.url_destino.Url; 
+    var symbol = '?';
+    if(urlSuffix){
+     if(url.indexOf("?")> -1){
+         symbol = "&";
+     }
+    url = url + symbol + urlSuffix;
+    }
+    
+    creative.dynamicExitUrl = url;
+
+    // creative.dynamicExitUrl = creative.dynamicData.url_destino.Url;
+
+    window.timeFrame = creative.dynamicData['TimeFrame']==0?9:creative.dynamicData['TimeFrame'];
+  
+};
+
+
+creative.closeClickHandler = function (event) {
+  studioinnovation.youtube.requestYTAdClose('creative2yt_requestClose');
+};
+
+creative.exitClickHandler = function (event) {
+
+  Enabler.counter('btn_frame_'+(framesshow.current+1));
+  Enabler.exitOverride("exit", creative.dynamicExitUrl);
+
+  if(stopped==0)
+  {
+    framesshow.stop();
+    stopped = 1;
+  }
+  
+};
+
+creative.pageLoadHandler = function (event) {
+  creative.initAd();
+};
+
+creative.initAd = function () {
+    
+  /*
+  var external_javascript = document.createElement('script');
+  external_javascript.setAttribute('type', 'text/javascript');
+  external_javascript.setAttribute('src', Enabler.getUrl('assets/js/polite.js'));
+  document.getElementsByTagName('head')[0].appendChild(external_javascript);
+  */
+
+  var external_css = document.createElement('link');
+  external_css.setAttribute('rel', 'stylesheet');
+  external_css.setAttribute('type', 'text/css');
+  external_css.setAttribute('href', Enabler.getUrl('assets/css/style.css'));
+  document.getElementsByTagName('head')[0].appendChild(external_css);
+
+  var external_javascript = document.createElement('script');
+  external_javascript.setAttribute('type', 'text/javascript');
+  external_javascript.setAttribute('src', Enabler.getUrl('assets/js/nhdynamic.js'));
+  document.getElementsByTagName('head')[0].appendChild(external_javascript);
+    
+  var external_javascript2 = document.createElement('script');
+  external_javascript2.setAttribute('type','text/javascript');
+  external_javascript2.setAttribute('src', Enabler.getUrl('assets/js/youtubeApi.js'));
+  document.getElementsByTagName('head')[0].appendChild(external_javascript2);
+
+};
+
+creative.showAd = function () {
+  //cargo vista banner
+    setTimeout(function(){
+        document.getElementById('content').className = "show";
+        document.getElementById('capaclick').className = "show";
+        document.getElementById('loader').className = "hide";
+        $('.show_video').delay(1000).fadeOut(200);
+    },500);
+    
+    //click salida > mute al vídeo
+    $('#capaclick').click(function(){
+        player.mute();
+        $('#sound img').attr('src','assets/images/mute.png');
+        click = true;
+    });
+    
+    //control de sonido
+    var click = true;
+    $('#sound').click(function(){
+        if(click){
+            $('#sound img').attr('src','assets/images/sound.png');
+            click = false;
+            player.unMute();
+        }
+        else{
+            $('#sound img').attr('src','assets/images/mute.png');
+            click = true;
+            player.mute();
+        }
+    });
+    
+    console.log(navigator.userAgent);
+    var nav = navigator.userAgent.toLowerCase();
+
+    if( nav.indexOf('nt 6.3') != -1 || nav.indexOf('nt 6.1') != -1 ){
+        $('#content #slider ul li.frame_t_3 p.title2 span').css({height:'30px'});
+        $('#content #slider ul li.frame_t_3 p.title1 span').css({height:'32px'});
+        $('#content #slider .oferta2 #descuento').css({height:'57px'});
+        $('#content #slider .oferta2 #porcentaje').css({height:'53px'});
+        $('#content #slider .oferta2 #porcentaje').css({height:'53px'});
+        $('#content #slider .oferta2').css({height:'85px'});
+    }
+    
+    if( nav.indexOf('nt 10.0') != -1 || nav.indexOf('nt 6.1') != -1 ){
+        $('#content #slider .oferta2 #porcentaje').css({height:'53px'});
+        $('#content #slider .oferta2').css({height:'85px'});
+        $('#content #slider .oferta2 #texto2_2').css({marginTop:'0'});
+        $('#content #slider ul li.frame_t_3 p.title2 span.title').css({fontSize:'13px'});
+        
+    }
+    
+    if(  nav.indexOf('nt 6.1') != -1 ){
+        $('#content #slider .oferta2 #texto2_2').css({marginTop:'-5px'});
+    }
+};
+
+
+window.addEventListener('load', creative.init.bind(creative));
+
+
+
+
+
+
+

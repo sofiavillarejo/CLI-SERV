@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toppings Pizza</title>
+    <style>
+        body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background-color: lightblue;
+        }
+        #toppings{
+            border: 1px solid black;
+            width: 60%;
+            height: 500px;
+            background-color: white;
+            justify-content: center;
+            align-items: center;
+            display: flex;
+            flex-wrap: wrap;
+        }
+        h1{
+            font-size: 18px;
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: bold;
+        }
+        ul{
+            width: 100%;
+            height: 100%;
+        }
+        li{
+            font-size: 20px;
+            font-weight: bold;
+            color: white;
+            display: flex;
+            flex-wrap: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 80px;
+            margin: 15px 0;
+            background-color: maroon;
+        }
+    </style>
+</head>
+<body>
+    <div id="toppings">
+        <h1 id="titulo">Toppings de pizza</h1>
+        <ul id="lista-toppings">
+            <li onclick="pasarValores('Aceitunas')" class="topping" id="aceitunas">Aceitunas</li>
+            <li class="topping" id="cebolla">Cebolla</li>
+            <li onclick="cambiarColor()" class="topping" id="albahaca">Albahaca</li>
+        </ul>
+    </div>
+    <div id="enlaces">
+        <a class="enlace" href="https://www.google.com/?hl=es">Google</a>
+    </div>
+    <!-- importar archivo de js y poder usarlo -->
+    <script src="app.js"></script> 
+</body>
+</html>

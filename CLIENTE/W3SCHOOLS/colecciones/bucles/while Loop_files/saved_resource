@@ -1,0 +1,43 @@
+
+var ftGUID_7782370="57979C42E5723A";
+var ftConfID_7782370="0";
+var ftParams_7782370="ftx=&fty=&ftadz=&ftscw=&ft_custom=&ftOBA=1&ft_ifb=1&ft_domain=www.w3schools.com&ft_agentEnv=0&ft_referrer=https%3A%2F%2Fwww.w3schools.com%2F&gdpr=${GDPR}&gdpr_consent=${GDPR_CONSENT_78}&us_privacy=${US_PRIVACY}&cachebuster=950228.736733352";
+var ftKeyword_7782370="";
+var ftCustom_7782370="";
+var ftSection_7782370="";
+var ftSegment_7782370="";
+var ftSegmentList_7782370=[];
+var ftRuleMatch_7782370="0";
+var ftTimestamp_7782370="1700081634";
+var ftGeoC2_7782370="es";
+var ftGeoState_7782370="m";
+var ftGeoCity_7782370="aranjuez";
+var ftISP_7782370="rcs rds sa";
+var ftSpeed_7782370="broadband";
+var ftConnType_7782370="wifi";
+var ftDMA_7782370="-1";
+var ftLong_7782370="-3.6";
+var ftLat_7782370="40.03";
+var ftPostal_7782370="28300";
+var ftTimeZone_7782370="+100";
+var ftMobileCarrier_7782370="";
+var ftImp7782370 = {};
+ftImp7782370.privacy = "t";
+ftImp7782370.guidAge = "328";
+ftImp7782370.impID = "5EAB7D50-49FE-4994-E8C3-951C3D4BA562";
+ftImp7782370.duid = "FT:57979C42E5723A";
+
+ftImp7782370.ft_tpplid = "";
+ftImp7782370.ft_c = {};
+ftImp7782370.gdpr = "!!GDPR!";
+ftImp7782370.gdpr_consent = "!!GDPR_CONSENT_78!";
+ftImp7782370.gdpr_pd = "";
+ftImp7782370.oob_consent = "";
+ftImp7782370.gdprStoredConsent = "";
+ftImp7782370.us_privacy = "!!US_PRIVACY!";
+ftImp7782370.gpc = "";
+
+var ftCreativeId_7782370 = "4508235";
+document.write('<scr'+'ipt src="https://ajs-assets.ftstatic.com/ftUtils.js" id="ftscript_m7782370" name="ftscript_m7782370"></scr'+'ipt>');window.fTChecker=window.fTChecker||function(id){if(!id)return false;id=""+id;if(window.hasOwnProperty("ftUtils")){window["ft"+id]=Object.assign({},window.ftUtils.common);window["ft"+id].getBannerConfig(id)}else(function(id){window.setTimeout(function(){window.fTChecker(id)},50)})(id)};window.fTChecker("7782370");
+
+
