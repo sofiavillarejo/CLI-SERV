@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>ejer 4</title>
+	<script type="text/javascript" src="ej5.js"></script>
+</head>
+<body>
+    <!-- A)EJERCICIO SIN TABLA -->
+	<button onclick="cambiaFondo('p1')">Resalta Juan</button>
+	<button onclick="cambiaFondo('p2')">Resalta Carlos</button>
+	<button onclick="cambiaFondo('p3')">Resalta Maria</button>
+	<p id="p1">
+		Nombre: Juan <br>
+		Apellidos: Garcia  Garcia<br>
+		Dirección: Calle Pastrana, 12, 6-1<br>
+		CP: 30123 <br>
+	</p>
+	<p id="p2">
+		Nombre: Carlos <br>
+		Apellidos: Lopez Lopez<br>
+		Dirección: Calle Romero, 2, SN<br>
+		CP: 21456<br>
+	</p>
+	<p id="p3">
+		Nombre: Maria <br>
+		Apellidos: Sanchez Sanchez<br>
+		Dirección: Calle Tomillo, 45, 1A<br>
+		CP: 43678<br>
+	</p>
+
+    <!-- B)EJERCICIO CON TABLA -->
+    <button onclick="cambiaEstiloBorde('fila1')">Resalta Juan</button>
+	<button onclick="cambiaEstiloBorde('fila2')">Resalta Carlos</button>
+	<button onclick="cambiaEstiloBorde('fila3')">Resalta Maria</button>
+	<table>
+		<tr id="fila1">
+			<td>Nombre: Juan </td>
+			<td>Apellidos: Garcia  Garcia</td>
+			<td>Dirección: Calle Pastrana, 12, 6-1</td>
+			<td>CP: 30123 </td>
+		</tr>
+		<tr id="fila2">
+			<td>Nombre: Carlos </td>
+			<td>Apellidos: Lopez Lopez</td>
+			<td>Dirección: Calle Romero, 2, SN</td>
+			<td>CP: 21456</td>
+		</tr>
+		<tr id="fila3">
+			<td>Nombre: Maria </td>
+			<td>Apellidos: Sanchez Sanchez</td>
+			<td>Dirección: Calle Tomillo, 45, 1A</td>
+			<td>CP: 43678</td>
+		</tr>	
+	</table>
+</body>
+</html>
