@@ -16,7 +16,7 @@ param = parse_qs(parametros[4])
 prod = [param["producto"][0], param["cantidad"][0]] #lista con dos elementos
 
 if os.path.getsize("datos/listaCompra.dat") == 0: 
-    listaProductos = [prod] #lista que contiene los productos
+    listaProductos = [prod] #añade a una lista los datos que recibe del formulario
     listaJson = json.dumps(listaProductos) #convierte algo en formato json
 
 else:
