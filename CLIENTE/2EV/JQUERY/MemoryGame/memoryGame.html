@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memory Game</title>
+</head>
+<style>
+    #tablero {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-gap: 10px;
+        max-width: 300px;
+        margin: 0 auto;
+}
+
+.card {
+    display: flex;
+    flex-wrap: wrap;
+    width: 200px;
+    height: 200px;
+    background-color: #eee;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    margin: 5px;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
+}
+
+.card img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+    opacity: 0;
+    transform: rotateY(180deg);
+}
+
+.card.volteada img {
+    opacity: 100;
+    transform: rotateY(0deg);
+}
+#salida{
+    font-size: 45px;
+    font-family: arial;
+    color: lightpink;
+    position: absolute;
+    top: 220px;
+    right: 40px;
+}
+#boton{
+    position: absolute;
+    top: 220px;
+    left: 220px;
+    font-size: 30px;
+    border-radius: 50px;
+    background-color: lightpink;
+    color: white;
+    border: none;
+}
+
+</style>
+<body>
+    <div id="tablero"></div>
+    <div id="salida"></div>
+    <button id="boton">Empezar de nuevo</button>
+    <script type="text/javascript" src="jquery-3.7.1.min.js"></script>
+    <script type="text/javascript" src="memoryGame.js"></script>
+</body>
+</html>
