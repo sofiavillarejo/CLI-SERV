@@ -50,7 +50,7 @@ else:
     cookie["ID1"] = "inicio de sesion" #nombre de la cookie ID1 y su valor podemos poner lo que queramos
 
     print(cookie)
-    print()#linea en blanco IMPORTANTE!!!!
+    print()#!linea en blanco IMPORTANTE!!!!
     print("""
     <!DOCTYPE html>
     <html lang="en">

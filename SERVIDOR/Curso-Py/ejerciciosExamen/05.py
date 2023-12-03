@@ -8,7 +8,7 @@ param = parse_qs(parametros[4])
 
 precioCorte = float(param["precio_corte"][0])
 
-print("Content-type: text/plain\n")
+print("Content-type: text/html\n")
 
 fich = open("productos.txt")
 fich2 = open("precios.txt")

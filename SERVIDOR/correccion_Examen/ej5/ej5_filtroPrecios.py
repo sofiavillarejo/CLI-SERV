@@ -29,6 +29,7 @@ f = open("prod_filtrados.txt", "wt")
 
 
 #recorrer los datos de ambos ficheros y sacar el precio de corte
+#bucle for que itera sobre los indices de la lista y cont toma valores desde 0 hasta la longitud de valores que haya en listaProducto
 for cont in range(len(listaProductos)): #en este caso va de 0 a 3 porque hay 4 productos en el fichero
     print(cont)#si no me fio de lo que estoy haciendo
     if float(listaPrecios[cont]) >= precioCorte:

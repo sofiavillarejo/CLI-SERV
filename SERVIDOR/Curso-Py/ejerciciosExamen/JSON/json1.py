@@ -4,7 +4,9 @@ import json
 
 print("Content-type: text/plain\n")
 
-#CONVERTIR DE JSON A PYTHON
+#CONVERTIR DE JSON A PYTHON -> load/loads
+#CONVERTIR DE PYTHON A JSON -> dump/dumps
+
 #variable con texto en formato JSON
 fraseJson =  '{ "name":"John", "age":30, "city":"New York"}'
 

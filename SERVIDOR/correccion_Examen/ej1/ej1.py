@@ -34,12 +34,15 @@ descripciones_prod = [
 "Descripcion del producto 5: La ultima descripcion corresponde al quinto producto"
 ]
 
+#!SPLIT()-> divide la cadena con el separador indicado y devuelve una lista con los datos
+#!SPLITLINES()-> divide la cadena en cada salto de linea y devuelve una lista
+
 cont = 1
 for desc in descripciones_prod:
     descProd = desc.split(":")[1].strip() 
     #separo el cotenido del array por los dos puntos, y lo de la segunda posicion (descripciones)
     #lo guardo en la variable para luego imprimirlo en parrafos
-    #el strip es para que no me pite el espacio que hay delante de cada descripcion
+    #el strip es para que no me quite el espacio que hay delante de cada descripcion
     print(f"""<div id="producto{cont}><p>{descProd}</p>""")
     cont+=1 #incremento el contador
 
