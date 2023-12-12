@@ -6,12 +6,13 @@
     <title>Memory Game</title>
 </head>
 <style>
-    #tablero {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        grid-gap: 10px;
-        max-width: 300px;
-        margin: 0 auto;
+
+#tablero {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 5px;
+    max-width: 300px;
+    margin-left: 620px;
 }
 
 .card {
@@ -26,6 +27,7 @@
     align-items: center;
     justify-content: center;
     user-select: none;
+    border-radius: 50px;
 }
 
 .card img {
@@ -42,26 +44,78 @@
     transform: rotateY(0deg);
 }
 #salida{
-    font-size: 45px;
+    font-size: 60px;
     font-family: arial;
-    color: lightpink;
+    color: black;
     position: absolute;
-    top: 220px;
-    right: 40px;
+    top: 350px;
+    right: 60px;
 }
 #boton{
     position: absolute;
-    top: 220px;
+    top: 350px;
     left: 220px;
     font-size: 30px;
     border-radius: 50px;
-    background-color: lightpink;
+    background-color: black;
     color: white;
     border: none;
+}
+h1{
+    font-size: 70px;
+    text-align: center;
+    background: 50% 100%/50% 50% no-repeat radial-gradient(ellipse at bottom, black, transparent, transparent);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    font-family: "Source Sans Pro", sans-serif;
+    -webkit-animation: reveal 3000ms ease-in-out forwards 200ms, glow 2500ms linear infinite 2000ms;
+    animation: reveal 3000ms ease-in-out forwards 200ms, glow 2500ms linear infinite 2000ms;
+}
+@-webkit-keyframes reveal {
+  80% {
+    letter-spacing: 8px;
+  }
+  100% {
+    background-size: 300% 300%;
+  }
+}
+@keyframes reveal {
+  80% {
+    letter-spacing: 8px;
+  }
+  100% {
+    background-size: 300% 300%;
+  }
+}
+@-webkit-keyframes glow {
+  40% {
+    text-shadow: 0 0 8px #fff;
+  }
+}
+@keyframes glow {
+  40% {
+    text-shadow: 0 0 8px #fff;
+  }
+}
+
+h3{
+    font-size: 25px;
+    font-family: arial;
+    font-weight: bold;
+    text-align: center;
+    color: black;
+}
+body{
+    background: linear-gradient(white, lightpink);
+
+    height: 913px;
 }
 
 </style>
 <body>
+    <h1>MEMORY GAME</h1>
+    <h3>¡haz click en los cuadrados para empezar a jugar!</h3>
     <div id="tablero"></div>
     <div id="salida"></div>
     <button id="boton">Empezar de nuevo</button>

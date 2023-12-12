@@ -6,14 +6,12 @@ $(document).ready(function() {
     ];
 
     let darVueltaCartas = [];
-    let intentos = 0
-    let maxIntentos = 4
 
-    function shuffle(array) {
+    function barajarCartas(array) {
         return array.sort(() => Math.random() - 0.5);
     }
 
-    function createCard(imagen) {
+    function crearCartas(imagen) {
         let card = $('<div class="card"></div>');
         let cardImage = $('<img>').attr('src', imagen);
 
@@ -22,29 +20,29 @@ $(document).ready(function() {
         return card;
     }
 
-    function resetGame() {
+    function reiniciarJuego() {
+        //borrar cartas
         $('.card').remove();
         $("#salida").html("");
-        let shuffledImages = shuffle(images.concat(images));
-        shuffledImages.forEach(function(imagen) {
-            let card = createCard(imagen);
-            $('#tablero').append(card);
-            
+        let barajarCartasdImages = barajarCartas(images.concat(images));
+        barajarCartasdImages.forEach(function(imagen) {
+            let card = crearCartas(imagen);
+            $('#tablero').append(card); 
         });
     }
 
     function voltearCarta() {
-        
         if (!$(this).hasClass('volteada') && darVueltaCartas.length < 2) {
             $(this).addClass('volteada');
             darVueltaCartas.push($(this));
             if (darVueltaCartas.length === 2) {
-                setTimeout(checkMatch, 300);
+                //tras el temporizador, se ejecuta
+                setTimeout(mirarCartas, 300);
             }
         }
     }
 
-    function checkMatch() {
+    function mirarCartas() {
         let card1 = darVueltaCartas[0].find('img').attr('src');
         let card2 = darVueltaCartas[1].find('img').attr('src');
 
@@ -59,10 +57,10 @@ $(document).ready(function() {
         }
 
         darVueltaCartas = [];
-        checkWin();
+        ganador();
     }
 
-    function checkWin() {
+    function ganador() {
         if ($('.matched').length === images.length * 2) {
             $("#salida").text("¡Has ganado!");
             $("#salida").slideUp(1000);
@@ -70,7 +68,7 @@ $(document).ready(function() {
         }
     }
 
-    $('#boton').on('click', resetGame);
+    $('#boton').on('click', reiniciarJuego);
 
-    resetGame();
+    reiniciarJuego();
 });
