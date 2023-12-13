@@ -10,10 +10,11 @@ class PisoAdmin(admin.ModelAdmin):
     search_fields = ("poblacion", )
 
 class ClienteAdmin(admin.ModelAdmin):
-    list_display = ("nombre","apellidos", "email", "telefono")
+    list_display = ("nombre","apellidos", "email", "telefono", "inversor")
     #filtrar por campos
     list_filter = ("nombre",)
-    search_fields = ("nombre", )
+    search_fields = ("nombre", "apellidos",)
 
 admin.site.register(Piso, PisoAdmin) #aqui le digo la tabla que va a manejar el usuario
 admin.site.register(Cliente, ClienteAdmin)
+

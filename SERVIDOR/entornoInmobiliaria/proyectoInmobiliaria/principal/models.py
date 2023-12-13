@@ -1,6 +1,9 @@
 from django.db import models
 
 # Create your models here.
+#########################################################
+#CLASES PARA CONFIGURAR LA INTERFAZ DE ADMINISTRACION
+
 class Piso(models.Model):
     #crear los campos del modelo: un campo corresponde con una columna de la tabla "principal_piso"
     numReferencia = models.CharField(max_length=20, unique=True)
@@ -35,9 +38,15 @@ class Cliente(models.Model):
     apellidos = models.CharField(max_length=100)
     email = models.CharField(max_length=100)
     telefono = models.IntegerField()
+    #añadmos nuevo campo a la tabla ya existente -> makemigrations y seleccionamos 1, y ponemos True or False segun 
+    #el valor que queramos darle -> en este caso, False
+    inversor = models.BooleanField()
 
-    def __srt__(self):
-        return self.nombre + " " + self.apellidos + " " + self.telefono
+    def __str__(self):
+        return self.nombre + " " + self.apellidos + " " + "(" + str(self.telefono) + ")"
+    #añadir filtros -> nombre
     class Meta:
         #si esto no se pone, se ordena por id por defecto, pero al poner esto nos lo ordena por poblacion y por codigo postal
         ordering = ["nombre"]
+
+###SI HACEMOS ALGUN TIPO DE MODIFICACION EN ESTA PAGINA PARA ACTUALIZARLA, TENEMOS QUE HACER EL MAKEMIGRATIONS Y DESPUES, EL MIGRATE#######
