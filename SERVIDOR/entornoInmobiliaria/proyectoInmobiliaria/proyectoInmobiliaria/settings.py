@@ -10,10 +10,11 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve().parent.parent #!el padre de esta pagina es proyectoInmobiliaria y su padre, nuestro proyectoInmobiliaria
 
 
 # Quick-start development settings - unsuitable for production
@@ -126,3 +127,8 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+#!CONFIGURACION PARA FICHEROS MULTIMEDIA (FOTOS)-> carpeta donde quiero que se guarden las imagenes
+MEDIA_URL="/media/" #variable para la url
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")#!carpeta en la que voy a guardar las fotos; base_dir ya esta creada antes(es la ruta de nuestro proyecto basicamente)

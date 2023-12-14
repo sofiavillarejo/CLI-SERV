@@ -5,8 +5,13 @@ from django.db import models
 #CLASES PARA CONFIGURAR LA INTERFAZ DE ADMINISTRACION
 
 class Piso(models.Model):
+    ####SI LOS CAMPOS APARECEN EN NEGRITA, ES QUE SON OBLIGATORIOS DE RELLENAR####
+
     #crear los campos del modelo: un campo corresponde con una columna de la tabla "principal_piso"
     numReferencia = models.CharField(max_length=20, unique=True)
+    #upload_to -> envia el archivo a la carpeta que pogas, en este caso la crea
+    imagenPiso = models.ImageField(verbose_name="Imagen de piso", null=True, blank=True, upload_to="imgPisos") #al crear este nuevo campo de tabla una vez creada,
+    #no pregunta que valor darle porque le estamos poniendo que puede ser null
     direccion = models.CharField(max_length=100)
     poblacion = models.CharField(max_length=80)
     cp = models.CharField(max_length=20)
