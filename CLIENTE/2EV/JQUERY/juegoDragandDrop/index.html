@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Juego de ordenar</title>
-    <script src="jquery-3.7.1.min.js"></script>
     <script src="DragandDrop.js"></script>
+    <script src="jquery-3.7.1.min.js"></script>
+
     <style>
         html{
             width: 1400px;
@@ -17,17 +18,29 @@
             left: 300px;
 
         }
-        .arrastable{
+        .arrastable, .arrastable3{
             margin-left:50px;
-            
-        }
-        img {
             height: 150px;
             width: 150px;
             display: inline;
             float: left;
             padding-left: 50px;
 
+        }
+        #juego2 , #juego3{
+            position: absolute;
+            left: 300px;
+            top: 150px;
+            display: none;
+
+        }
+        .arrastable2{
+            height: 200px;
+            width: 200px;
+            display: inline;
+            float: left;
+            padding-left: 50px;
+            margin-left:30px;
         }
 
         h1{
@@ -38,7 +51,7 @@
         }
         table{
             position: relative;
-            top: 150px;
+            top: 250px;
             left: 200px;
             border: 1px solid black;
             width: 100%;
@@ -52,38 +65,81 @@
         .fila2{
             height: 300px;
         }
-        button{
+        #boton{
             font-size: 40px;
             position: absolute;
-            top: 200px;
+            top: 100px;
             left: 1480px;
             background-color: lightgreen;
             border: none;
         }
+        #sigNivel, #ultNivel{
+            font-size: 40px;
+            position: absolute;
+            top: 150px;
+            left: 1480px;
+            background-color: lightgreen;
+            border: none;
+            display: none;
+        }
+
+        #boton2, #boton3{
+            font-size: 40px;
+            position: absolute;
+            top: 100px;
+            left: 1480px;
+            background-color: lightgreen;
+            border: none;
+            display: none;
+        }
+
+
     </style>
 </head>
 <body>
     <h1>Juego Drag and Drop</h1>
     <div id="contenedorFotos">
         <img src="leon.png" alt="foto leon" id="foto1" class="arrastable" draggable="true" ondragstart="arrastrando(event);">       
-        <img src="conejo.png" alt="foto leon" id="foto2" class="arrastable" draggable="true" ondragstart="arrastrando(event);">
-        <img src="ardilla.png" alt="foto leon" id="foto3" class="arrastable" draggable="true" ondragstart="arrastrando(event);">
-        <img src="vaca.png" alt="foto leon" id="foto4" class="arrastable" draggable="true" ondragstart="arrastrando(event);">
+        <img src="conejo.png" alt="foto conejo" id="foto2" class="arrastable" draggable="true" ondragstart="arrastrando(event);">
+        <img src="ardilla.png" alt="foto ardilla" id="foto3" class="arrastable" draggable="true" ondragstart="arrastrando(event);">
+        <img src="vaca.png" alt="foto vaca" id="foto4" class="arrastable" draggable="true" ondragstart="arrastrando(event);">
     </div>
-    <table>
-        <tr>
-            <td >Conejo</td>
-            <td >Vaca</td>
-            <td >León</td>
-            <td >Ardilla</td>
+    <table id="tabla">
+        <tr  id="columna">
+            <td id="text1">Conejo</td>
+            <td id="text2">Vaca</td>
+            <td id="text3">León</td>
+            <td id="text4">Ardilla</td>
         </tr>
-        <tr>
+        <tr id="columna2">
             <td class="fila2" id="destino1" dropzone="true" ondragover="recibir(event);" ondrop="soltando(event)"></td>
             <td class="fila2" id="destino2" dropzone="true" ondragover="recibir(event);" ondrop="soltando(event)"></td>
             <td class="fila2" id="destino3" dropzone="true" ondragover="recibir(event);" ondrop="soltando(event)"></td>
             <td class="fila2" id="destino4" dropzone="true" ondragover="recibir(event);" ondrop="soltando(event)"></td>
         </tr>
     </table>
-    <button id="boton">Comprobar</button>
+    <div id="juego2">
+        <img src="colorete.png" alt="foto colorete" id="fotoCol" class="arrastable2" draggable="true" ondragstart="arrastrando(event);">       
+        <img src="rimmel.png" alt="foto rimmel" id="fotoRim" class="arrastable2" draggable="true" ondragstart="arrastrando(event);">
+        <img src="labial.png" alt="foto labial" id="fotoLab" class="arrastable2" draggable="true" ondragstart="arrastrando(event);">
+        <img src="iluminador.png" alt="foto iluminador" id="fotoIlum" class="arrastable2" draggable="true" ondragstart="arrastrando(event);">
+        <img src="spray.png" alt="foto spray" id="fotoSpray" class="arrastable2" draggable="true" ondragstart="arrastrando(event);">
+    </div>
+    <div id="juego3">
+        <img src="lg.png" alt="LG" id="lg" class="arrastable3" draggable="true" ondragstart="arrastrando(event);">       
+        <img src="mcdo.png" alt="McDonald" id="mcdo" class="arrastable3" draggable="true" ondragstart="arrastrando(event);">
+        <img src="pepsi.png" alt="Pepsi" id="pepsi" class="arrastable3" draggable="true" ondragstart="arrastrando(event);">
+        <img src="charloteTi.png" alt="Charlotte" id="charloteTi" class="arrastable3" draggable="true" ondragstart="arrastrando(event);">
+        <img src="nike.png" alt="Nike" id="nike" class="arrastable3" draggable="true" ondragstart="arrastrando(event);">
+        <img src="adidas.png" alt="adidas" id="adidas" class="arrastable3" draggable="true" ondragstart="arrastrando(event);">
+
+    </div>
+    
+    <button id="boton" onclick="comprobar()">Comprobar</button>
+    <button id="sigNivel" onclick="siguienteNivel()">Siguiente</button>
+    <button id="boton2" onclick="comprobarJuego2()">Comprobar</button>
+    <button id="ultNivel" onclick="ultimoNivel()">Ultimo Nivel</button>
+    <button id="boton3" onclick="comprobarJuego3()">Comprobar</button>
+
 </body>
 </html>
