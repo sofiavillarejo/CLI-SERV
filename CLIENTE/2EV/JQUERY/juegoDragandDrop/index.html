@@ -18,21 +18,34 @@
             left: 300px;
 
         }
-        .arrastable, .arrastable3{
+        .arrastable{
             margin-left:50px;
             height: 150px;
             width: 150px;
             display: inline;
             float: left;
             padding-left: 50px;
-
         }
-        #juego2 , #juego3{
+        .arrastable3{
+            margin-left:30px;
+            height: 150px;
+            width: 150px;
+            display: inline;
+            float: left;
+            padding-left: 50px;
+        }
+        #juego2{
             position: absolute;
             left: 300px;
             top: 150px;
             display: none;
 
+        }
+        #juego3{
+            position: absolute;
+            left: 250px;
+            top: 150px;
+            display: none;
         }
         .arrastable2{
             height: 200px;
@@ -78,7 +91,7 @@
             position: absolute;
             top: 150px;
             left: 1480px;
-            background-color: lightgreen;
+            background-color: lightpink;
             border: none;
             display: none;
         }
@@ -92,12 +105,17 @@
             border: none;
             display: none;
         }
-
+        #gif{
+            position: relative;
+            left: 700px;
+            display: none;
+        }
 
     </style>
 </head>
 <body>
     <h1>Juego Drag and Drop</h1>
+    <iframe id="gif" src="https://giphy.com/embed/mIZ9rPeMKefm0" width="344" height="480" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/dancing-happy-mIZ9rPeMKefm0"></a></p>
     <div id="contenedorFotos">
         <img src="leon.png" alt="foto leon" id="foto1" class="arrastable" draggable="true" ondragstart="arrastrando(event);">       
         <img src="conejo.png" alt="foto conejo" id="foto2" class="arrastable" draggable="true" ondragstart="arrastrando(event);">
@@ -132,7 +150,6 @@
         <img src="charloteTi.png" alt="Charlotte" id="charloteTi" class="arrastable3" draggable="true" ondragstart="arrastrando(event);">
         <img src="nike.png" alt="Nike" id="nike" class="arrastable3" draggable="true" ondragstart="arrastrando(event);">
         <img src="adidas.png" alt="adidas" id="adidas" class="arrastable3" draggable="true" ondragstart="arrastrando(event);">
-
     </div>
     
     <button id="boton" onclick="comprobar()">Comprobar</button>

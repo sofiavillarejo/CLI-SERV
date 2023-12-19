@@ -16,7 +16,7 @@ function recibir(event) {
     event.preventDefault();
     console.log(event.target.id);
 }
- 
+
 function comprobar(){
         let fotoOne = $("#foto1");
         let fotoTwo = $("#foto2");
@@ -144,7 +144,6 @@ function comprobarJuego2(){
 function ultimoNivel(){
     $("td").css("background-color", "gray");
     $(".fila2").empty();
-    $(".fila2").css("width", 100);
     let crearTd2 = $("<td id='text6'>");
     $("#columna").append(crearTd2);
     let crearTdFila3 = $("<td class='fila2' id='destino6' dropzone='true' ondragover='recibir(event);' ondrop='soltando(event)'>")
@@ -157,14 +156,19 @@ function ultimoNivel(){
     $("#text5").text("Charlotte Tilbury");
     $("#text6").text("Pepsi");
 
+    $("#nike").css("width", 200);
+    $("#nike").css("height", 150);
+
     $("#juego3").css("display","inline");
     $("#boton3").css("display", "block");
+    $("#ultNivel").css("display", "none");
+
 }
 function comprobarJuego3(){
         let primer = $("#lg");
         let segun = $("#mcdo");
         let tercer = $("#pepsi");
-        let cuarta = $("#Charlotte");
+        let cuarta = $("#charloteTi");
         let quinta = $("#nike");
         let sexta = $("#adidas");
 
@@ -219,12 +223,9 @@ function comprobarJuego3(){
         }
         if (primPadre === "destino2" && segunPadre === "destino3" && tercerPadre === "destino6" && cuartaPadre === "destino5" && quintaPadre === "destino1" && sextaPadre == "destino4"){
             alert("Enhorabuena! Te has pasado todos los niveles!!!");
-            
+            $("#gif").css("display", "inline");
         }else{
             alert("Ohhh! Has perdido, inténtalo de nuevo.")
         }
-
-
-
 
 }
