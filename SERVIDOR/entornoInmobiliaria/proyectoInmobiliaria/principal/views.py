@@ -46,3 +46,22 @@ def borrarCliente(request):
         pass
     
     return HttpResponseRedirect(reverse('catalogo'))
+
+def borrarPepe(request):
+    #LO COMENTADO ES PARA QUE SE MUESTRE EN LA PAGINA PRIMERA SOLO LOS PEPES QUE HAYA Y ASI VERLOS
+    # catalogo = loader.get_template('principal\catalogo.html')
+
+    cliPepes = Cliente.objects.filter(nombre__exact = "Pepe")
+
+    # #me muestra solo los pepes que hay
+    # contexto = {
+    #         'pisos':Piso.objects.all(),
+    #         'clientes': cliPepes
+    #     }
+    
+    for pepe in cliPepes:
+        pepe.delete()
+
+    # return HttpResponse(catalogo.render(contexto, request))
+        
+    return HttpResponseRedirect(reverse('catalogo'))

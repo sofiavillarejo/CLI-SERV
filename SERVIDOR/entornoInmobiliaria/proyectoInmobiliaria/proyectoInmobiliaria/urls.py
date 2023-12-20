@@ -27,6 +27,7 @@ urlpatterns = [
     path('crearCliente', views.crearCliente, name='crearCliente'), #los name los hemos metido para no volver a doblar codigo en el views y acceder a la primera funcion en la otra
     path('modificarCliente', views.modificarCliente, name='modificarCliente'),
     path('borrarCliente', views.borrarCliente, name='borrarCliente'),
+    path('borrarPepe', views.borrarPepe, name='borrarPepe'),
     path('admin/', admin.site.urls),
 ]
 
