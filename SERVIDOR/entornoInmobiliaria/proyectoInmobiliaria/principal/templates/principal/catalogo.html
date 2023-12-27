@@ -19,5 +19,16 @@
         </li>
     {% endfor %}
     </ol>
+    <hr>
+    <ul>
+        {% for cliente in clientes %}
+
+            <li>
+                {{cliente.id}} - {{cliente.nombre}} - {{cliente.apellidos}} - {{cliente.telefono}} - {{cliente.email}}
+            </li>
+        {% endfor %}
+        </ul>
+    
+
 </body>
 </html>

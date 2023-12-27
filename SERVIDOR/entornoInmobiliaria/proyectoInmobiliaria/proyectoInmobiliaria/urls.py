@@ -18,12 +18,16 @@ from django.conf import settings
 from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls.static import static
-from principal import views #!aunque de error, funciona
+from principal import views #aunque de error, funciona
 
 urlpatterns = [
     #esto es una forma
     #path('', include('principal.urls')),
-    path('', views.catalogo),
+    path('', views.catalogo, name='catalogo'),
+    path('crearCliente', views.crearCliente, name='crearCliente'), #los name los hemos metido para no volver a doblar codigo en el views y acceder a la primera funcion en la otra
+    path('modificarCliente', views.modificarCliente, name='modificarCliente'),
+    path('borrarCliente', views.borrarCliente, name='borrarCliente'),
+    path('borrarPepe', views.borrarPepe, name='borrarPepe'),
     path('admin/', admin.site.urls),
 ]
 
