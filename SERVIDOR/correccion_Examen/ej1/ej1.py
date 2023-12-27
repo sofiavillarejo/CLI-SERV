@@ -21,7 +21,7 @@ codHtml.cabHTMLGen()
 #a)
 for i in range(1,21): #rango del 1 al 20
     print(f"<div id='contenedor{i}'>
-          <img src='imagenes/coche{i}.png' alt='imagen de coche {i}'>
+        <img src='imagenes/coche{i}.png' alt='imagen de coche {i}'>
         </div>")
     
 
