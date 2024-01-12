@@ -1,0 +1,15 @@
+<table id="1" class="clase1" border="1">
+    <tr><td>A</td><td>B</td></tr>
+    <tr><td>A</td><td>B</td></tr>
+    <tr><td>A</td><td>B</td></tr>
+</table>
+<table id="2" class="clase2" border="1">
+    <tr><td>1</td><td>2</td></tr>
+    <tr><td>1</td><td>2</td></tr>
+    <tr><td>1</td><td>2</td></tr>
+</table>
+<table id="3" class="clase1" border="1">
+    <tr><td>C</td><td>D</td></tr>
+    <tr><td>C</td><td>D</td></tr>
+    <tr><td>C</td><td>D</td></tr>
+</table>
