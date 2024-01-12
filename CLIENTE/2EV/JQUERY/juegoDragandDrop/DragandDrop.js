@@ -11,6 +11,7 @@ function soltando(event) {
     let destino = $("#" + event.target.id);
 
     destino.append(objQueArrastro); 
+    destino.removeAttr("ondrop");
 }
 function recibir(event) {
     event.preventDefault();
