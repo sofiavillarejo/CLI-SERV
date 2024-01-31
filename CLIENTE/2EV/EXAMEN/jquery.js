@@ -38,7 +38,7 @@ mouseleave	 	            blur	    unload
 
 /*  EFECTOS
     -animate()--> Ejecuta una animación personalizada en los elementos seleccionados.
-    -clearQueue()--> Elimina todas las funciones restantes en cola de los elementos seleccionados
+    -clearQueue()--> Elimina todas las funciones restantes en cola de los elementos seleccionados 
     -delay()-->	Establece un retraso para todas las funciones en cola en los elementos seleccionados
     -dequeue()--> Elimina la siguiente función de la cola y luego ejecuta la función.
     -fadeIn()--> Se desvanece en los elementos seleccionados.
@@ -46,7 +46,7 @@ mouseleave	 	            blur	    unload
     -fadeTo()--> Funde/aparece los elementos seleccionados hasta una opacidad determinada
     -fadeToggle()--> Alterna entre los métodos fadeIn() y fadeOut()
     -finish()--> Detiene, elimina y completa todas las animaciones en cola para los elementos seleccionados.
-    -queue()--> Muestra las funciones en cola en los elementos seleccionados.
+    -queue()--> Muestra las funciones en cola en los elementos seleccionados ($("span").text(div.queue().length);)--> saca en un p el numero total de animaciones que tiene
     -hide()--> Esconde los elementos seleccionados
     -show()--> Muestra los elementos seleccionados (por si habiamos usado hide())
     -toggle()--> Alterna entre los métodos hide() y show()
@@ -56,47 +56,47 @@ mouseleave	 	            blur	    unload
     -stop()--> Detiene la animación actualmente en ejecución para los elementos seleccionados.
 */
 /*  MÉTODOS HTML/CSS
-    -addClass()--> Adds one or more class names to selected elements
-    -after()-->	Inserts content after selected elements
-    -append()--> Inserts content at the end of selected elements
-    -appendTo()--> Inserts HTML elements at the end of selected elements
-    -attr()--> Sets or returns attributes/values of selected elements
-    -before()--> Inserts content before selected elements
-    -clone()--> Makes a copy of selected elements
-    -css()--> Sets or returns one or more style properties for selected elements
-    -detach()--> Removes selected elements (keeps data and events)
-    -empty()--> Removes all child nodes and content from selected elements
-    -hasClass()-->	Checks if any of the selected elements have a specified class name
-    -height()--> Sets or returns the height of selected elements
-    -html()-->	Sets or returns the content of selected elements
-    -innerHeight()--> Returns the height of an element (includes padding, but not border)
-    -innerWidth()--> Returns the width of an element (includes padding, but not border)
-    -insertAfter()--> Inserts HTML elements after selected elements
-    -insertBefore()--> Inserts HTML elements before selected elements
-    -offset()--> Sets or returns the offset coordinates for selected elements (relative to the document)
-    -offsetParent()--> Returns the first positioned parent element
-    -outerHeight()--> Returns the height of an element (includes padding and border)
-    -outerWidth()--> Returns the width of an element (includes padding and border)
-    -position()--> Returns the position (relative to the parent element) of an element
-    -prepend()--> Inserts content at the beginning of selected elements
-    -prependTo()--> Inserts HTML elements at the beginning of selected elements
-    -prop()--> Sets or returns properties/values of selected elements
-    -remove()--> Removes the selected elements (including data and events)
-    -removeAttr()--> Removes one or more attributes from selected elements
-    -removeClass()--> Removes one or more classes from selected elements
-    -removeProp()--> Removes a property set by the prop() method
-    -replaceAll()--> Replaces selected elements with new HTML elements
-    -replaceWith()--> Replaces selected elements with new content
-    -scrollLeft()--> Sets or returns the horizontal scrollbar position of selected elements
-    -scrollTop()--> Sets or returns the vertical scrollbar position of selected elements
-    -text()--> Sets or returns the text content of selected elements
-    -toggleClass()--> Toggles between adding/removing one or more classes from selected elements
-    -unwrap()--> Removes the parent element of the selected elements
-    -val()--> Sets or returns the value attribute of the selected elements (for form elements)
-    -width()--> Sets or returns the width of selected elements
-    -wrap()--> Wraps HTML element(s) around each selected element
-    -wrapAll()--> Wraps HTML element(s) around all selected elements
-    -wrapInner()--> Wraps HTML element(s) around the content of each selected element
+    !-addClass()--> Agrega uno o más nombres de clase a los elementos seleccionados.
+    !-after()-->	Inserta contenido después de los elementos seleccionados.
+    !-append()--> Inserta contenido al final de los elementos seleccionados.
+    -appendTo()--> Inserta elementos HTML al final de los elementos seleccionados.
+    -attr()--> Establece o devuelve atributos/valores de elementos seleccionados
+    !-before()--> Inserta contenido antes de los elementos seleccionados.
+    -clone()--> Hace una copia de los elementos seleccionados.
+    !-css()--> Establece o devuelve una o más propiedades de estilo para elementos seleccionados
+    -detach()--> Elimina elementos seleccionados (mantiene datos y eventos)
+    !-empty()--> Elimina todos los nodos secundarios y el contenido de los elementos seleccionados.
+    -hasClass()-->Comprueba si alguno de los elementos seleccionados tiene un nombre de clase específico
+    -height()--> Establece o devuelve la altura de los elementos seleccionados.
+    !-html()-->	Establece o devuelve el contenido de los elementos seleccionados.
+    -innerHeight()--> Devuelve la altura de un elemento (incluye relleno, pero no borde)
+    -innerWidth()--> Devuelve el ancho de un elemento (incluye relleno, pero no borde)
+    -insertAfter()--> Inserta elementos HTML después de los elementos seleccionados.
+    -insertBefore()--> Inserta elementos HTML antes de los elementos seleccionados.
+    -offset()--> Establece o devuelve las coordenadas de desplazamiento para los elementos seleccionados (en relación con el documento)
+    -offsetParent()--> Devuelve el primer elemento padre posicionado
+    -outerHeight()--> Devuelve la altura de un elemento (incluye relleno y borde)
+    -outerWidth()--> Devuelve el ancho de un elemento (incluye relleno y borde)
+    -position()--> Devuelve la posición (relativa al elemento padre) de un elemento
+    !-prepend()--> Inserta contenido al principio de los elementos seleccionados.
+    -prependTo()--> Inserta elementos HTML al principio de los elementos seleccionados.
+    -prop()--> Establece o devuelve propiedades/valores de elementos seleccionados
+    !-remove()--> Elimina los elementos seleccionados (incluidos datos y eventos)
+    !-removeAttr()--> Elimina uno o más atributos de los elementos seleccionados.
+    !-removeClass()--> Elimina una o más clases de los elementos seleccionados.
+    -removeProp()--> Elimina una propiedad establecida por el método prop()
+    -replaceAll()--> Reemplaza los elementos seleccionados con nuevos elementos HTML
+    -replaceWith()--> Reemplaza elementos seleccionados con contenido nuevo
+    -scrollLeft()--> Establece o devuelve la posición de la barra de desplazamiento horizontal de los elementos seleccionados
+    -scrollTop()--> Establece o devuelve la posición de la barra de desplazamiento vertical de los elementos seleccionados
+    !-text()--> Establece o devuelve el contenido de texto de los elementos seleccionados.
+    !-toggleClass()--> Alterna entre agregar/eliminar una o más clases de elementos seleccionados
+    -unwrap()--> Elimina el elemento padre de los elementos seleccionados.
+    !-val()--> Establece o devuelve el atributo de valor de los elementos seleccionados (para elementos de formulario)
+    -width()--> Establece o devuelve el ancho de los elementos seleccionados.
+    -wrap()--> Envuelve los elementos HTML alrededor de cada elemento seleccionado
+    -wrapAll()--> Envuelve los elementos HTML alrededor de todos los elementos seleccionados
+    -wrapInner()--> Envuelve los elementos HTML alrededor del contenido de cada elemento seleccionado
 */
 
 /* DIFERENCIA ENTRE .HTML() Y .TEXT()

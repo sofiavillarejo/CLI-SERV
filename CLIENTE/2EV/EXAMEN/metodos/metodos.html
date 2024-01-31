@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Métodos JQuery</title>
+    <script src="jquery-3.7.1.min.js"></script>
+    <script src="metodos.js"></script>
+    <style>
+        /* Agrega estilos según sea necesario */
+        .elemento {
+            padding: 10px;
+            margin: 5px;
+            border: 1px solid #ccc;
+            cursor: pointer;
+        }
+        .rojo{
+            color: red;
+        }
+        .parrafos{
+            color: aqua;
+            font-size: 30px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Métodos con jQuery</h1>
+
+    <div id="contenedor">
+        <div id="elem1"><p>Elemento 1</p></div>
+        <div class="elementos">Elemento 2</div>
+        <div class="elementos">Elemento 3</div>
+        <div class="elementos">Elemento 4</div>
+        <div class="elementos">Elemento 5</div>
+    </div> <br>
+    <button id="btn1">Añadir clase a divs</button>
+    <button id="after">Insertar html</button>
+    <button id="append">Insertar al final</button>
+    <button id="borrarDiv">Borrar contenido div</button>
+    <button id="html">Devolver contenido</button>
+    <button id="prepend">Añadir contenido principio</button>
+    <button id="borrar">Borrar p mayusculas</button>
+    <button id="borrarAttr">Borrar atributos</button>
+    <button id="borrarClass">Borrar clase</button>
+    <button id="cambiarText">Cambiar text del p</button>
+    <button id="toggleClass">Añadir/Quitar clase</button>
+    <button id="valForm">Valor del form</button>
+
+    <p id="parraf2">PARRAFO QUE DESAPARECE HACIA ARRIBA O ABAJO</p>
+    <p id="parraf3" style="color: pink;">PARRAFO CON ATRIBUTOS</p>
+    <p id="parraf4">CLICA EL BTN PARA CAMBIAR EL CONTENIDO DEL P</p>
+
+    <ol>
+        <li>List item 1</li>
+        <li>List item 2</li>
+        <li>List item 3</li>
+    </ol>
+
+    <form action="">
+        <label for="name">Name:</label>
+        <input type="text" name="name" id="name">
+    </form>
+    <button id="send">Enviar</button>
+<br>
+</body>
+</html>

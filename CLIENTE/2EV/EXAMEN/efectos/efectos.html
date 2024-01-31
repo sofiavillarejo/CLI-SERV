@@ -14,6 +14,14 @@
             border: 1px solid #ccc;
             cursor: pointer;
         }
+        #botones{
+            position: absolute;
+            right: 0px;
+            top: 500px;
+            float: right;
+            width: 100px;
+            height: 100px;
+        }
     </style>
 </head>
 <body>
@@ -30,7 +38,9 @@
     <br>
     <div id="cuad2" class="cuadrados" style="width:80px;height:80px;background-color:green;"></div>
     <br>
-    <div id="cuad3" class="cuadrados" style="width:80px;height:80px;background-color:blue;"></div>
+    <div id="cuad3" class="cuadrados" style="width:80px;height:80px;background-color:blue;"></div><br>
+    <div id="divAnimado" style="width:50px;height:50px; background-color:yellow;"></div>
+
     <form id="miFormulario">
         <label for="nombre">Nombre:</label>
         <input type="text" id="nombre" name="nombre" required>
@@ -41,10 +51,23 @@
         <div id="miTexto4"></div>
         <div id="miTexto5"></div>
     </form>
-    <button id="btn1">Aparecer elem1</button>
-    <button id="btn2">Hide & Show elem2</button>
-    <button id="fadeTog">FadeToggle</button>
-    <button id="fadeInCuad1">FadeIn Cuadrado 1 y 2</button>
+
+    <p>PARRAFO QUE DESAPARECE HACIA ARRIBA O ABAJO</p>
+
+    <div id="botones">
+        <button id="btn1">Aparecer elem1</button>
+        <button id="btn2">Hide & Show elem2</button>
+        <button id="fadeTog">FadeToggle</button>
+        <button id="fadeInCuad1">FadeIn Cuadrado 1 y 2</button>
+        <button id="animate">Agrandar cuadrado verde</button>
+        <button id="animateCallback">Animacion con callback</button>
+        <button id="stopAnimate">Para Animacion</button>
+        <button id="finishAnimate">Fin animacion</button>
+        <button id="Sup">Deslizar arriba</button>
+        <button id="Sdown">Deslizar abajo</button>
+        <button id="sToggle">Deslizar arriba y abajo</button>
+
+    </div>
 <br>
 </body>
 </html>
