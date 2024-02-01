@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memory Game</title>
+</head>
+<style>
+
+#tablero {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 5px;
+    max-width: 300px;
+    margin-left: 620px;
+}
+
+.card {
+    display: flex;
+    flex-wrap: wrap;
+    width: 200px;
+    height: 200px;
+    background-color: #eee;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    margin: 5px;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
+    border-radius: 50px;
+}
+
+.card img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+    opacity: 0;
+    transform: rotateY(180deg);
+}
+
+.card.volteada img {
+    opacity: 100;
+    transform: rotateY(0deg);
+}
+#salida{
+    font-size: 60px;
+    font-family: arial;
+    color: black;
+    position: absolute;
+    top: 350px;
+    right: 60px;
+}
+#boton{
+    position: absolute;
+    top: 350px;
+    left: 220px;
+    font-size: 30px;
+    border-radius: 50px;
+    background-color: black;
+    color: white;
+    border: none;
+}
+h1{
+    font-size: 70px;
+    text-align: center;
+    background: 50% 100%/50% 50% no-repeat radial-gradient(ellipse at bottom, black, transparent, transparent);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    font-family: "Source Sans Pro", sans-serif;
+    -webkit-animation: reveal 3000ms ease-in-out forwards 200ms, glow 2500ms linear infinite 2000ms;
+    animation: reveal 3000ms ease-in-out forwards 200ms, glow 2500ms linear infinite 2000ms;
+}
+@-webkit-keyframes reveal {
+  80% {
+    letter-spacing: 8px;
+  }
+  100% {
+    background-size: 300% 300%;
+  }
+}
+@keyframes reveal {
+  80% {
+    letter-spacing: 8px;
+  }
+  100% {
+    background-size: 300% 300%;
+  }
+}
+@-webkit-keyframes glow {
+  40% {
+    text-shadow: 0 0 8px #fff;
+  }
+}
+@keyframes glow {
+  40% {
+    text-shadow: 0 0 8px #fff;
+  }
+}
+
+h3{
+    font-size: 25px;
+    font-family: arial;
+    font-weight: bold;
+    text-align: center;
+    color: black;
+}
+body{
+    background: linear-gradient(white, lightpink);
+
+    height: 913px;
+}
+
+</style>
+<body>
+    <h1>MEMORY GAME</h1>
+    <h3>¡haz click en los cuadrados para empezar a jugar!</h3>
+    <div id="tablero"></div>
+    <div id="salida"></div>
+    <button id="boton">Empezar de nuevo</button>
+    <script type="text/javascript" src="jquery-3.7.1.min.js"></script>
+    <script type="text/javascript" src="memoryGame.js"></script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+BÁSICO ->
+	-cadenasCaracteres
+	-tiposDeDatos
+	-calculadora
+	-IMC
+	
+COLECCIONES->
+	-colecciones	
+
+COOKIES->
+	-cookies
+	-LoginConRegistroFicheros
+FICHEROS ->
+	-ficheros
+	-subidaDeFicheros
+	-cajero
+	-listaCompraFicheros
+	-listaCompraJson
+	-LoginConRegistroFicheros
+
+CLASES->
+	-clases
+
+BASE DE DATOS->
+	-ajaxServ
+	-videojuegos

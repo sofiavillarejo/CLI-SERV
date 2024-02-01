@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Cálculo Hipotenusa</title>
+<!-- Latest compiled and minified CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Latest compiled JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>  
+    <!--las dos lineas anteriores es para cargar el bootstrap-->
+
+</head>
+<body>
+    <div class="row mt-3">
+
+        <div class="col"></div>
+
+        <div class="col bg-success text-light">
+            <p class="display-1 text-center">Calculadora de Hipotenusa</p>
+            <form>
+                <div class="mb-3 mt-3">
+                    <label class="form-label" for="cat1">Primer cateto</label>
+                    <input class="form-control" type="float" name="cat1" id="cat1" placeholder="Introduce el valor del primer cateto " required><br />
+                </div>
+                <div class="mb-3 mt-3">
+                    <label class="form-label" for="cat2">Segundo número</label>
+                    <input class="form-control" type="float" name="cat2" id="cat2"  placeholder="Introduce el segundo numero"  required><br />
+                </div>
+
+                <div class="mb-3 mt-3">
+                    <button type="submit" class="btn btn-light">Calcular</button> <!--cuando haga click, llama a calcula-->
+                </div>
+            </form>
+        </div>
+        <div class="col">
+            <p class="display-1 text-center">Resultado</p>
+            <p class="display-1 text-center" id="resultado"></p>
+
+        </div>
+
+    </div>        
+</body>
+</html>

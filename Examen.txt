@@ -1,0 +1,15 @@
+SERVIDOR:
+1. generar HTML -1.33
+2. Crear un funcion -1.33
+3. trabajar con una coleccion -1.34
+4. cookies -2
+5. ficheros -2
+6. Base de datos -2
+
+CLIENTE:
+1. promp y alert -1.25
+2. validar formulario --> onSubmit Event w3schools(comprobar en la funcion que los datos estan correctos -en boton submit //restringir los valores que se pueden meter) -1.25 
+3. trabajar con colecciones - 1.25
+4. eventos - 1.25
+5. DOM -2.5
+6. Ajax -2.5 (nos da el fichero python y tenemos que llamarle y nos le muestre y devuelva los datos)

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juego de ordenar</title>
+    <link rel="stylesheet" href="css/misestilos.css">
+    <script src="jquery-3.7.1.min.js"></script>
+    <script src="miscript.js"></script>
+</head>
+<body>
+    <div class="example-parent" id="origen">
+        <div class="example-origin"> <!--div que contiene lo que quiero arrastrar-->
+          <div id="draggable-1" class="example-draggable" draggable="true" ondragstart="arrastrando(event);">arrastable</div>
+          <div id="draggable-2" class="example-draggable" draggable="true" ondragstart="arrastrando(event);">arrastable</div>
+        </div>
+        <div id="destino" class="example-dropzone" dropzone="true" ondragover="recibir(event);" ondrop="soltando(event)">zona de soltar 1</div><!--donde lo quiero soltar-->
+        <div id="destino2" class="example-dropzone" dropzone="true" ondragover="recibir(event);" ondrop="soltando(event)">zona de soltar 2</div>
+      </div>
+</body>
+</html>

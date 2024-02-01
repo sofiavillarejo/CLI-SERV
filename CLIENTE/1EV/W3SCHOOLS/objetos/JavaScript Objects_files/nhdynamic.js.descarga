@@ -1,0 +1,941 @@
+var NHDYNAMIC = {};
+
+function T$(id)
+{
+	return document.getElementById(id);
+}
+function T$$(element,padre)
+{
+	return padre.getElementsByTagName(element);
+}
+
+NHDYNAMIC.frames = function(){
+
+	frame = function(nombre, opciones)
+	{
+		this.nombre = nombre;
+		this.init(opciones);
+	}
+
+	processDynamic = function(dynamicdata, size)
+	{
+
+		var aFrames = new Array();
+
+		var i=1;
+		for(i;i<=8;i++)
+		{
+			if(dynamicdata['frame_'+i+'_active']==true)
+			{
+				var frame
+				var type=1;
+				var texto='';
+				var oferta;
+				var title1='';
+				var title2='';
+				var tit_order;
+				var top;
+				var align='';
+				var button='';
+                var btn_color = '';
+                var acelerador = '';
+                var acelerador_texto = '';
+                var acelerador_color = '';
+				var image='';
+                var idioma_jpg = '';
+                var legal = '';
+                
+                var report = '';
+
+				if(dynamicdata['frame_'+i+'_tit_1'] != '') // Título 1
+				{
+					if(dynamicdata['frame_'+i+'_tit_2'] != '') // Título 2
+					{
+						if(dynamicdata['frame_'+i+'_text'] != '') // Texto
+						{
+							if(dynamicdata['frame_'+i+'_oferta']==true) // Oferta
+							{
+								continue;
+							}
+							else // Oferta NO ---- V5 (T1+T2+Texto)
+							{
+								type=5;
+								texto=dynamicdata['frame_'+i+'_text'];
+							}
+						}
+						else // Texto NO
+						{
+							if(dynamicdata['frame_'+i+'_oferta']==true) // Oferta ----- V8 (T1+T2+Oferta)
+							{
+								type=8;
+								var auxOferta = {texto_1: dynamicdata['oferta_txt_1'], descuento: dynamicdata['oferta_desc'], texto_2_1: dynamicdata['oferta_txt_2_1'], texto_2_2: dynamicdata['oferta_txt_2_2'], nota: dynamicdata['oferta_nota']};
+								oferta = new NHDYNAMIC.oferta.oferta(auxOferta);
+							}
+							else // Oferta NO ----- V3 (T1+T2)
+							{
+								type=3;
+							}
+						}
+					}
+					else // Título 2 NO
+					{
+						if(dynamicdata['frame_'+i+'_text'] != '') // Texto
+						{
+							if(dynamicdata['frame_'+i+'_oferta']==true) // Oferta ----- V7 (T1+Texto+Oferta)
+							{
+								type=7;
+								texto=dynamicdata['frame_'+i+'_text'];
+								var auxOferta = {texto_1: dynamicdata['oferta_txt_1'], descuento: dynamicdata['oferta_desc'], texto_2_1: dynamicdata['oferta_txt_2_1'], texto_2_2: dynamicdata['oferta_txt_2_2'], nota: dynamicdata['oferta_nota']};
+								oferta = new NHDYNAMIC.oferta.oferta(auxOferta);
+							}
+							else // Oferta NO ----- V9 (T1+Texto)
+							{
+								type=9;
+								texto=dynamicdata['frame_'+i+'_text'];
+								//alert('V9 (T1+Texto)');
+							}
+						}
+						else // Texto NO
+						{
+							if(dynamicdata['frame_'+i+'_oferta']==true) // Oferta ----- V6 (T1+Oferta)
+							{
+								type=6;
+								var auxOferta = {texto_1: dynamicdata['oferta_txt_1'], descuento: dynamicdata['oferta_desc'], texto_2_1: dynamicdata['oferta_txt_2_1'], texto_2_2: dynamicdata['oferta_txt_2_2'], nota: dynamicdata['oferta_nota']};
+								oferta = new NHDYNAMIC.oferta.oferta(auxOferta);
+							}
+							else // Oferta NO ----- V1 (T1)
+							{
+								type=1;
+                                legal = dynamicdata['oferta_nota'];
+							}
+						}
+					}
+				}
+				else // Título 1 NO
+				{
+					if(dynamicdata['frame_'+i+'_tit_2'] != '') // Título 2
+					{
+						if(dynamicdata['frame_'+i+'_text'] != '') // Texto
+						{
+							if(dynamicdata['frame_'+i+'_oferta']==true) // Oferta
+							{
+								continue;
+							}
+							else // Oferta NO ----- V10 (T2+Texto)
+							{
+								type=10;
+								texto=dynamicdata['frame_'+i+'_text'];
+							}
+						}
+						else // Texto NO
+						{
+							if(dynamicdata['frame_'+i+'_oferta']==true) // Oferta
+							{
+								continue;
+							}
+							else // Oferta NO ----- V2 (T2)
+							{
+								type=2;
+                                legal = dynamicdata['oferta_nota'];
+							}
+						}
+					}
+					else // Título 2 NO
+					{
+						if(dynamicdata['frame_'+i+'_text'] != '') // Texto
+						{
+							if(dynamicdata['frame_'+i+'_oferta']==true) // Oferta
+							{
+								continue;
+							}
+							else // Oferta NO ----- V4 (Texto)
+							{
+								type=4;
+								texto=dynamicdata['frame_'+i+'_text'];
+							}
+						}
+						else // Texto NO
+						{
+							if(dynamicdata['frame_'+i+'_oferta']==true) // Oferta
+							{
+								continue;
+							}
+                            if(dynamicdata['frame_'+i+'_idioma'] != null) // Sólo IMG background
+                            {
+                                type=11;
+                                idioma_jpg=dynamicdata['frame_'+i+'_idioma'];
+                                                                
+                            }
+							else if(dynamicdata['youtube_frame'] != '') // Frame de Youtube
+                            {
+                                type=12;
+                                //convertir string recibido del Feed en Array asociativo
+                                function strToArray(){
+                                    var queryStr = dynamicdata['youtube_frame'],
+                                      queryArr = queryStr.split(','),
+                                      queryParams = [];
+
+                                    for (var q = 0, qArrLength = queryArr.length; q < qArrLength; q++) {
+                                        var qArr = queryArr[q].split(':');
+                                        queryParams[qArr[0]] = qArr[1];
+                                    }
+
+                                    return queryParams;
+                                }
+                                  
+                                var queryConvert = strToArray();
+                                
+                            }
+							else 
+							{
+								continue;
+							}
+						}
+					}
+				}
+
+				title1=dynamicdata['frame_'+i+'_tit_1'];
+				title2=dynamicdata['frame_'+i+'_tit_2'];
+				tit_order=dynamicdata['frame_'+i+'_tit_order'];
+				button=dynamicdata['frame_'+i+'_btn'];
+				align=(dynamicdata['frame_'+i+'_align']==''?'':(dynamicdata['frame_'+i+'_align']=='right'?dynamicdata['frame_'+i+'_align']:''));
+                btn_color=dynamicdata['btn_color'];
+                acelerador=dynamicdata['frame_'+i+'_acelerador'];
+                acelerador_texto=dynamicdata['frame_'+i+'_acelerador_texto'];
+                
+                function strAceleradorColor(){
+                    var queryStr = dynamicdata['acelerador_color'],
+                        queryArr = queryStr.split(','),
+                        queryParams = [];
+
+                    for (var q = 0, qArrLength = queryArr.length; q < qArrLength; q++) {
+                        //var qArr = queryArr[q].split(':');
+                        queryParams[q] = queryArr[q];
+                    }
+
+                    return queryParams;
+                }
+                                  
+                var colorAcelerador = strAceleradorColor();
+                
+                report = dynamicdata['Report_label'];
+
+
+				var auxTop = dynamicdata['frame_'+i+'_top'].split("|");
+				var aTop = null;
+
+				if(auxTop!='' && auxTop.length>0)
+				{	
+					aTop = new Array();
+					for(var j=0; j<auxTop.length; j++)
+					{
+						var jAux = auxTop[j].split("=");
+						aTop[jAux[0]]=jAux[1];
+
+					}
+				}
+				
+				if(aTop!=null)
+				{
+					top=aTop[size];
+				}
+				else
+				{
+					top="";
+				}
+
+				image = dynamicdata['Imagenes_fondo']['background_'+size+'_'+i+'.jpg'].Url;
+                //image = dynamicdata['Imagenes_fondo']['background_'+size+'_'+i+'.gif'].Url;
+                
+                //Selección IMG IDIOMA BACKGROUND
+                    if(idioma_jpg == 'en'){
+                        image = dynamicdata['Imagenes_fondo']['background_'+size+'_'+i+'_'+idioma_jpg+'.jpg'].Url;
+                    }
+                    if(idioma_jpg == 'es'){
+                        image = dynamicdata['Imagenes_fondo']['background_'+size+'_'+i+'_'+idioma_jpg+'.jpg'].Url;
+                    }
+                    if(idioma_jpg == 'fr'){
+                        image = dynamicdata['Imagenes_fondo']['background_'+size+'_'+i+'_'+idioma_jpg+'.jpg'].Url;
+                    }
+                    if(idioma_jpg == 'ne'){
+                        image = dynamicdata['Imagenes_fondo']['background_'+size+'_'+i+'_'+idioma_jpg+'.jpg'].Url;
+                    }
+                    if(idioma_jpg == 'de'){
+                        image = dynamicdata['Imagenes_fondo']['background_'+size+'_'+i+'_'+idioma_jpg+'.jpg'].Url;
+                    }
+                    if(idioma_jpg == 'it'){
+                        image = dynamicdata['Imagenes_fondo']['background_'+size+'_'+i+'_'+idioma_jpg+'.jpg'].Url;
+                    }
+                    if(idioma_jpg == 'pt'){
+                        image = dynamicdata['Imagenes_fondo']['background_'+size+'_'+i+'_'+idioma_jpg+'.jpg'].Url;
+                    }
+
+				var opciones = {title1: title1, title2: title2, tit_order: tit_order, texto: texto, align: align, top:top, oferta: oferta, image: image, btn: button, btn_color: btn_color, acelerador:acelerador, acelerador_texto:acelerador_texto, colorAcelerador: colorAcelerador, idioma_jpg:idioma_jpg,legal:legal,queryConvert:queryConvert,report:report};
+
+				frame = new NHDYNAMIC.frame.frame(type, opciones);
+
+				aFrames.push(frame);
+
+			}
+		}
+
+		return aFrames;
+
+
+	}
+
+	splitSpan = function(element){
+
+		element.each(function(){
+
+			var type = $(this).parent().parent().attr("data-type");
+            var $this = $(this);
+            var originalText = $this.html();
+            $this.empty();
+
+            var sections = [];
+
+            var tagB = false;
+
+            $.each( originalText.split(" "), function(){
+              
+                // var $span = $("<span>" + this + "</span>");
+                // $this.append($span);
+                
+                // var index = parseInt($span.position().top);
+
+                // if( sections[index] === undefined ){
+                //     sections[index] = "";
+                // }
+
+                // sections[index] += $span.html() + " ";
+
+                if(this.toUpperCase().indexOf('<B>')>=0)
+            	{
+            		tagB = true;
+            	}
+
+            	var $span;
+            	if(tagB)
+            	{
+            		$span = $("<span><B>" + this + "</B></span>");
+            	}
+            	else
+            	{
+            		$span = $("<span>" + this + "</span>");
+            	}
+
+            	if(this.toUpperCase().indexOf('</B>')>=0)
+            	{
+            		tagB = false;
+            	}
+                $this.append($span);
+                
+                var index = parseInt($span.position().top);
+
+                if( sections[index] === undefined ){
+                    sections[index] = "";
+                }
+
+                sections[index] += $span.html() + " ";
+            });
+
+            $this.empty();
+            
+            var first_span = 0;
+
+            console.log(sections);
+
+            for(var i = 0; i< sections.length; i++){
+                if( sections[i] !== undefined ){
+
+                	first_span++;
+
+                    var spanText = $.trim(sections[i]);
+
+                    var margin_bottom='';
+                    if(type==3 && i<sections.length-1)
+                    {
+                    	//margin_bottom = ' margin-bottom: -5px;';
+                    }
+                    else
+                    {
+                    	margin_bottom='';
+                    }
+
+                    if(spanText.toUpperCase().indexOf('<BR>') >= 0 )
+                    {
+
+                        var index_next = 0;
+                        for(var j=i+1; j<sections.length; j++)
+                        {
+                            if(sections[j] !== undefined)
+                            {
+                                index_next = j;
+                                break;
+                            }
+                        }
+
+                        if(index_next != 0)
+                        {
+                            sections[i] = $.trim(spanText.substring(0,spanText.toUpperCase().indexOf('<BR>')));
+                            sections[index_next] = $.trim(spanText.substring(spanText.toUpperCase().indexOf('<BR>')+4)) + " " + sections[index_next];
+                            if(first_span==1 && $this.index()==0)
+                            {
+                            	$this.append('<span class="title" style="margin-top: 0px;' + margin_bottom + '">' + sections[i] + '</span>');
+                            }
+                            else
+                            {
+                            	$this.append('<span style="' + margin_bottom + '" class="title">' + sections[i] + '</span>');
+                            }
+                        }
+                        else
+                        {
+                            sections[sections.length + 1] = $.trim(spanText.substring(spanText.toUpperCase().indexOf('<BR>')+4));
+                            sections[i] = $.trim(spanText.substring(0,spanText.toUpperCase().indexOf('<BR>')));
+                            if(first_span==1 && $this.index()==0)
+                            {
+                            	$this.append('<span class="title" style="margin-top: 0px;' + margin_bottom + '">' + sections[i] + '</span>');
+                            }
+                            else
+                            {
+                            	$this.append('<span style="' + margin_bottom + '" class="title">' + sections[i] + '</span>');
+                            }
+                        }
+                    }
+                    else
+                    {
+                    	if(first_span==1 && $this.index()==0)
+                        {
+                        	$this.append('<span class="title" style="margin-top: 0px;' + margin_bottom + '">' + spanText + '</span>');
+                        }
+                        else
+                        {
+                        	$this.append('<span style="' + margin_bottom + '" class="title">' + spanText + '</span>');
+                        }
+                    }
+                }
+            }
+
+        });
+    }
+
+    drawBottons = function(parent)
+    {
+    	for(var i=0; i<parent.length; i++)
+    	{
+    		parent[i].style.width = (parseInt(T$$('p',parent[i])[0].style.width.replace('px')) + parseInt(T$$('img',parent[i])[0].style.width.replace('px')) + 8) + 'px'; 
+    	}
+    }
+
+	drawFrames = function(framesdynamic, framesUL)
+	{
+
+		var strHTML = '';
+		for(var i=0;i<framesdynamic.length;i++)
+		{
+			var align='';
+			var top='';
+
+			if(framesdynamic[i].type==1 || framesdynamic[i].type==2 || framesdynamic[i].type==3 || framesdynamic[i].type==4 || framesdynamic[i].type==5 || framesdynamic[i].type==9 || framesdynamic[i].type==10)
+			{
+				if(framesdynamic[i].align!='')
+				{
+					align = '_' + framesdynamic[i].align;
+				}
+				else
+				{
+					align = '';
+				}
+
+				if(framesdynamic[i].top!== undefined && framesdynamic[i].top!='')
+				{
+					top=framesdynamic[i].top;
+				}
+				else
+				{
+					top='';
+				}
+			}
+
+			strHTML += '<li id="frame' + i +'" class="frame_t_'+framesdynamic[i].type+align+'">\n';
+			strHTML += '\t<div class="frame" data-type="' + framesdynamic[i].type + '" style="background: url(\''+ framesdynamic[i].image +'\') no-repeat;">\n';
+            
+            //PINTAR "ACELERADOR"
+            if(framesdynamic[i].acelerador == true){
+                console.log('entra frame > '+i+'');
+                strHTML += '\t<div class="mask">\n';
+                strHTML += '\t<div class="acelerador" style="background:'+framesdynamic[i].colorAcelerador[0]+'">\n';
+                strHTML += '\t</div></div>\n';
+                strHTML += '\t<span class="acelerador_text" style="color:'+framesdynamic[i].colorAcelerador[1]+'">'+ framesdynamic[i].acelerador_texto +'</span>\n';
+            }
+            
+            //OCULTO logo y sound si NO es YOUTUBE
+            if(framesdynamic[i].type != 12){
+                $('#slider').css({zIndex:2});
+                $('#sound').fadeOut(50);
+            }
+            else{
+                $('#slider').css({zIndex:4});
+                $('#sound').delay(1000).fadeIn(200);
+            }
+			
+			switch(framesdynamic[i].type)
+			{
+				case 1: // (T1) ----- V1
+					strHTML += '\t<div style="position: absolute; bottom:' + (top!=''?top:'72') + 'px; width:100%">\n';
+					strHTML += '\t\t<p style="overflow:hidden" class="texto title1">' + framesdynamic[i].title1 + '</p>\n';
+					strHTML += '\t</div>\n';
+                    if(i == 3){
+                        strHTML += '\t<div id="nota">' + framesdynamic[i].legal + '</div>\n';
+                    }
+					break;
+
+				case 2: // (T2) ----- V2
+					strHTML += '\t<div style="position: absolute; bottom:' + (top!=''?top:'72') + 'px; width:100%">\n';
+                    strHTML += '\t\t<p style="overflow:hidden" class="texto title2">' + framesdynamic[i].title2 + '</p>\n';
+                    strHTML += '\t</div>\n';
+                    //strHTML += '\t<div id="nota">' + framesdynamic[i].legal + '</div>\n';
+					break;
+
+				case 3:  // (T1+T2) ----- V3
+					strHTML += '\t<div style="position: absolute; bottom:' + (top!=''?top:'72') + 'px; width:100%">\n';
+					if(framesdynamic[i].tit_order <=1)
+					{
+						strHTML += '\t\t<p style="overflow:hidden; margin-bottom: -5px;" class="texto title1">' + framesdynamic[i].title1 + '</p>\n';
+	                    strHTML += '\t\t<p style="overflow:hidden;" class="texto title2">' + framesdynamic[i].title2 + '</p>\n';
+					}
+					else
+					{
+						strHTML += '\t\t<p style="overflow:hidden; margin-bottom: -5px;" class="texto title2">' + framesdynamic[i].title2 + '</p>\n';
+						strHTML += '\t\t<p style="overflow:hidden;" class="texto title1">' + framesdynamic[i].title1 + '</p>\n';
+					}	
+                    strHTML += '\t</div>\n';
+					break;
+
+				case 4: // (Texto) ----- V4
+					strHTML += '\t<div style="position: absolute; bottom:' + (top!=''?top:'72') + 'px">\n';
+					strHTML += '\t\t<p style="overflow:hidden" class="copy">' + framesdynamic[i].texto + '</p>\n';
+	                strHTML += '\t</div>\n';
+					break;
+
+				case 5:  // (T1+T2+Texto) ----- V5
+					strHTML += '\t<div style="position: absolute; bottom:' + (top!=''?top:'72') + 'px; width:100%">\n';
+					strHTML += '\t\t<p style="overflow:hidden" class="texto title1">' + framesdynamic[i].title1 + '</p>\n';
+					strHTML += '\t\t<p style="overflow:hidden" class="texto title2">' + framesdynamic[i].title2 + '</p>\n';
+					strHTML += '\t\t<p style="overflow:hidden" class="copy">' + framesdynamic[i].texto + '</p>\n';
+	                strHTML += '\t</div>\n';
+					break;
+
+				case 6:  // (T1+Oferta) ----- V6
+					strHTML += '\t<div style="position: absolute; bottom:72px; width:100%">\n';
+					strHTML += '\t\t<p style="overflow:hidden" class="texto title1">' + framesdynamic[i].title1 + '</p>\n';
+
+					
+					if(framesdynamic[i].oferta.texto2_1!='')
+	                {
+	                strHTML += '\t\t<div class="oferta1">\n';
+					strHTML += '\t\t\t<div id="texto1">' + framesdynamic[i].oferta.texto1 + '</div>\n';
+					strHTML += '\t\t\t<div id="bloque1">';
+	                	strHTML += '\t\t\t<div id="descuento">' + framesdynamic[i].oferta.descuento + '</div>\n';	        
+	                		strHTML += '\t\t\t<div id="bloque2">';
+
+	                			strHTML += '\t\t\t<div id="porcentaje">%</div>\n';
+
+	                
+	                			strHTML += '\t\t\t<div id="texto2_1">' + framesdynamic[i].oferta.texto2_1 + '</div>\n';
+
+	                		strHTML += '\t\t\t</div>';
+	                	strHTML += '\t\t\t</div>';
+                        strHTML += '\t\t\t<div id="texto2_2">' + framesdynamic[i].oferta.texto2_2 + '</div>\n';
+	                strHTML += '\t\t\</div>\n';
+	                strHTML += '\t</div>\n';
+	                }
+	                else if(framesdynamic[i].oferta.texto2_2!='')
+	                {
+	                strHTML += '\t\t<div class="oferta2">\n';
+	                strHTML += '\t\t\t<div id="texto1">' + framesdynamic[i].oferta.texto1 + '</div>\n';
+					strHTML += '\t\t\t<div id="bloque1">';
+	                	strHTML += '\t\t\t<div id="descuento">' + framesdynamic[i].oferta.descuento + '</div>\n';	        
+	                		strHTML += '\t\t\t<div id="bloque2">';
+
+	                			strHTML += '\t\t\t<div id="porcentaje">%</div>\n';
+
+	                		strHTML += '\t\t\t</div>';
+	                		strHTML += '\t\t\t<div id="texto2_2">' + framesdynamic[i].oferta.texto2_2 + '</div>\n';
+	                	strHTML += '\t\t\t</div>';
+	                strHTML += '\t\t\</div>\n';
+	                strHTML += '\t</div>\n';
+	                }
+	                
+	                strHTML += '\t<div id="nota">' + framesdynamic[i].oferta.nota + '</div>\n';
+					break;
+
+				case 7: // (T1+Texto+Oferta) ----- V7
+					strHTML += '\t<div style="position: absolute; bottom:72px; width:100%">\n';
+					strHTML += '\t\t<p style="overflow:hidden" class="texto title1">' + framesdynamic[i].title1 + '</p>\n';
+					strHTML += '\t\t<p style="overflow:hidden" class="copy">' + framesdynamic[i].texto + '</p>\n';
+					
+					if(framesdynamic[i].oferta.texto2_1!='')
+	                {
+	                strHTML += '\t\t<div class="oferta1">\n';
+					strHTML += '\t\t\t<div id="texto1">' + framesdynamic[i].oferta.texto1 + '</div>\n';
+					strHTML += '\t\t\t<div id="bloque1">';
+	                	strHTML += '\t\t\t<div id="descuento">' + framesdynamic[i].oferta.descuento + '</div>\n';	        
+	                		strHTML += '\t\t\t<div id="bloque2">';
+
+	                			strHTML += '\t\t\t<div id="porcentaje">%</div>\n';
+
+	                
+	                			strHTML += '\t\t\t<div id="texto2_1">' + framesdynamic[i].oferta.texto2_1 + '</div>\n';
+
+	                		strHTML += '\t\t\t</div>';
+	                	strHTML += '\t\t\t</div>';
+	                strHTML += '\t\t\</div>\n';
+	                strHTML += '\t</div>\n';
+	                }
+	                else if(framesdynamic[i].oferta.texto2_2!='')
+	                {
+	                strHTML += '\t\t<div class="oferta2">\n';
+	                strHTML += '\t\t\t<div id="texto1">' + framesdynamic[i].oferta.texto1 + '</div>\n';
+					strHTML += '\t\t\t<div id="bloque1">';
+	                	strHTML += '\t\t\t<div id="descuento">' + framesdynamic[i].oferta.descuento + '</div>\n';	        
+	                		strHTML += '\t\t\t<div id="bloque2">';
+
+	                			strHTML += '\t\t\t<div id="porcentaje">%</div>\n';
+
+	                		strHTML += '\t\t\t</div>';
+	                		strHTML += '\t\t\t<div id="texto2_2">' + framesdynamic[i].oferta.texto2_2 + '</div>\n';
+	                	strHTML += '\t\t\t</div>';
+	                strHTML += '\t\t\</div>\n';
+	                strHTML += '\t</div>\n';
+	                }
+	                
+	                strHTML += '\t<div id="nota">' + framesdynamic[i].oferta.nota + '</div>\n';
+					break;
+
+				case 8: // (T1+T2+Oferta) ----- V8
+					strHTML += '\t<div style="position: absolute; bottom:72px; width:100%">\n';
+					strHTML += '\t\t<p style="overflow:hidden" class="texto title1">' + framesdynamic[i].title1 + '</p>\n';
+					strHTML += '\t\t<p style="overflow:hidden" class="texto title2">' + framesdynamic[i].title2 + '</p>\n';
+					
+					if(framesdynamic[i].oferta.texto2_1!='')
+	                {
+	                strHTML += '\t\t<div class="oferta1">\n';
+					strHTML += '\t\t\t<div id="texto1">' + framesdynamic[i].oferta.texto1 + '</div>\n';
+					strHTML += '\t\t\t<div id="bloque1">';
+	                	strHTML += '\t\t\t<div id="descuento">' + framesdynamic[i].oferta.descuento + '</div>\n';	        
+	                		strHTML += '\t\t\t<div id="bloque2">';
+
+	                			strHTML += '\t\t\t<div id="porcentaje">%</div>\n';
+
+	                
+	                			strHTML += '\t\t\t<div id="texto2_1">' + framesdynamic[i].oferta.texto2_1 + '</div>\n';
+
+	                		strHTML += '\t\t\t</div>';
+	                	strHTML += '\t\t\t</div>';
+	                strHTML += '\t\t\</div>\n';
+	                strHTML += '\t</div>\n';
+	                }
+	                else if(framesdynamic[i].oferta.texto2_2!='')
+	                {
+	                strHTML += '\t\t<div class="oferta2">\n';
+	                strHTML += '\t\t\t<div id="texto1">' + framesdynamic[i].oferta.texto1 + '</div>\n';
+					strHTML += '\t\t\t<div id="bloque1">';
+	                	strHTML += '\t\t\t<div id="descuento">' + framesdynamic[i].oferta.descuento + '</div>\n';	        
+	                		strHTML += '\t\t\t<div id="bloque2">';
+
+	                			strHTML += '\t\t\t<div id="porcentaje">%</div>\n';
+
+	                		strHTML += '\t\t\t</div>';
+	                		strHTML += '\t\t\t<div id="texto2_2">' + framesdynamic[i].oferta.texto2_2 + '</div>\n';
+	                	strHTML += '\t\t\t</div>';
+	                strHTML += '\t\t\</div>\n';
+	                strHTML += '\t</div>\n';
+	                }
+	                
+	                strHTML += '\t<div id="nota">' + framesdynamic[i].oferta.nota + '</div>\n';
+					break;
+
+				case 9:  // (T1+Texto) ----- V9
+					strHTML += '\t<div style="position: absolute; bottom:' + (top!=''?top:'72') + 'px; width:100%">\n';
+					strHTML += '\t\t<p style="overflow:hidden" class="texto title1">' + framesdynamic[i].title1 + '</p>\n';
+					strHTML += '\t\t<p style="overflow:hidden" class="copy">' + framesdynamic[i].texto + '</p>\n';
+	                strHTML += '\t</div>\n';
+					break;
+
+				case 10:  // (T2+Texto) ----- V10
+					strHTML += '\t<div style="position: absolute; bottom:' + (top!=''?top:'72') + 'px; width:100%">\n';
+					strHTML += '\t\t<p style="overflow:hidden" class="texto title2">' + framesdynamic[i].title2 + '</p>\n';
+					strHTML += '\t\t<p style="overflow:hidden" class="copy">' + framesdynamic[i].texto + '</p>\n';
+	                strHTML += '\t</div>\n';
+					break;
+                    
+                case 11: //Idioma jpg
+                    break;
+                    
+                case 12: //Frame Youtube
+                    strHTML += '\t<div style="position: absolute; top:0px; left:0px; width:100%; height:100%;">\n';
+                    strHTML += '\t\t<div id="youtube"><div class="show_video"></div><iframe id="ytplayer" type="text/html" style="position:absolute; top:0px; left:0px; bottom:0px; right:0px; width:100%; height:680px; border:none; margin:0; padding:0; overflow:hidden; z-index:40;" src="https://www.youtube.com/embed/'+framesdynamic[i].queryConvert['300x600']+'?rel=0&autoplay=1&controls=0&showinfo=0&loop=1&iv_load_policy=3&enablejsapi=1" frameborder="0" ></div>\n';
+                    strHTML += '\t</div>\n';
+                    break;
+
+			}
+			if(framesdynamic[i].btn!='')
+			{
+				if(i == 3 && framesdynamic[i].report.substring(0,7) == 'Rewards'){
+                    strHTML += '\t\t<div id="boton" class="boton' + align + '" style="background-color:white">\n';
+                    strHTML += '\t\t\t<img src="assets/images/flecha2.png"><p class=""id="txtBotonFrame2" style="color: #003262">'+framesdynamic[i].btn+'</p>\n';
+            	   strHTML += '\t\t</div>\n';
+                }
+                else{
+                    strHTML += '\t\t<div id="boton" class="boton' + align + '" style="background-color:'+framesdynamic[i].btn_color+'">\n';
+                    strHTML += '\t\t\t<img src="assets/images/flecha.png"><p class=""id="txtBotonFrame2">'+framesdynamic[i].btn+'</p>\n';
+            	   strHTML += '\t\t</div>\n';
+                }
+			}
+			strHTML += '\t</div>\n';
+			strHTML += '</li>\n';
+
+		}
+		framesUL.innerHTML = strHTML;
+		//splitSpan(document.getElementsByClassName('texto'));
+		splitSpan($('.texto'));
+		
+		//drawBottons(document.getElementsByClassName('boton'));
+	}
+
+	frame.prototype.init=function(opciones)
+	{
+		var contenedor = T$(opciones.id);
+		var framesUL = this.framesUL = T$$('ul', contenedor)[0];
+		
+
+		this.autoLoop = opciones.auto||0;
+		this.loops = opciones.dynamicdata['Loop']==0?1000:opciones.dynamicdata['Loop'];
+		this.currentLoop = 1;
+		this.pauseFlag = 0;
+		this.size = opciones.size;
+		this.url = opciones.dynamicdata['url_destino'];
+        this.idioma_jpg = opciones.dynamicdata['idioma_jpg'];
+        this.legal = opciones.dynamicdata['oferta_nota'];
+        this.queryConvert = opciones.dynamicdata['youtube_frame'];
+        this.report = opciones.dynamicdata['Report_label'];
+
+		this.framesdynamic = processDynamic(opciones.dynamicdata, this.size);
+
+		drawFrames(this.framesdynamic, T$$('ul', contenedor)[0]);
+
+		var frames = this.frames = T$$('li', framesUL);
+		var l = frames.length;
+		var i = this.framesNum=this.c=0;
+
+		for(i;i<l;i++)
+		{
+			if(frames[i].parentNode==framesUL)
+			{
+				this.framesNum++;
+				frames[i].style.visibility = 'hidden';
+				frames[i].style.opacity = 0;
+			}
+		}
+
+		// Inicializamos la creatividad
+		creative.showAd();
+
+		this.pos(-1,this.autoLoop?1:0);
+	},
+	frame.prototype.auto=function()
+	{
+		this.framesUL.ai=setInterval(new Function(this.nombre+'.move(1,1)'),this.autoLoop*1000);
+	},
+	frame.prototype.move=function(desplazamiento,auto)
+	{
+		if(!this.pauseFlag)
+		{
+
+			this.pos(this.current + desplazamiento, auto);
+		}
+	},
+	frame.prototype.pos=function(posicion,auto){
+		clearInterval(this.framesUL.ai);
+		clearInterval(this.framesUL.si);
+		
+		if(posicion==-1)
+		{
+			previous=posicion;
+			posicion++;
+		}
+		else
+		{
+			previous=this.current;
+		}
+		if(posicion==this.framesNum)
+		{
+			posicion=0;
+			this.currentLoop++;
+		}
+
+		this.slide(posicion, previous, auto);
+	},
+	frame.prototype.slide=function(posicion, previous, auto){
+
+		if(previous==-1)
+		{
+			$('#frame'+posicion).css('visibility','visible');
+			$("#frame"+posicion).animate({opacity: 1}, 500, function(){
+                $('.acelerador').delay(1000).animate({height:'70px'},300);
+                $('.acelerador_text').delay(1200).animate({opacity:'1'},300);
+				framesshow.current = posicion;
+
+				if(!(framesshow.currentLoop==framesshow.loops && posicion+1==framesshow.framesNum)){
+					if(auto||(framesshow.autoLoop))
+					{
+						framesshow.auto();
+					}	
+				}
+			});
+		}
+		else
+		{
+			$('#frame'+previous).animate({opacity: 0}, 500, function(){
+				$('#frame'+previous).css('visibility','hidden');	
+			});
+			
+			$('#frame'+posicion).css('visibility','visible');
+			$("#frame"+posicion).animate({opacity: 1}, 500, function(){
+				framesshow.current = posicion;
+				if(!(framesshow.currentLoop==framesshow.loops && posicion+1==framesshow.framesNum)){
+					if(auto||(framesshow.autoLoop))
+					{
+						framesshow.auto();
+					}	
+				}
+                else{
+                    if(posicion == 3){
+                        //Vuelta al Frame3 desde el Frame4 jpg por idioma
+                        setTimeout(function(){
+                            $('#frame'+posicion).animate({opacity: 0}, 500, function(){
+                                $('#frame'+posicion).css('visibility','hidden');
+                            });
+                            $('#frame'+previous).animate({opacity: 1}, 500, function(){
+                                $('#frame'+previous).css('visibility','visible');
+                                $('#logo').fadeIn(100);
+                            });
+                        },window.timeFrame*1000);
+                    }
+                }
+			});	
+            
+            if( (previous == 2 && this.report.substring(0,1) == '_') ){
+                $('#logo').fadeOut(100);
+            }
+            else{
+                $('#logo').fadeIn(100);
+            }
+		}
+	},
+	frame.prototype.pause=function()
+	{
+		this.pauseFlag=1;
+	},
+	frame.prototype.restart=function()
+	{
+		this.pauseFlag=0;
+	},
+	frame.prototype.stop=function()
+	{
+		this.pauseFlag=1;
+		this.currentLoop = this.loops;
+		this.pos(this.framesNum-1,0);
+	};
+	return{frame:frame}
+}();
+
+
+NHDYNAMIC.frame = function(){
+
+	function frame(type, opciones)
+	{
+		this.type = type;
+		this.init(opciones);
+	}
+
+	frame.prototype.init = function(opciones)
+	{
+		this.image = opciones.image;
+		this.title1 = opciones.title1;
+		this.title2 = opciones.title2;
+		this.tit_order = opciones.tit_order;
+		this.align = opciones.align;
+		this.top = opciones.top;
+		this.btn = opciones.btn;
+        this.btn_color = opciones.btn_color;
+        this.acelerador = opciones.acelerador;
+        this.acelerador_texto = opciones.acelerador_texto;
+        this.colorAcelerador = opciones.colorAcelerador;
+        this.idioma_jpg = opciones.idioma_jpg;
+        this.legal = opciones.legal;
+        this.queryConvert = opciones.queryConvert;
+        this.report = opciones.report;
+        
+		switch(this.type)
+		{
+			case 4:
+				this.texto = opciones.texto;
+				break;
+
+			case 5:
+				this.texto = opciones.texto;
+				break;
+
+			case 6:
+				this.oferta = opciones.oferta;
+				break;
+
+			case 7:
+				this.texto = opciones.texto;
+				this.oferta = opciones.oferta;
+				break;
+
+			case 8:
+				this.oferta = opciones.oferta;
+				break;
+
+			case 9:
+				this.texto = opciones.texto;
+				break;
+
+			case 10:
+				this.texto = opciones.texto;
+				break;
+		}
+	};
+	return{frame:frame}
+}();
+
+NHDYNAMIC.oferta = function(){
+
+	function oferta(opciones)
+	{
+		this.init(opciones);
+	}
+
+	oferta.prototype.init = function(opciones)
+	{
+		this.texto1 = opciones.texto_1;
+		this.descuento = opciones.descuento;
+		this.texto2_1 = opciones.texto_2_1;
+		this.texto2_2 = opciones.texto_2_2;
+		this.nota = opciones.nota;
+
+	};
+	return{oferta:oferta}
+}();
+
+framesshow = new NHDYNAMIC.frames.frame('framesshow',{
+    id:'slider',
+    auto: window.timeFrame,
+    size: window.size,
+    dynamicdata: creative.dynamicData
+  });

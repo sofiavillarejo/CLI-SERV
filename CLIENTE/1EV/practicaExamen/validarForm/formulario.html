@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Validar formulario</title>
+</head>
+<body>
+	<form action="form.html" method="get" onsubmit="return validar()">
+        Nombre: <input type="text" name="nombre" id="nombre" value="sofia">
+        Edad: <input type="number" name="edad" id="edad" min="1" max="99" value="22">
+        Contraseña: <input type="password" name="cont1" id="cont1" min="1" max="99" value="casa">
+        Repite contraseña: <input type="password" name="cont2" id="cont2" min="1" max="10" value="casa">
+		<button type="submit">Enviar</button>
+	</form>
+</body>
+</html>

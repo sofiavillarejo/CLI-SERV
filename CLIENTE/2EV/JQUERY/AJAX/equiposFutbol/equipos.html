@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Práctica de Ajax - Json Equipos de fútbol</title>
+    <script type="text/javascript" src="jquery-3.7.1.min.js"></script>
+    <script type="text/javascript" src="equipos.js"></script>
+    <style>
+        h1{
+            font-size: 50px;
+            font-family: arial;
+            color: pink;
+            text-align: center;
+        }
+        select{
+            font-size: 20px;
+            background-color: pink;
+        }
+        #enviar{
+            font-size: 20px;
+            margin-top: 10px;
+            background-color: black;
+            color: pink;
+        }
+        #datosEquipo{
+            margin-top: 30px;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Práctica de Ajax - Json Equipos de fútbol</h1>     
+    <form method="get" action="equipos.py">
+        <select id="seleccion">
+
+        </select>
+    </form>
+    <button id="enviar" onclick="pedirDatos()">Presentar datos</button>  
+    <div id="datosEquipo"></div>
+</body>
+</html>

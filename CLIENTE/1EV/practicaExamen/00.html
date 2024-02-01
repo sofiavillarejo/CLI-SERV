@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javascript 1</title>
+    <script type="text/javascript">
+        //alerta que sale en una ventana
+        alert('Hola, esto es una alerta');
+        //tipos de console
+        console.log('mensaje que se muestra en la consola de google');
+        console.info('mostrado en la consola de google igual que el anterior');
+        console.error('Mensaje de error que se resalta en rojo en la consola');
+        console.warn('mensaje warning que se resalta en amarillo en la consola');
+        //sirve para parar la ejecución de la pág en este punto y ver que está pasando
+        //el codigo a partir de aqui no se mostraria a menos que en consola le demos a que siga
+        //debugger;
+        console.log('mensaje que no se muestra a menos que lo hagas manualmente en consola');
+        //////////////////////////////////////////////////
+        //VARIABLES
+        //variable para todo --> let
+        //variables globales --> se acceden a ellas siempre
+        let mensaje = 'mensaje cualquiera';//variable global que se puede usar siempre desde ahora
+        document.write(mensaje);//escribir en el documento sin necesidad de html
+
+        //variable var --> se pueden usar y ser definidas después
+        //sale en consola antes de ser definida
+        console.log(name);
+        var name = 'Sofia';
+
+        //variable constante --> su nombre se pone en MAYUSCULAS
+        const CONSTANTE = 'variable constante' // se usa cuando su contenido no va a cambiar
+        
+        //variable local --> se crean dentro de un entorno y solo se pueden usar ahí
+        //ejemplo de entorno y variable local. Fuera de este, esta variable no existe
+        if (true){
+            let varLocal = 'ejemplo de variable local';
+            console.log(varLocal);//impresa en la consola
+        }
+
+        //OPERACIONES
+        //en consola, si se cumple la condicion devuelve true y sino, false
+        //sumar
+        console.log(2+2);
+        //restar
+        console.log(2-2);
+        //dividir
+        console.log(2/2);
+        //multiplicar
+        console.log(2*2);
+        //mayor que
+        console.log(3>2);
+        //menor que
+        console.log(1<2);
+        //mayor o igual que
+        console.log(4>=2);
+        //menor o igual que
+        console.log(2<=4);
+        //igual que
+        console.log(2==2);
+        //devuelve false por el ===
+        //cuando se pone === valora los valores y el tipo de dato que, aquí, es numero === texto
+        console.log(2==='2'); 
+        //no es igual que
+        console.log(4!=2);
+        console.log(4!==2);// con dos = compara tipo y valor
+
+        //MÉTODOS EN OPERACIONES
+        //typeof --> dice el tipo de dato de la variable
+        let num = 20;
+        let text = 'texto';
+        console.log(typeof num);
+        console.log(typeof(text));
+
+        //NaN --> not a number; imprime que es string
+        const notNumber = 2 + 'asdf';
+        console.log(typeof notNumber);
+
+        //isNaN() --->comprueba si es numero o no; devuelve false si ES numero y true si NO lo es
+        console.log(isNaN(NaN));
+        console.log(isNaN('algo'));
+        console.log(isNaN('12'));//devuelve false porque aunque se escriba entre comillas lo toma como un numero
+        console.log(isNaN(12));
+
+        //toString() --> convierte a cadena de texto
+        let number = 100.02123;
+        console.log(typeof number);
+        console.log( typeof number.toString());
+        //.toFixed(x)--> para redondear una operacion
+        console.log(number.toFixed(2)) //saca los decimales que indiques aqui -> 100.02
+
+        //PRACTICA 1
+        console.log('En una cena de amigos os llega la cuenta y quereis pagar entre todos, sois 6. ¿cuanto paga cada uno?');
+        console.log('el total son 102€');
+        const AMIGOS = 6;
+        const CUENTA = 120;
+        let pagoIndiv = CUENTA/AMIGOS;
+        console.log('cada uno paga un total de '+ pagoIndiv + ' euros.');
+
+        //PRACTICA 2
+        console.log('Un usuario compra un movil (300€), cascos (30€) y una funda (10€). Se le hace un descuento del 10%.')
+        const MOVIL = 300;
+        const CASCOS = 30;
+        const FUNDA = 10;
+        const DESCUENTO = 10;
+        const TOTAL = (MOVIL + CASCOS + FUNDA);
+        const desc = TOTAL *DESCUENTO/100;
+        const totalMenosDesc = TOTAL - desc;
+
+        console.log('El total del ticket con el descuento del 10% es de ' + totalMenosDesc + ' euros.');
+///////////////////////////////////////////////////////////////
+        //STRINGS
+        //MÉTODOS QUE SE PUEDEN USAR CON STRINGS
+        //concatenar texto
+        console.log('Hello' + 'World');
+        //template literals -> concatenar texto con variables dinamicas
+        const name1 = 'Cristina';
+        console.log(`Hello  ${name1} que tal`); //CUIDADO CON LAS COMILLAS
+        let texto = 'hola'
+        texto = texto.concat(' ' + name);
+        console.log(texto);
+        //typeof ->tipo de dato 
+        console.log(typeof name);
+        //.length ->longitud de cadena
+        console.log(name.length);
+        //includes() ->comprueba si existe lo que pongas entre los () y devuelve true o false
+        console.log(name1.includes('Cr'));
+        //.slice(start,end)->saca el texto entre una letra y otra
+        console.log(name1.slice(2,4));
+        //.replace('este texto','por este otro')
+        console.log(name1.replace('na','asdfg'));
+        //.trim()-> eliminar espacios en blanco en ambos extremos del string
+        const texto2= 'aioksnd  weifjw eijdwei iej  fr g twe ws   ';
+        console.log(texto2.trim());
+        //.split(',')->cuando en una cadena de texto quieres separar po algo, en este caso, por comas
+        const direccion = 'Calle algo, 7, 1D';//lo saca como un array
+        console.log(direccion.split(','));
+/////////////////////////////////////////////////////////////////////////
+
+        //BOOLEANOS-> ADMITEN TRUE O FALSE
+        //true
+        console.log(Boolean(1));
+        console.log(Boolean('algo'));
+        console.log(Boolean(3.14));
+        console.log(Boolean(100>5));
+        console.log(Boolean(5<5));
+        console.log(Boolean('1' == 1));
+
+        //false
+        console.log(Boolean(0));
+        console.log(Boolean(-0));
+        console.log(Boolean(''));
+        console.log(Boolean(NaN));
+        console.log(Boolean(null));
+        console.log(Boolean(undefined));
+        console.log(Boolean('1' === 1));
+
+        //UNDEFINED->AUSENCIA DE VALOR
+        console.log(a);//si lo compruebas así en la consola, sale undefined porque no está definida
+        var a = 'variable que ya esta definida';
+        console.log(a);//con esto ya saldria el texto sin ningun error
+
+        //NULL->tiene valor pero es nulo
+        var c = null;
+        console.log(c);
+        console.log(typeof c);//devuelve object
+
+        //FUNCIONES
+        // una funcion -> una tarea
+         function hola(){
+            console.log('hola')
+         }
+        hola(); //con esto ya se usa la función y se jecuta lo que hay dentro
+
+        function suma(){
+            console.log(2+2);
+        }
+        suma();
+
+        //funcion usando variable global
+        //si definimos una variable dentro de una función, fuera de ella no se puede usar porque es local
+        const MENSAJE = 'Hola Mundo!'
+        function mensaje_log(){
+            console.log(MENSAJE);
+        }
+        mensaje_log();
+
+        //definir variable y dentro de una funcion darle valor
+        let varVacia;
+        function vari(){
+            varVacia = 'Prueba de valor';
+            console.log(varVacia);
+        }
+        vari();
+
+        //PARÁMETROS EN LAS FUNCIONES
+        //Las func pueden recibir parametros (no es obligatorio)
+        //pueden ejecutar lógica entre ellos
+        //pueden retornar esos valores modificados
+        //pueden tener un valor por defecto
+
+        //funcion que recibe 2 parametros (se pueden meter los que sean, siempre separados por comas)
+        function summa(a,b){
+            console.log(a+b);
+        }
+        //se puede usar la funcion tantas veces como queramos con parametros distintos
+        summa(2,5); //interpreta que el 2 -> a y el 5 ->b
+        summa(10,4);
+        summa(3,4);
+
+        function mensj(name = 'Hola'){
+            console.log('Hello '+ name);
+        }
+        mensj();
+        mensj('Sofia'); //canbia la variable name = 'Hola' por 'Sofia'
+
+        //FUNCIONES CON RETORNO
+        //tienen datos de entrada
+        //ejecuta una lógica
+        //tiene unos datos de salida
+        function hola(namee='World'){
+            return `Hello ${namee}`;
+        }
+        console.log(hola());
+        console.log(hola('Cristina')); //concatena el Hello con la variable namee que aqui cambiamos el valor a Cristina
+
+        //FUNCIONES ANONIMAS
+        //no tienen nombre
+        //se puede asociar a una variable
+
+        //funcion asociada a variable
+        var funcionAnonima = function(name = 'world') {
+            return `Hello ${name}`;
+        }
+        console.log(funcionAnonima());
+        console.log(funcionAnonima('Sofia'));
+
+        /*
+        CONDICIONALES
+        *Quiero irme de viaje, ¿tengo suficiente dinero?
+        *Si -> me voy de viaje
+        * no -> tengo que seguir ahorrando
+        */
+       const VUELO = 100;
+       const HOTEL = 50;
+       const TOUR = 30;
+       const totall = VUELO+HOTEL+TOUR;
+       const MiDinero = 300;
+
+       if (totall > MiDinero){
+        console.log('No puedo irme de viaje, tengo que seguir ahorrando');
+       }else if (totall == MiDinero){
+        console.log('Si puedo, pero tengo un presupuesto muy ajustado.')
+       }else{
+        console.log('Si puedo, me voy de viaje');
+       }
+
+       //OPERADOR TERNARIO = CONDICIONAL PERO EN UNA LÍNEA
+       //incógnita ? ok : not ok
+       //usar cuando tienes solo dos caminos posibles, si hay mas--> CONDICIONAL
+       totall<MiDinero ? console.log('Sí, me voy de viaje') : console.log('No no puedo irme de viaje');
+
+
+
+
+
+
+
+
+    </script>
+</head>
+<body>
+    <p class="newsletter-text"></p> <!--parrafo necesario para que lo muestre-->
+    <p class="block-text"></p>
+    <script>
+        //PRACTICA 1 STRINGS
+        console.log('incluir en el texto de la proxima newletter unas variables dinámicas que te vienen del usuario');
+        const CRIS = 'Cristina';
+        const JUEGO = 'Link awakening';
+        const DESCU = 20;
+        const NEWSLETTER = `Hola ${CRIS},
+        Como regalo de bienvenida al Club de gamers,
+        queremos ofrecer un descuento del ${DESCU}
+        en el proximo lanzamiento de tu interés ${JUEGO}.
+        Esperamos que lo disfrutes,
+        Un saludo.`;
+        console.log(NEWSLETTER);
+        //saca en el documento el texto
+        document.querySelector('.newsletter-text').innerHTML = NEWSLETTER;
+
+        //PRACTICA 1 BOOLEANOS
+        /*
+        const USER_LOGGED  = false;
+        const BLOCK_TEXT = document.querySelector('block-text');
+        if(USER_LOGGED){
+            BLOCK_TEXT.innerHTML = 'Haz click aquí para ver el contenido';
+        }else{
+            BLOCK_TEXT.innerHTML = 'Debes registrarte para leer este articulo';
+        }
+        */
+    </script>
+    
+</body>
+</html>
