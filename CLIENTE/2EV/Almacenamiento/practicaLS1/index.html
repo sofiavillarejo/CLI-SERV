@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Práctica 1 Local Storage</title>
+    <script type="text/javascript" src="jquery-3.7.1.min.js"></script>
+    <script type="text/javascript" src="almacenamiento.js"></script>
+
+</head>
+<body>
+    <h1>almacenamiento el Local Storage</h1>
+    <input type="text" id="datoTexto" value="hola"><br />
+    <input type="number" id="datoNumber" value="10"><br />
+    <input type="email" id="datoEmail" value="correo@me.es"><br />
+    <input type="datetime-local" id="datoFecha"><br />
+    <input type="color" id="datoColor"><br />
+
+    <button onclick="guardar()">Guardar</button>
+    <button onclick="borrar()">Borrar</button>
+    <button onclick="recuperar()">Recuperar</button>
+
+</body>
+</html>
