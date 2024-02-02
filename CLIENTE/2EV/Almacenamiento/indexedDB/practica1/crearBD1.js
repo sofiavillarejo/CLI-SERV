@@ -5,7 +5,9 @@ let openRequest = indexedDB.open("miBaseDeDatos", 1);
 openRequest.onupgradeneeded = function(){
     let db1 = openRequest.result;
     //crear almacenes, claves, indices (solo se puede aqui)
-    db1.createObjectStore('libros', {keyPath: 'id'});
+    let libros = db1.createObjectStore('libros', {keyPath: 'id'});
+    //crear indice--> se debe borrar la base de datos en la consola para cualquier cambio que se haga --> se usa en listarBD
+    let indTitulo = libros.createIndex('titulo_ind', 'titulo');//me permite buscar por el campo titulo
 };
 
 openRequest.onerror = function(){
@@ -27,12 +29,13 @@ function guardaBD() {
         titulo: document.getElementById("titulo").value,
         autor: document.getElementById("autor").value,
         tipo: document.getElementById("tipo").value
+        // miLibro: libro //se mete el objeto a sí mismo
     }
     console.log(libro);
     
     //guardar el objeto en el almacen de la BBDD
     //1. crear una transaccion
-    let transac = db.transaction("libros", "readwrite");
+    let transac = db.transaction("libros", "readwrite"); //si pogno ["libros"]--> bloqueo la BBDD (no se para que sirve)
 
     //2. obtener el almacén
     let lbrs = transac.objectStore("libros");

@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Crer base de datos en IndexedDB</title>
-    <script type="text/javascript" src="crearBD.js"></script>
+    <script type="text/javascript" src="crearBD1.js"></script>
+    <script type="text/javascript" src="crearDBautoincrementado.js"></script>
+
 </head>
 <body>
     <h1>Crera BBDD en IndexedDB</h1>
@@ -16,5 +18,13 @@
 
         <input type="button" value="guardar" onclick="guardaBD()">
     </form>
+
+    <form>
+		id: <input type="text" id="idai"><br>
+		título: <input type="text" id="tituloai"><br>
+		autor: <input type="text" id="autorai"><br>
+		tipo: <input type="text" id="tipoai"><br>
+		<input type="button" value="guardar" onclick="guardaBDautoIncrementada()">
+	</form>
 </body>
 </html>

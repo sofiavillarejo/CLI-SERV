@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear base de datos en IndexedDB</title>
+    <script src="jquery-3.7.1.min.js"></script>
+    <script type="text/javascript" src="entradasBD.js"></script>
+    <script type="text/javascript" src="salidasBD.js"></script>
+
+</head>
+<body>
+    <h1>Crera BBDD en IndexedDB</h1>
+    <form>
+        nombre:<input type="text" id="nombre"><br>
+        apellidos:<input type="text" id="apellidos"><br>
+        dni:<input type="text" id="dni"><br>
+        persona de contacto:<input type="text" id="persContacto"><br>
+
+        <input type="button" value="Registrar" onclick="registro()">
+        <input type="button" value="Limpiar" onclick="limpiar()">
+    </form>
+
+</body>
+</html>
