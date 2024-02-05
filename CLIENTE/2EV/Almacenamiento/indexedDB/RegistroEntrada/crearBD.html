@@ -4,22 +4,92 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Crear base de datos en IndexedDB</title>
-    <script src="jquery-3.7.1.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="entradasBD.js"></script>
-    <script type="text/javascript" src="salidasBD.js"></script>
-
 </head>
 <body>
-    <h1>Crera BBDD en IndexedDB</h1>
-    <form>
-        nombre:<input type="text" id="nombre"><br>
-        apellidos:<input type="text" id="apellidos"><br>
-        dni:<input type="text" id="dni"><br>
-        persona de contacto:<input type="text" id="persContacto"><br>
+    <div class="container mt-5">
+        <h1 class="mb-4">Crear BBDD en IndexedDB</h1>
 
-        <input type="button" value="Registrar" onclick="registro()">
-        <input type="button" value="Limpiar" onclick="limpiar()">
-    </form>
+        <form>
+            <div class="form-group">
+                <label for="nombre">Nombre:</label>
+                <input type="text" class="form-control" id="nombre">
+            </div>
+            <div class="form-group">
+                <label for="apellidos">Apellidos:</label>
+                <input type="text" class="form-control" id="apellidos">
+            </div>
+            <div class="form-group">
+                <label for="dni">DNI:</label>
+                <input type="text" class="form-control" id="dni">
+            </div>
+            <div class="form-group">
+                <label for="persContacto">Persona de contacto:</label>
+                <input type="text" class="form-control" id="persContacto">
+            </div>
 
+            <button type="button" class="btn btn-primary" onclick="registro()">Registrar</button>
+            <button type="button" class="btn btn-secondary" onclick="limpiar()">Limpiar</button>
+        </form>
+
+
+    <!-- Listado de Entradas -->
+    <div class="container mt-5">
+        <h1 class="mt-5">Listado de Entradas</h1>
+        <div class="form-group">
+            <label for="campoDniEntrada">Buscar por DNI:</label>
+            <input type="text" class="form-control" id="campoDniEntrada">
+            <button type="button" class="btn btn-primary" onclick="buscarEntradaPorDNI()">Buscar</button>
+        </div>
+        <div class="form-group">
+            <label for="campoApellEntrada">Buscar por apellidos:</label>
+            <input type="text" class="form-control" id="campoApellEntrada">
+            <button type="button" class="btn btn-primary" onclick="buscarEntradaPorApellidos()">Buscar</button>
+        </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Apellidos</th>
+                <th>DNI</th>
+                <th>Contacto</th>
+                <th>Fecha de Entrada</th>
+                <th>Salida</th>
+            </tr>
+        </thead>
+        <tbody id="salida"></tbody>
+    </table>
+
+    <!-- Listado de Salidas -->
+    <h1 class="mt-5">Listado de Salidas</h1>
+    <div class="form-group">
+        <label for="campoDniSalida">Buscar por DNI:</label>
+        <input type="text" class="form-control" id="campoDniSalida">
+        <button type="button" class="btn btn-primary" onclick="buscarSalidaPorDNI()">Buscar</button>
+    </div>
+    <div class="form-group">
+        <label for="campoApellSalida">Buscar por apellidos:</label>
+        <input type="text" class="form-control" id="campoApellSalida">
+        <button type="button" class="btn btn-primary" onclick="buscarSalidaPorApellidos()">Buscar</button>
+    </div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Apellidos</th>
+                <th>DNI</th>
+                <th>Contacto</th>
+                <th>Fecha de Entrada</th>
+                <th>Salida</th>
+            </tr>
+        </thead>
+        <tbody id="salida2"></tbody>
+    </table>
+</div>
 </body>
 </html>
