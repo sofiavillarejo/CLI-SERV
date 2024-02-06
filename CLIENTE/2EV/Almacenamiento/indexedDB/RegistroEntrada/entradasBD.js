@@ -1,29 +1,36 @@
+$(inicio);
+
 let db;
-let openRequest = indexedDB.open("ControlVisitas", 1);
+
 const fechaHoy = new Date(); 
 
-//se ejecuta solo si hay un cambio de version o si no existe la BBDD
-openRequest.onupgradeneeded = function(){
-    let db1 = openRequest.result;
+function inicio(){
 
-    let entradas = db1.createObjectStore('entradas', {keyPath: 'dni'});
-    let salidas = db1.createObjectStore('salidas', {autoIncrement: true});
+    let openRequest = indexedDB.open("ControlVisitas", 1);
+    //se ejecuta solo si hay un cambio de version o si no existe la BBDD
+    openRequest.onupgradeneeded = function(){
+        
+        let db1 = openRequest.result;
 
-    let indiceEnt = entradas.createIndex('ent_ind', 'apellidos');
-    let indiceSal = salidas.createIndex('sal_ind', 'apellidos');
-};
+        let entradas = db1.createObjectStore('entradas', {keyPath: 'dni'});
+        let salidas = db1.createObjectStore('salidas', {autoIncrement: true});
 
-openRequest.onerror = function(){
-    console.log("Error: "+ openRequest.error);
-}; 
+        let indiceEnt = entradas.createIndex('ent_ind', 'apellidos');
+        let indiceSal = salidas.createIndex('sal_ind', 'apellidos');
+    };
 
-openRequest.onsuccess = function(){
-    db = openRequest.result;
-    console.log("Recogido evento success");
-    //PONER AQUI LA FUNCION PARA QUE SAQUE EN LA TABLA LOS DATOS
-    mostrarEntradas();
-    mostrarSalidas();
-};
+    openRequest.onerror = function(){
+        console.log("Error: "+ openRequest.error);
+    }; 
+
+    openRequest.onsuccess = function(){
+        db = openRequest.result;
+        console.log("Recogido evento success");
+        //PONER AQUI LA FUNCION PARA QUE SAQUE EN LA TABLA LOS DATOS
+        mostrarEntradas();
+        mostrarSalidas();
+    };
+}
 
 function registro() {
     console.log("guardar en el almacen de objetos");
@@ -76,7 +83,7 @@ function mostrarEntradas() {
 
     salida.onsuccess = function() {
         let tabla = $("#salida");
-
+        let nFila = 1;
         for( entrada of salida.result){
 
             let nombre = entrada.nombre;
@@ -86,6 +93,7 @@ function mostrarEntradas() {
             let fechaEnt = entrada.fechaEntrada;
 
             let fila = $("<tr>");
+            fila.attr("id", "fila"+nFila);
 
             // Recorrer los resultados y agregar filas a la tabla
             celdaNombre = $("<td>").text(nombre);
@@ -100,20 +108,25 @@ function mostrarEntradas() {
             fila.append(celdaFechaEnt); // Añadir la celda a la fila
             celdaFechaSal= $("<td>");
             
-
-            let btnSal = $("<button>");
+            let btnSal = $("<button onclick='mover("+"\""+nombre+"\",\""+ape+"\",\""+dni+"\",\""+contacto+"\",\""+fechaEnt+"\","+nFila+")'>")
             btnSal.html("<img  width='30px' src='flecha-derecha.png'/>")
-            btnSal.on("click", function(){
-                registroSalidas(nombre, ape, dni, contacto, fechaEnt);
-                borrarEntrada(dni);
-            })
             celdaFechaSal.append(btnSal);
 
             fila.append(celdaFechaSal); // Añadir la celda a la fila
             tabla.append(fila); // Añadir la fila a la tabla
+
+            nFila++;
         }
     }
+
 }
+
+function mover(nombre,ape,dni,contacto,fechaEnt,nFila){
+    registroSalidas(nombre,ape,dni,contacto,fechaEnt);
+    borrarEntrada(dni);
+    moverFila(nFila)
+}
+  
 
 function borrarEntrada(dni){
     let transac = db.transaction("entradas", "readwrite");
@@ -375,7 +388,6 @@ function mostrarSalidasPorDNI(dni) {
     };
 }
 
-
 function mostrarSalidasPorApellidos(apellidos) {
     // (1) Crear una transacción
     let transac4 = db.transaction("salidas", "readonly");
@@ -427,3 +439,9 @@ function mostrarSalidasPorApellidos(apellidos) {
         console.log("Error al buscar las salidas");
     };
 }
+
+function moverFila(nFila){
+    let filaAmover = $("#fila"+nFila);
+  
+    $("#salida2").append(filaAmover);
+  }

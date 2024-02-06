@@ -1,24 +1,30 @@
+$(inicio); //onload
+
 let db;
-let openRequest = indexedDB.open("miBaseDeDatos", 1);
+// esta funcion se lanza con el eveto onload
+function inicio(){
+    let openRequest = indexedDB.open("miBaseDeDatos", 1);
 
-//se ejecuta solo si hay un cambio de version o si no existe la BBDD
-openRequest.onupgradeneeded = function(){
-    let db1 = openRequest.result;
-    //crear almacenes, claves, indices (solo se puede aqui)
-    let libros = db1.createObjectStore('libros', {keyPath: 'id'});
-    //crear indice--> se debe borrar la base de datos en la consola para cualquier cambio que se haga --> se usa en listarBD
-    let indTitulo = libros.createIndex('titulo_ind', 'titulo');//me permite buscar por el campo titulo
-};
+    //se ejecuta solo si hay un cambio de version o si no existe la BBDD
+    openRequest.onupgradeneeded = function(){
+        let db1 = openRequest.result;
+        //crear almacenes, claves, indices (solo se puede aqui)
+        let libros = db1.createObjectStore('libros', {keyPath: 'id'});
+        //crear indice--> se debe borrar la base de datos en la consola para cualquier cambio que se haga --> se usa en listarBD
+        let indTitulo = libros.createIndex('titulo_ind', 'titulo');//me permite buscar por el campo titulo
+    };
 
-openRequest.onerror = function(){
-    console.log("Error: "+ openRequest.error);
-}; 
+    openRequest.onerror = function(){
+        console.log("Error: "+ openRequest.error);
+    }; 
 
-openRequest.onsuccess = function(){
-    db = openRequest.result;
-    console.log("Recogido evento success");
-};
-
+    openRequest.onsuccess = function(){
+        db = openRequest.result;
+        console.log("Recogido evento success");
+        //una vez que este abierta la base de datos, se ejecutara la funcion de lista la información
+        // listarAlmacenes();//onsuccess
+    };
+}
 function guardaBD() {
     console.log("guardar en el almacen de objetos");
     //recuperar los datos
