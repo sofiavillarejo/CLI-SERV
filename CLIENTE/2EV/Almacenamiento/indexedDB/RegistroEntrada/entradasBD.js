@@ -35,6 +35,9 @@ function inicio(){
 function registro() {
     console.log("guardar en el almacen de objetos");
 
+    if($("#nombre").val() == "" || $("#apellidos").val() == "" || $("#dni").val() == "" || $("#persContacto").val() == "")
+       return alert("no se pueden dejar los campos vacíos");
+
     entrada = {
         nombre: $("#nombre").val(),
         apellidos: $("#apellidos").val(),
@@ -62,6 +65,8 @@ function registro() {
         console.log("Error", result.error);
       };
 
+      //para no tener que recargar la página cada vez que registre algo
+      location.reload();
 }
 
 function limpiar(){
@@ -106,7 +111,7 @@ function mostrarEntradas() {
             fila.append(celdaCont); // Añadir la celda a la fila
             celdaFechaEnt= $("<td>").text(fechaEnt);
             fila.append(celdaFechaEnt); // Añadir la celda a la fila
-            celdaFechaSal= $("<td>");
+            celdaFechaSal= $("<td id='campo"+nFila+"'>");
             
             let btnSal = $("<button onclick='mover("+"\""+nombre+"\",\""+ape+"\",\""+dni+"\",\""+contacto+"\",\""+fechaEnt+"\","+nFila+")'>")
             btnSal.html("<img  width='30px' src='flecha-derecha.png'/>")
@@ -442,6 +447,10 @@ function mostrarSalidasPorApellidos(apellidos) {
 
 function moverFila(nFila){
     let filaAmover = $("#fila"+nFila);
+    let fechaSalida = new Date();
   
     $("#salida2").append(filaAmover);
+
+    let campoSalida = $("#campo"+nFila);
+    campoSalida.text(fechaSalida);
   }
