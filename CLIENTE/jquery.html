@@ -1,0 +1,932 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>JQUERY</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-translucentGray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="0c145b93-2f41-48ac-8175-8af46cc0579b" class="page sans"><header><img class="page-cover-image" src="https://www.notion.so/images/page-cover/gradients_11.jpg" style="object-position:center 40%"/><div class="page-header-icon page-header-icon-with-cover"><span class="icon">💢</span></div><h1 class="page-title">JQUERY</h1><p class="page-description"></p></header><div class="page-body"><p id="4b1ac367-884e-4c61-b4f5-b1969941428b" class="">
+</p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="d9fd61bd-80cd-452d-8b3e-b8327f4c9b60"><div style="font-size:1.5em"><span class="icon">⚠️</span></div><div style="width:100%">Documento a agregar siempre en el HTML → <code> &lt;script src=&quot;jquery-3.7.1.min.js&quot;&gt;&lt;/script&gt;</code></div></figure><figure class="block-color-teal callout" style="white-space:pre-wrap;display:flex" id="55b51eb6-33bc-4ec5-a0e4-ac8e6d4b1b7a"><div style="font-size:1.5em"><span class="icon">⚠️</span></div><div style="width:100%"><mark class="highlight-default">Conectar el html con el js →</mark> <mark class="highlight-default"> </mark><mark class="highlight-red"><code>&lt;script type=&quot;text/javascript&quot; src=&quot;index.js&quot;&gt;&lt;/script&gt;</code></mark></div></figure><ul id="01483ccf-b656-43b8-a43e-4219299b6da5" class="block-color-default toggle"><li><details open=""><summary><mark class="highlight-pink"><strong>EVENTO DOCUMENT READY</strong></mark></summary><blockquote id="ed727db5-3f30-41d2-bb53-d2a1bd56c5fd" class="block-color-pink"><mark class="highlight-default">Evitar que cualquier código jQuery se ejecute antes de que el documento termine de cargarse.</mark></blockquote><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="39e09f72-9721-4add-a645-4ea8bdf6fb7e" class="code"><code class="language-JavaScript">//forma 1
+$(document).ready(function(){
+
+  // jQuery methods go here...
+});
+
+//forma 2
+$(function(){
+  // jQuery methods go here...
+});
+
+//forma 3
+$(principal);
+function principal(){
+	//
+ }</code></pre><p id="3b2b631d-b55f-47f4-8424-a6ddc6aee5da" class="">
+</p></details></li></ul><ul id="d893ea43-563f-4f02-bb78-97b3798e5708" class="toggle"><li><details open=""><summary><mark class="highlight-pink"><strong>SELECTORES</strong></mark></summary><ul id="ec5d047e-1fa0-481e-9d5d-a585f7c919d8" class="toggle"><li><details open=""><summary>Clase</summary><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="8d4d0505-af73-499d-b289-8bc1ea84b05b" class="code"><code class="language-JavaScript">$(&quot;.clase&quot;).accion()</code></pre><p id="5a0a77cf-9786-46fa-b497-99d479c0ef30" class="">
+</p></details></li></ul><ul id="fcf516c2-fc2f-4b08-8bae-689aff79a1aa" class="toggle"><li><details open=""><summary>Id</summary><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2a366d48-7839-4fd2-8f0e-12f0d5fb9546" class="code"><code class="language-JavaScript">$(&quot;#id&quot;).accion()</code></pre></details></li></ul><ul id="c5ebab50-0669-4007-8b11-218930971e17" class="toggle"><li><details open=""><summary>Elementos del html</summary><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="6239872e-d510-4a2d-95d5-6dc98f5f98ab" class="code"><code class="language-JavaScript">$(&quot;p&quot;).accion()
+$(&quot;h1&quot;).accion()</code></pre></details></li></ul><ul id="3376804d-3cbb-4f42-972d-c5525b2a0147" class="toggle"><li><details open=""><summary>Elemento actual con el que se trabaja</summary><p id="b628a081-2613-4065-a8b8-33ddaab9978e" class="">
+</p></details></li></ul><ul id="eeff03b4-7943-4b57-a6aa-04911f995695" class="block-color-default toggle"><li><details open=""><summary>Especificar bien qué elemento</summary><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="fbc8e2ce-648f-4d46-884d-5b6c87482429" class="code"><code class="language-JavaScript">$(&quot;p.intro&quot;).accion() //selecciono los párrafos con la clase intro</code></pre></details></li></ul><p id="2df5acc8-40b9-4553-af4b-4540c5b82467" class="">
+</p></details></li></ul><ul id="d0522557-939a-4055-a155-338c642f3281" class="toggle"><li><details open=""><summary><mark class="highlight-pink"><strong>EVENTOS</strong></mark></summary><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="ec548755-d992-4e6f-8da2-fff4b47db0da" class="code"><code class="language-JavaScript">Mouse 	      Keyboard 	    Form 	     Document/Window 
+---------------------------------------------------------
+click	        keypress	   submit	      load
+dblclick	    keydown	     change	      resize
+mouseenter	    keyup	     focus	      scroll
+mouseleave	 	             blur	        unload</code></pre></details></li></ul><ul id="b787c55e-9eb5-46a0-a757-fa08af09ea61" class="toggle"><li><details open=""><summary><mark class="highlight-pink"><strong>EFECTOS</strong></mark></summary><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="88e180f1-0211-49de-9550-3cafe7bb1240" class="code"><code class="language-JavaScript">-animate()--&gt; Ejecuta una animación personalizada en los elementos seleccionados.
+-clearQueue()--&gt; Elimina todas las funciones restantes en cola de los elementos seleccionados 
+-delay()--&gt;	Establece un retraso para todas las funciones en cola en los elementos seleccionados
+-dequeue()--&gt; Elimina la siguiente función de la cola y luego ejecuta la función.
+-fadeIn()--&gt; Se desvanece en los elementos seleccionados.
+-fadeOut()--&gt; Desvanece los elementos seleccionados
+-fadeTo()--&gt; Funde/aparece los elementos seleccionados hasta una opacidad determinada
+-fadeToggle()--&gt; Alterna entre los métodos fadeIn() y fadeOut()
+-finish()--&gt; Detiene, elimina y completa todas las animaciones en cola para los elementos seleccionados.
+-queue()--&gt; Muestra las funciones en cola en los elementos seleccionados ($(&quot;span&quot;).text(div.queue().length);)--&gt; saca en un p el numero total de animaciones que tiene
+-hide()--&gt; Esconde los elementos seleccionados
+-show()--&gt; Muestra los elementos seleccionados (por si habiamos usado hide())
+-toggle()--&gt; Alterna entre los métodos hide() y show()
+-slideDown()--&gt;	Desliza hacia abajo (muestra) los elementos seleccionados
+-slideUp()--&gt; Desliza hacia arriba (oculta) los elementos seleccionados
+-slideToggle()--&gt; Alterna entre los métodos slideUp() y slideDown()
+-stop()--&gt; Detiene la animación actualmente en ejecución para los elementos seleccionados.</code></pre></details></li></ul><ul id="e45335a9-213e-44c7-98cc-f57ebbf99ac0" class="toggle"><li><details open=""><summary><mark class="highlight-pink"><strong>MÉTODOS</strong></mark></summary><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="ca1d090d-f454-48c3-9a1d-025f3692f250" class="code"><code class="language-JavaScript">!-addClass()--&gt; Agrega uno o más nombres de clase a los elementos seleccionados.
+!-after()--&gt;	Inserta contenido después de los elementos seleccionados.
+!-append()--&gt; Inserta contenido al final de los elementos seleccionados.
+-appendTo()--&gt; Inserta elementos HTML al final de los elementos seleccionados.
+-attr()--&gt; Establece o devuelve atributos/valores de elementos seleccionados
+!-before()--&gt; Inserta contenido antes de los elementos seleccionados.
+-clone()--&gt; Hace una copia de los elementos seleccionados.
+!-css()--&gt; Establece o devuelve una o más propiedades de estilo para elementos seleccionados
+-detach()--&gt; Elimina elementos seleccionados (mantiene datos y eventos)
+!-empty()--&gt; Elimina todos los nodos secundarios y el contenido de los elementos seleccionados.
+-hasClass()--&gt;Comprueba si alguno de los elementos seleccionados tiene un nombre de clase específico
+-height()--&gt; Establece o devuelve la altura de los elementos seleccionados.
+!-html()--&gt;	Establece o devuelve el contenido de los elementos seleccionados.
+-innerHeight()--&gt; Devuelve la altura de un elemento (incluye relleno, pero no borde)
+-innerWidth()--&gt; Devuelve el ancho de un elemento (incluye relleno, pero no borde)
+-insertAfter()--&gt; Inserta elementos HTML después de los elementos seleccionados.
+-insertBefore()--&gt; Inserta elementos HTML antes de los elementos seleccionados.
+-offset()--&gt; Establece o devuelve las coordenadas de desplazamiento para los elementos seleccionados (en relación con el documento)
+-offsetParent()--&gt; Devuelve el primer elemento padre posicionado
+-outerHeight()--&gt; Devuelve la altura de un elemento (incluye relleno y borde)
+-outerWidth()--&gt; Devuelve el ancho de un elemento (incluye relleno y borde)
+-position()--&gt; Devuelve la posición (relativa al elemento padre) de un elemento
+!-prepend()--&gt; Inserta contenido al principio de los elementos seleccionados.
+-prependTo()--&gt; Inserta elementos HTML al principio de los elementos seleccionados.
+-prop()--&gt; Establece o devuelve propiedades/valores de elementos seleccionados
+!-remove()--&gt; Elimina los elementos seleccionados (incluidos datos y eventos)
+!-removeAttr()--&gt; Elimina uno o más atributos de los elementos seleccionados.
+!-removeClass()--&gt; Elimina una o más clases de los elementos seleccionados.
+-removeProp()--&gt; Elimina una propiedad establecida por el método prop()
+-replaceAll()--&gt; Reemplaza los elementos seleccionados con nuevos elementos HTML
+-replaceWith()--&gt; Reemplaza elementos seleccionados con contenido nuevo
+-scrollLeft()--&gt; Establece o devuelve la posición de la barra de desplazamiento horizontal de los elementos seleccionados
+-scrollTop()--&gt; Establece o devuelve la posición de la barra de desplazamiento vertical de los elementos seleccionados
+!-text()--&gt; Establece o devuelve el contenido de texto de los elementos seleccionados.
+!-toggleClass()--&gt; Alterna entre agregar/eliminar una o más clases de elementos seleccionados
+-unwrap()--&gt; Elimina el elemento padre de los elementos seleccionados.
+!-val()--&gt; Establece o devuelve el atributo de valor de los elementos seleccionados (para elementos de formulario)
+-width()--&gt; Establece o devuelve el ancho de los elementos seleccionados.
+-wrap()--&gt; Envuelve los elementos HTML alrededor de cada elemento seleccionado
+-wrapAll()--&gt; Envuelve los elementos HTML alrededor de todos los elementos seleccionados
+-wrapInner()--&gt; Envuelve los elementos HTML alrededor del contenido de cada elemento seleccionado</code></pre></details></li></ul><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="52642517-aa87-4034-b8de-b780f23304f7"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">Diferencia entre .html( ) y .text( )</div></figure><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="939d2345-a3be-4439-aec5-6b052d140435" class="code"><code class="language-JavaScript">.html():
+  -Si le preguntas a un elemento qué hay dentro de él, .html() te dará la respuesta con todo, incluyendo formato y etiquetas HTML.
+  -Si le dices al elemento &quot;quiero que dentro de ti haya esto&quot;, .html() tomará eso y lo pondrá tal cual, incluso si son etiquetas HTML.
+
+.text():
+  -Si le preguntas a un elemento qué hay dentro de él, .text() solo te dará el texto sin incluir el formato ni las etiquetas HTML.
+  -Si le dices al elemento &quot;quiero que dentro de ti haya esto&quot;, .text() tomará eso y lo pondrá como texto plano, sin interpretar como HTML.</code></pre><ul id="a59d55a9-ecb3-4ed6-8d87-83d5bed548aa" class="toggle"><li><details open=""><summary><mark class="highlight-pink"><strong>AJAX</strong></mark></summary><blockquote id="0985ee71-462c-477f-900a-6281be001bf2" class="block-color-pink"><mark class="highlight-default">AJAX es el arte de intercambiar datos con un servidor y actualizar partes de una página web, sin recargar toda la página.</mark></blockquote><ul id="70b172ca-79ad-4545-b8d1-f4a03b5e6b12" class="toggle"><li><details open=""><summary>Método load( ) </summary><blockquote id="395594c6-a67e-42a9-ad85-de8db01936a5" class="block-color-pink"><mark class="highlight-default">Carga datos desde un servidor y coloca los datos devueltos en el elemento seleccionado.</mark></blockquote><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="746a0cc3-5a55-4aa1-8845-6d711cfcbc61" class="code"><code class="language-JavaScript">$(selector).load(URL,data,callback);
+
+//URL: la url que se desea cargar
+//data: conjunto de pares clave/valor para enviar junto con la consulta
+//callback: opcional. Función que se ejecutará una vez load() se complete.
+
+//ejemplo (teninedo un .txt)
+$(&quot;#div1&quot;).load(&quot;demo_test.txt&quot;);</code></pre><blockquote id="3d5363d1-eb63-4831-9f4a-d7c9685fe3f2" class="block-color-pink"><mark class="highlight-default">También se puede agregar un selector a la URL</mark></blockquote><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="0464620f-f5ac-4ea2-a3c7-ccc3f131717d" class="code"><code class="language-JavaScript">//cambia el html que había y mete en el div1 el parrafo con id=&quot;p1&quot;
+$(&quot;#div1&quot;).load(&quot;demo_test.txt #p1&quot;);</code></pre><blockquote id="064024a8-a101-4dfb-9627-c545845c6080" class="block-color-pink"><mark class="highlight-default">Otras funciones de load( ) </mark></blockquote><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="6e2071cd-451a-4104-b3c8-16b701bcaa8d" class="code"><code class="language-JavaScript">//$(&quot;#divisor1&quot;).load(&quot;datos/texto.dat #p1&quot;); //dentro del fichero, busca el parrafo con id=1 y muestra su contenido
+//$(&quot;#divisor1&quot;).load(&quot;datos/tabla.dat .clase1&quot;); //carga la tabla con la clase=&quot;clase1&quot;
+//$(&quot;#divisor1&quot;).load(&quot;datos/tabla.dat #1, #2, .clase1&quot;); //carga tanto los id como las clases</code></pre></details></li></ul><ul id="4fa1ea86-6c99-4522-954a-b6e397b4aa62" class="toggle"><li><details open=""><summary>Callback (parámetros que se le pueden pasar)</summary><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="9d65dd2e-fe99-408b-a60e-f60761a7136f" class="code"><code class="language-JavaScript">responseTxt- contiene el contenido resultante si la llamada tiene éxito
+statusTxt- contiene el estado de la llamada
+xhr- contiene el objeto XMLHttpRequest (objeto que realiza solicitudes asíncronas --&gt; útil 
+	para web interactivas que pueden actualziar partes espécificas de la página sin recargar.</code></pre><blockquote id="524dcf83-2f72-48e5-b513-9190e73f96f3" class="block-color-pink"><mark class="highlight-default">Ejemplo: muestra un cuadro de alerta después de que se completa el método load(). Si el </mark><mark class="highlight-red"><code>load()</code></mark><mark class="highlight-default">método tuvo éxito, muestra &quot;¡Contenido externo cargado correctamente!&quot;, y si falla, muestra un mensaje de error</mark></blockquote><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="30fdc76e-c17d-4767-a636-1dd31d780d03" class="code"><code class="language-JavaScript">$(&quot;button&quot;).click(function(){
+  $(&quot;#div1&quot;).load(&quot;demo_test.txt&quot;, function(responseTxt, statusTxt, xhr){
+    if(statusTxt == &quot;success&quot;)
+      alert(&quot;External content loaded successfully!&quot;);
+    if(statusTxt == &quot;error&quot;)
+      alert(&quot;Error: &quot; + xhr.status + &quot;: &quot; + xhr.statusText);
+  });
+});</code></pre><p id="561273b8-0461-4b91-94c3-1f03b04ea3d0" class="">
+</p></details></li></ul><ul id="955ea6ca-89c7-4a26-bbd5-acf68f89bf40" class="toggle"><li><details open=""><summary>Métodos</summary><table id="1d79261a-78b2-4ae1-b5bc-9e419ddb68bf" class="simple-table"><tbody><tr id="4a805060-9c17-4dce-8633-ba820082cfb0"><th id="tUz&lt;" class="block-color-orange_background simple-table-header" style="width:131px"><a href="https://www.w3schools.com/jquery/ajax_ajax.asp">$.ajax()</a></th><td id="hkze" class="" style="width:606px">Realiza una solicitud AJAX asíncrona. Puedes enviar y recibir datos del servidor sin tener que recargar la página</td></tr><tr id="d1576610-b395-4ac9-ac43-9421b833af70"><th id="tUz&lt;" class="block-color-orange_background simple-table-header" style="width:131px">$.ajaxPrefilter()</th><td id="hkze" class="" style="width:606px">Permite manejar opciones AJAX personalizadas o modificar opciones existentes antes de que cada solicitud sea enviada y procesada por <code><strong>$.ajax()</strong></code>.</td></tr><tr id="5decd46e-4079-48db-a5d8-8a0007851c25"><th id="tUz&lt;" class="block-color-orange_background simple-table-header" style="width:131px"><a href="https://www.w3schools.com/jquery/ajax_ajaxsetup.asp">$.ajaxSetup()</a></th><td id="hkze" class="" style="width:606px">Establece los valores predeterminados para futuras solicitudes AJAX.</td></tr><tr id="9cb7425b-22a9-49a0-b059-cb70765a8078"><th id="tUz&lt;" class="block-color-orange_background simple-table-header" style="width:131px">$.ajaxTransport()</th><td id="hkze" class="" style="width:606px">Crea un objeto que maneja la transmisión real de datos AJAX.</td></tr><tr id="50d60a71-aea8-43e7-b86b-39a161883286"><th id="tUz&lt;" class="block-color-orange_background simple-table-header" style="width:131px"><a href="https://www.w3schools.com/jquery/ajax_get.asp">$.get()</a></th><td id="hkze" class="" style="width:606px">Carga datos desde un servidor utilizando una solicitud AJAX HTTP GET.</td></tr><tr id="77d85b0f-ab32-47f3-9e9f-5f9cf01f37b0"><th id="tUz&lt;" class="block-color-orange_background simple-table-header" style="width:131px"><a href="https://www.w3schools.com/jquery/ajax_getjson.asp">$.getJSON()</a></th><td id="hkze" class="" style="width:606px">Carga datos codificados en JSON desde un servidor utilizando una solicitud HTTP GET.</td></tr><tr id="970b49d6-e4d4-48d2-b018-29a1342a907b"><th id="tUz&lt;" class="block-color-orange_background simple-table-header" style="width:131px"><strong>$.JSON.parse()</strong></th><td id="hkze" class="" style="width:606px">Toma una cadena JSON bien formada y devuelve el valor de JavaScript resultante.</td></tr><tr id="9344e4ae-4ba2-46d3-900a-a92e1fd53fa7"><th id="tUz&lt;" class="block-color-orange_background simple-table-header" style="width:131px"><a href="https://www.w3schools.com/jquery/ajax_getscript.asp">$.getScript()</a></th><td id="hkze" class="" style="width:606px">Carga (y ejecuta) un script JavaScript desde un servidor utilizando una solicitud AJAX HTTP GET.</td></tr><tr id="c03469e9-23a9-43e6-9a53-fea4929191c1"><th id="tUz&lt;" class="block-color-orange_background simple-table-header" style="width:131px"><a href="https://www.w3schools.com/jquery/ajax_param.asp">$.param()</a></th><td id="hkze" class="" style="width:606px">Crea una representación serializada de un array u objeto (puede ser utilizado como cadena de consulta URL para solicitudes AJAX).</td></tr><tr id="a4a219f4-caf5-40f1-b374-51af87384b32"><th id="tUz&lt;" class="block-color-orange_background simple-table-header" style="width:131px"><a href="https://www.w3schools.com/jquery/ajax_post.asp">$.post()</a></th><td id="hkze" class="" style="width:606px">Carga datos desde un servidor utilizando una solicitud AJAX HTTP POST.</td></tr><tr id="cebe191c-841e-470b-82ab-6bc307074e3f"><th id="tUz&lt;" class="block-color-orange_background simple-table-header" style="width:131px"><a href="https://www.w3schools.com/jquery/ajax_ajaxcomplete.asp">ajaxComplete()</a></th><td id="hkze" class="" style="width:606px">Especifica una función para ejecutar cuando la solicitud AJAX se completa.</td></tr><tr id="c932b5ad-ea60-4b08-b82c-03773b8be2e2"><th id="tUz&lt;" class="block-color-orange_background simple-table-header" style="width:131px"><a href="https://www.w3schools.com/jquery/ajax_ajaxerror.asp">ajaxError()</a></th><td id="hkze" class="" style="width:606px">Especifica una función para ejecutar cuando la solicitud AJAX se completa con un error.</td></tr><tr id="518bc13a-a56f-4512-b2b3-e6a84d04df54"><th id="tUz&lt;" class="block-color-orange_background simple-table-header" style="width:131px"><a href="https://www.w3schools.com/jquery/ajax_ajaxsend.asp">ajaxSend()</a></th><td id="hkze" class="" style="width:606px">Especifica una función para ejecutar antes de que se envíe la solicitud AJAX.</td></tr><tr id="62a09097-d12b-4172-87b0-f0b7aef7ad63"><th id="tUz&lt;" class="block-color-orange_background simple-table-header" style="width:131px"><a href="https://www.w3schools.com/jquery/ajax_ajaxstart.asp">ajaxStart()</a></th><td id="hkze" class="" style="width:606px">Especifica una función para ejecutar cuando comienza la primera solicitud AJAX.</td></tr><tr id="e816fc70-1ef8-4081-803b-b1fc93ef2e85"><th id="tUz&lt;" class="block-color-orange_background simple-table-header" style="width:131px"><a href="https://www.w3schools.com/jquery/ajax_ajaxstop.asp">ajaxStop()</a></th><td id="hkze" class="" style="width:606px">Especifica una función para ejecutar cuando todas las solicitudes AJAX han sido completadas.</td></tr><tr id="a7c4d94d-140c-4fa3-93f2-bc9484b5658e"><th id="tUz&lt;" class="block-color-orange_background simple-table-header" style="width:131px"><a href="https://www.w3schools.com/jquery/ajax_ajaxsuccess.asp">ajaxSuccess()</a></th><td id="hkze" class="" style="width:606px">Especifica una función para ejecutar cuando una solicitud AJAX se completa con éxito.</td></tr><tr id="3a618489-1665-4e9a-a65f-b85d1f817e84"><th id="tUz&lt;" class="block-color-orange_background simple-table-header" style="width:131px"><a href="https://www.w3schools.com/jquery/ajax_load.asp">load()</a></th><td id="hkze" class="" style="width:606px">Carga datos desde un servidor y coloca los datos devueltos en el elemento seleccionado.</td></tr><tr id="41cf8f82-abae-4920-aa2f-b6203a2bf7b3"><th id="tUz&lt;" class="block-color-orange_background simple-table-header" style="width:131px"><a href="https://www.w3schools.com/jquery/ajax_serialize.asp">serialize()</a></th><td id="hkze" class="" style="width:606px">Codifica un conjunto de elementos de formulario como una cadena para su envío.</td></tr><tr id="4447b0e1-417e-4ca0-903c-2caa84003e40"><th id="tUz&lt;" class="block-color-orange_background simple-table-header" style="width:131px"><a href="https://www.w3schools.com/jquery/ajax_serializearray.asp">serializeArray()</a></th><td id="hkze" class="" style="width:606px">Codifica un conjunto de elementos de formulario como un array de nombres y valores.</td></tr></tbody></table><ul id="035c339a-7b78-4800-b8e2-e180bd12a2df" class="toggle"><li><details open=""><summary></summary></details></li></ul><p id="59c76abd-0662-48e5-b3c6-ded2e8ea1f7a" class=""><a href="https://www.w3schools.com/jquery/jquery_ref_traversing.asp">❮ Previous</a><a href="https://www.w3schools.com/jquery/jquery_ref_misc.asp">Next ❯</a></p></details></li></ul><ul id="9425d9bf-8c3e-481e-ad60-d9c45ef0999c" class="toggle"><li><details open=""><summary>get( ) y post( ) </summary><blockquote id="1a849264-9ae9-4fa9-b5c6-2952ce8e8d75" class="block-color-pink"><mark class="highlight-default">Se utilizan para solicitar datos del servidor con una solicitud HTTP GET o POST. Comúnmente utilizados para una solicitud-respuesta entre un cliente y un servidor.</mark></blockquote><ul id="3493f23e-6388-42b1-bb20-e3ba6b922537" class="toggle"><li><details open=""><summary>Get( )</summary><blockquote id="4f6876f8-66cf-400e-9d8b-a9566c24ca01" class="block-color-pink"><mark class="highlight-default">Solicita datos de un recurso específico. Básicamente, obtiene (recupera) algunos datos del servidor. </mark></blockquote><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="8bcb0a1f-ab4c-46b6-8e95-b28d34c0e254"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><strong>Nota:</strong> El método GET puede devolver datos almacenados en caché.</div></figure><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="e1f71d9e-8e7f-4ac4-b9b1-5a36815fcbb8" class="code"><code class="language-JavaScript">$.get(URL,callback);
+
+//ejemplo--&gt; recuperar datos desde un archivo del servidor
+$(&quot;button&quot;).click(function(){
+  $.get(&quot;demo_test.asp&quot;, function(data, status){
+    alert(&quot;Data: &quot; + data + &quot;\nStatus: &quot; + status);
+  });
+});
+
+//El primer parámetro $.get()es la URL que deseamos solicitar (&quot;demo_test.asp&quot;).
+
+//El segundo parámetro es una función de devolución de llamada. 
+		//El primer parámetro de devolución de llamada contiene el contenido 
+		//de la página solicitada y el segundo parámetro de devolución de llamada 
+		//contiene el estado de la solicitud.</code></pre><p id="3c733b16-3274-4cef-be1e-177cea0aa6ac" class="">
+</p></details></li></ul><ul id="0da8a07d-7dae-4f5a-883d-983efc284bd3" class="toggle"><li><details open=""><summary>Post( )</summary><blockquote id="bef177c6-a1bb-445a-93d9-966cd5aa14ae" class="block-color-pink"><mark class="highlight-default">Solicita datos del servidor mediante una solicitud HTTP POST.</mark></blockquote><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="cf3048df-9b6a-439f-ae54-fdb8376abd01" class="code"><code class="language-JavaScript">$.post(URL,data,callback);
+
+//ejemplo--&gt; método para enviar algunos datos junto con la solicitud
+$(&quot;button&quot;).click(function(){
+  $.post(&quot;demo_test_post.asp&quot;,
+  {
+    name: &quot;Donald Duck&quot;,
+    city: &quot;Duckburg&quot;
+  },
+  function(data, status){
+    alert(&quot;Data: &quot; + data + &quot;\nStatus: &quot; + status);
+  });
+});
+
+//El primer parámetro $.post()es la URL que deseamos solicitar (&quot;demo_test_post.asp&quot;).
+//Luego pasamos algunos datos para enviar junto con la solicitud (nombre y ciudad).
+//El script ASP en &quot;demo_test_post.asp&quot; lee los parámetros, los procesa 
+	//y devuelve un resultado.
+//El tercer parámetro es una función de devolución de llamada. 
+		//El primer parámetro de devolución de llamada contiene el contenido de 
+		//la página solicitada y el segundo parámetro de devolución de llamada 
+		//contiene el estado de la solicitud.</code></pre></details></li></ul></details></li></ul></details></li></ul><ul id="b0f1d1a6-66e6-4160-82d6-a62b920797ae" class="toggle"><li><details open=""><summary><mark class="highlight-pink"><strong>INDEXEDDB</strong></mark></summary><blockquote id="2f7a0d74-f66c-4973-b9cf-c1257bcbf15d" class="block-color-pink"><mark class="highlight-default">base de datos construida dentro del navegador, mucho más potente que </mark><mark class="highlight-red"><code>localStorage</code></mark><mark class="highlight-default">.</mark></blockquote><ul id="6751a2c0-2ea9-4639-b5fa-fdf49964958d" class="toggle"><li><details open=""><summary><mark class="highlight-default">Open (apertura de la BBDD)</mark></summary><blockquote id="043aacae-6d99-43a0-a4f8-01b7d0933b0c" class="block-color-pink"><mark class="highlight-default">Para empezar a trabajar con IndexedDB, debemos conectarnos o “abrir” (open) una base de datos. </mark></blockquote><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="8547d578-51c1-42bc-808c-98fc9e3d2b46" class="code"><code class="language-JavaScript">let openRequest = indexedDB.open(name, version);
+
+//name – un string, el nombre de la base de datos.
+//version – un entero positivo, predeterminado en 1</code></pre><blockquote id="0240d00f-8bcd-4d03-80a3-fbeb4f021ae8" class="block-color-pink"><mark class="highlight-gray">La llamada devuelve un objeto </mark><mark class="highlight-red"><code>openRequest</code></mark><mark class="highlight-gray">, debemos escuchar en él los eventos:</mark><ul id="84f86284-2d44-44f8-9184-025c213463d0" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-red"><code>success</code></mark><mark class="highlight-default">: la base de datos está lista. Hay un “objeto database” en </mark><mark class="highlight-red"><code>openRequest.result</code></mark><mark class="highlight-default"> que habremos de usar en las llamadas subsiguientes.</mark></li></ul><ul id="20bcd3cd-c849-44ba-b509-8bf33a6017f2" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-red"><code>upgradeneeded</code></mark><mark class="highlight-default">: La base de datos está lista, pero su versión es obsoleta (ver abajo). (se dispara si el cliente no tiene la BBDD o si la versión especificada en </mark><mark class="highlight-red"><code>open </code></mark><mark class="highlight-default">es menor)</mark></li></ul><ul id="c2143df8-8e65-40c7-8590-72ddf9a7fc52" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-red"><code>error</code></mark><mark class="highlight-default">: Apertura fallida.</mark></li></ul></blockquote><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="b5de61da-e317-4edc-9345-15b36c885c42" class="code"><code class="language-JavaScript">let openRequest = indexedDB.open(&quot;store&quot;, 1);
+
+openRequest.onupgradeneeded = function() {
+  // se dispara si el cliente no tiene la base de datos
+  // ...ejecuta la inicialización...
+};
+
+openRequest.onerror = function() {
+  console.error(&quot;Error&quot;, openRequest.error);
+};
+
+openRequest.onsuccess = function() {
+  let db = openRequest.result;
+  // continúa trabajando con la base de datos usando el objeto db
+};</code></pre><p id="d029d30d-7a4f-4889-97e0-a5489d797051" class="">
+</p></details></li></ul><ul id="958c9262-9220-4be1-9346-9a2dcf559f98" class="toggle"><li><details open=""><summary>Delete (borrar la BBDD)</summary><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="535306de-7c43-451a-876d-66c4bb3c68c2" class="code"><code class="language-JavaScript">let deleteRequest = indexedDB.deleteDatabase(name)</code></pre></details></li></ul><ul id="057a2fed-5ca7-48ea-a8d6-1095771b8464" class="toggle"><li><details open=""><summary>Store (almacén de objetos)</summary><ul id="c8cc372f-48d9-4eb3-8d97-fb5863600d4a" class="toggle"><li><details open=""><summary>Almacenar objetos</summary><blockquote id="59a71e8f-cee6-4433-8caa-3f3311b8752b" class="block-color-pink"><mark class="highlight-default">Para almacenar algo en IndexedDB, necesitamos un “almacén de objetos”</mark> <code>object store </code><mark class="highlight-default">→  tablas/colecciones (una BBDD puede tener muchos almacenes).</mark><p id="cf429d34-0006-4c60-830b-be96562a7b02" class=""><mark class="highlight-yellow"><strong>Podemos almacenar casi cualquier valor, incluyendo objetos complejos.</strong></mark></p></blockquote><blockquote id="e3ab6638-5ac0-4176-984c-979ba63a48e0" class="block-color-pink"><mark class="highlight-yellow"><strong>Debe haber una clave</strong></mark><mark class="highlight-default"><strong> </strong></mark><code><strong>key</strong></code><strong> </strong><mark class="highlight-yellow"><strong>única para cada valor del almacén.</strong></mark><blockquote id="967017c9-5528-4175-bad3-c3c11aa7fce1" class=""><mark class="highlight-default">Una clave debe ser de uno de estos tipos: number, date, string, binary, o array. Es un identificador único, así podemos </mark><mark class="highlight-teal"><strong>buscar/borrar/modificar</strong></mark><mark class="highlight-default"> valores por medio de la clave.</mark><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="b9f766d8-6e9f-42a5-ac20-136a78e7624c" class="code"><code class="language-JavaScript">//sintaxis para crear un almacén de objetos
+db.createObjectStore(name[, keyOptions]);
+
+//name →  es el nombre del almacén, por ejemplo &quot;books&quot;,
+//keyOptions →  es un objeto opcional con una de estas dos propiedades:
+	//keyPath – la ruta a una propiedad del objeto que IndexedDB usará como clave, por ejemplo id.
+	//autoIncrement – si es true, la clave para el objeto nuevo que se almacene se generará automáticamente con un número autoincremental.</code></pre></blockquote></blockquote><blockquote id="fb0ff963-9c6b-4c42-9c9e-16f5c2f54174" class="block-color-pink"><mark class="highlight-default">Si no establecemos </mark><mark class="highlight-red"><code>keyOptions</code></mark><mark class="highlight-default">, necesitaremos proporcionar una clave explícitamente más tarde: al momento de almacenar un objeto.</mark><p id="e3d69490-e5ec-42f9-8407-971a717b32aa" class=""><mark class="highlight-default">Por ejemplo, este objeto usa la propiedad </mark><code>id</code> <mark class="highlight-default">como clave:</mark></p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="ca29dbd7-fb9b-45eb-b7bb-f5ff453a92dc" class="code"><code class="language-JavaScript">db.createObjectStore(&#x27;books&#x27;, {keyPath: &#x27;id&#x27;});</code></pre><p id="d6b1795f-bb94-489c-8357-d363ae4e6792" class=""><mark class="highlight-default"><strong>Un almacén de objetos solo puede ser creado o modificado durante la actualización de su versión, esto es, en el manejador </strong></mark><mark class="highlight-red"><code><strong>upgradeneeded</strong></code></mark><mark class="highlight-default"><strong>.</strong></mark></p><p id="2657f6f2-86e1-4a27-a8d7-4d346413adbd" class="">
+</p></blockquote></details></li></ul><ul id="d0e708a3-1aee-445c-97ed-6311f8108d12" class="toggle"><li><details open=""><summary>Borrar un almacén de objetos</summary><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="79689471-83d7-4ec2-96fe-a11210f1be4c" class="code"><code class="language-JavaScript">db.deleteObjectStore(&#x27;books&#x27;)</code></pre><p id="79bf30ab-5004-475a-b8b3-b27177b0c842" class="">
+</p></details></li></ul><ul id="5bba2fa5-6d7c-492b-80e4-60a123184b7a" class="toggle"><li><details open=""><summary>Transacciones</summary><ul id="1eac3f54-34a3-4880-b111-0ce65c23caf9" class="toggle"><li><details open=""><summary>Iniciar transacciones</summary><blockquote id="98305563-36bd-4ba1-a6b4-f515d3519b5d" class="block-color-pink"><mark class="highlight-default"><strong>Todas las operaciones deben ser hechas dentro de una transacción en IndexedDB.</strong></mark></blockquote><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="412ff17a-ec8a-43d3-95da-9dac2f13337c" class="code"><code class="language-JavaScript">//iniciar una transacción
+db.transaction(store[, type]);
+
+//store →  el nombre de almacén al que la transacción va a acceder, por ejemplo &quot;books&quot;. Puede ser un array de nombres de almacenes si vamos a acceder a múltiples almacenes.
+//type →  el tipo de transacción, uno de estos dos:
+	//readonly – solo puede leer (es el predeterminado).
+	//readwrite – puede leer o escribir datos (pero no crear/quitar/alterar almacenes de objetos).</code></pre><figure class="block-color-teal callout" style="white-space:pre-wrap;display:flex" id="1266c9ba-f4e3-42c7-ba8f-1efdbe1f2c1d"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><mark class="highlight-default">Ejemplo: </mark><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="bc1667bc-52a0-4b0b-830e-af0c4e4f140e" class="code"><code class="language-JavaScript">//Crea una transacción, mencionando todos los almacenes a los que irá a acceder
+let transaction = db.transaction(&quot;books&quot;, &quot;readwrite&quot;); // (1)
+
+// obtiene un almacén de objetos para operar con él
+let books = transaction.objectStore(&quot;books&quot;); // (2)
+//crear objeto
+let book = {
+  id: &#x27;js&#x27;,
+  price: 10,
+  created: new Date()
+};
+//añadir objeto al almacén creado (ejecuta la petición al almacén)
+let request = books.add(book); // (3)
+//si sale bien, saca en consola la frase con el resultado
+request.onsuccess = function() { // (4)
+  console.log(&quot;Libro agregado al almacén&quot;, request.result);
+};
+//si sale mal, lanza el error
+request.onerror = function() {
+  console.log(&quot;Error&quot;, request.error);
+};</code></pre></div></figure></details></li></ul><ul id="ea09ec3b-769d-4e9c-b6ec-31ba2da487fa" class="toggle"><li><details open=""><summary>Métodos de los almacenes (<mark class="highlight-teal">put </mark>y <mark class="highlight-teal">add</mark>)</summary><ul id="f4902413-6764-449b-85e9-4d2bbee672c4" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-teal"><strong>put(value, [key])</strong></mark>→  Agrega <code>value</code> al almacén. La clave <code>key</code> debe ser suministrada solo si al almacén no se le asignó la opción <code>keyPath</code> o <code>autoIncrement</code>. Si ya hay un valor con la misma clave, este será reemplazado.</li></ul><ul id="9dce7604-3a97-4e87-a71b-eb8b2cdc77f8" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-teal"><strong>add(value, [key])</strong></mark>→  Lo mismo que <mark class="highlight-teal"><code>put</code></mark>, pero si ya hay un valor con la misma clave, la petición falla y se genera un error con el nombre <code>&quot;ConstraintError&quot;</code>.<figure class="block-color-teal callout" style="white-space:pre-wrap;display:flex" id="1617e140-bfab-4e07-8da4-a5472c0497e4"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><mark class="highlight-default">El resultado </mark><mark class="highlight-red"><code>request.result</code></mark><mark class="highlight-default"> de </mark><mark class="highlight-teal"><code>add</code></mark><mark class="highlight-teal"> </mark><mark class="highlight-default">es la clave del nuevo objeto.</mark></div></figure></li></ul></details></li></ul><p id="a30652c7-3612-479d-a3e3-90ccba821e84" class="">
+</p></details></li></ul><ul id="e14e950b-a4d1-4027-8d04-2c7a8dd97859" class="toggle"><li><details open=""><summary>Búsquedas</summary><blockquote id="d2e5f375-c56e-4ab9-94cd-fec813207431" class="block-color-pink"><mark class="highlight-default">Hay dos maneras principales de buscar en un almacén de objetos:</mark><ul id="5d67e4c2-5a1e-420e-96f0-95625cd0933a" class="toggle"><li><details open=""><summary><mark class="highlight-yellow">Por clave o por rango de claves.</mark><mark class="highlight-default"> En nuestro almacén “books”, puede ser por un valor o por un rango de valores de </mark><mark class="highlight-red"><code>book.id</code></mark><mark class="highlight-default">.</mark></summary><p id="f436830a-c5e7-4e9f-823b-892036cdaa72" class=""><mark class="highlight-default">Para efectuar la búsqueda, existen los siguientes métodos. Ellos aceptan un argumento </mark><mark class="highlight-red"><code>query</code></mark><mark class="highlight-red"> </mark><mark class="highlight-default">que puede ser una clave exacta o un rango de claves:</mark></p><ul id="a86781fe-bc77-4acb-bf47-d62455a06697" class="bulleted-list"><li style="list-style-type:disc"><code>store.get(query)</code><mark class="highlight-default"> – busca el primer valor, por clave o por rango.</mark></li></ul><ul id="23c85ad5-2352-4c56-b515-32174a60b0de" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-red"><code>store.getAll([query], [count])</code></mark><mark class="highlight-default"> – busca todos los valores, limitado a la cantidad </mark><mark class="highlight-teal"><code>count</code></mark><mark class="highlight-teal"> </mark><mark class="highlight-default">si esta se especifica.</mark></li></ul><ul id="b0f729c7-8aa6-44f7-8332-3ace21d3754e" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-red"><code>store.getKey(query)</code></mark><mark class="highlight-default"> – busca la primera clave que satisface la consulta, usualmente un rango.</mark></li></ul><ul id="f32498ff-b721-47f2-8f84-6c497ac9f5fa" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-red"><code>store.getAllKeys([query], [count])</code></mark><mark class="highlight-default"> – busca todas las claves que satisfacen la consulta, usualmente un rango, hasta la cantidad </mark><mark class="highlight-teal"><code>count</code></mark><mark class="highlight-teal"> </mark><mark class="highlight-default">si es suministrada.</mark></li></ul><ul id="e74fe879-5798-4078-abbc-8d6cb49cf405" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-red"><code>store.count([query])</code></mark><mark class="highlight-default"> – obtiene la cantidad de claves que satisfacen la consulta, usualmente un rango.</mark></li></ul><figure class="block-color-teal callout" style="white-space:pre-wrap;display:flex" id="29c25c87-6845-4964-a5f4-babb2947f742"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><mark class="highlight-default">Ejemplo:</mark><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="5def586d-f967-416e-aa2e-3af303f17f5c" class="code"><code class="language-JavaScript">// obtiene un libro
+books.get(&#x27;js&#x27;)
+
+// obtiene libros con: &#x27;css&#x27; &lt;= id &lt;= &#x27;html&#x27;
+books.getAll(IDBKeyRange.bound(&#x27;css&#x27;, &#x27;html&#x27;))
+
+// obtiene libros con  id &lt; &#x27;html&#x27;
+books.getAll(IDBKeyRange.upperBound(&#x27;html&#x27;, true))
+
+// obtiene todos los libros
+books.getAll()
+
+// obtiene todas las claves donde id &gt; &#x27;js&#x27;
+books.getAllKeys(IDBKeyRange.lowerBound(&#x27;js&#x27;, true))
+
+//El almacén de objetos siempre está ordenado --&gt; en las peticiones 
+//que devuelvan varios valores, estos siempre estarán ordenados por la clave.</code></pre></div></figure><p id="b5a85151-9747-4a94-969c-123cf731559b" class="">
+</p></details></li></ul><ul id="aaac9bd4-e7be-4c57-907b-01a5430243fa" class="toggle"><li><details open=""><summary><mark class="highlight-yellow">Por algún otro campo del objeto</mark><mark class="highlight-default">, por ejemplo </mark><mark class="highlight-red"><code>book.price</code></mark><mark class="highlight-default">. Esto requiere una estructura de datos adicional llamada índice “</mark><mark class="highlight-teal">index</mark><mark class="highlight-default">” —&gt; crearse en </mark><code><mark class="highlight-red">onupgradeneeded </mark></code><mark class="highlight-default">.</mark></summary><figure class="block-color-teal callout" style="white-space:pre-wrap;display:flex" id="2e9b5704-a172-497a-9cae-7dd5b737d01e"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><mark class="highlight-default">Un índice es un agregado al almacén que rastrea un campo determinado del objeto dado. Para cada valor de ese campo, almacena una lista de </mark><mark class="highlight-teal">claves </mark><mark class="highlight-default">de objetos que tienen ese valor</mark></div></figure><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="5c0947ea-83d8-4093-be7b-48bb4e028afd" class="code"><code class="language-JavaScript">objectStore.createIndex(name, keyPath, [options]);
+
+//name – nombre del índice,
+//keyPath – ruta al campo del objeto que el índice debe seguir (vamos a buscar por ese campo),
+//option – un objeto opcional con las propiedades:
+	//unique – si es true, un valor no podrá repetirse en el índice. Solamente puede haber un único objeto en el almacén con un valor dado de su keyPath. El índice forzará esto generando un error si intentamos agregar un duplicado.
+	//multiEntry – solo se usa si el valor en keyPath es un array. En ese caso, de manera predeterminada, el índice tratará el array completo como clave. Pero si multiEntry es true, entonces el índice mantendrá una lista de objetos almacenados para cada valor en ese array. Así los miembros del array se vuelven claves de ese índice.</code></pre></details></li></ul></blockquote><figure class="block-color-teal callout" style="white-space:pre-wrap;display:flex" id="47d7a283-4d2e-4747-9191-52429df1e135"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><mark class="highlight-default">Ejemplo:</mark><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="351e8dbd-8628-46c8-a774-c1e3e65308d6" class="code"><code class="language-JavaScript">//almacenamos libros usando la propiedad id como clave (queremos buscar por precio price).
+//Primero necesitamos crear un índice. Esto debe hacerse en upgradeneeded, al igual que hacíamos la creación del almacén de objetos.
+
+openRequest.onupgradeneeded = function() {
+  // debemos crear el índice aquí, en la transacción versionchange
+  let books = db.createObjectStore(&#x27;books&#x27;, {keyPath: &#x27;id&#x27;});
+	//El índice hará seguimiento del campo price.
+	//El precio no es único, puede haber múltiples libros con el mismo precio así que no establecemos la opción unique.
+	//El precio no es un array, entonces el indicador multiEntry no es aplicable. 
+	let index = books.createIndex(&#x27;price_idx&#x27;, &#x27;price&#x27;);
+};
+	//Ahora, cuando queremos buscar por un determinado precio, simplemente aplicamos el mismo método de búsqueda al índice:
+	let transaction = db.transaction(&quot;books&quot;); // readonly
+	let books = transaction.objectStore(&quot;books&quot;);
+	let priceIndex = books.index(&quot;price_idx&quot;);
+	
+	//el resultado trae todos los libros con un precio superior a 10
+	let request = priceIndex.getAll(10);
+	
+	request.onsuccess = function() {
+	  if (request.result !== undefined) {
+	    console.log(&quot;Books&quot;, request.result); // array de libros con precio = 10
+	  } else {
+	    console.log(&quot;No hay libros así&quot;);
+	  }
+	};</code></pre><p id="d59534c4-dbe5-4ef6-81c9-b7373f532ee3" class="">
+</p></div></figure></details></li></ul><ul id="c59768f2-3454-4575-8fc7-d04c92475b21" class="toggle"><li><details open=""><summary>Borrar elementos</summary><ul id="4497f671-0bbe-4018-a957-9a22bd967407" class="toggle"><li><details open=""><summary>Por id</summary><blockquote id="7fffea5a-4e0b-46f8-87d6-347dacfe62fc" class="block-color-pink"><mark class="highlight-default">El método </mark><mark class="highlight-red"><code>delete</code></mark><mark class="highlight-red"> </mark><mark class="highlight-default">(eliminar) busca a través de una consulta valores para borrarlos. El formato de la llamada es similar a </mark><mark class="highlight-red"><code>getAll</code></mark><mark class="highlight-default">:</mark><p id="0a6f23d7-192a-42d1-8fd2-077519f55080" class=""><mark class="highlight-red"><code><strong>delete(query)</strong></code></mark><mark class="highlight-default"> – elimina valores coincidentes con una consulta (query).</mark></p></blockquote><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="f166cc21-eafe-4c97-b395-80c8db47f7d9" class="code"><code class="language-JavaScript">// borra el libro cuyo id=&#x27;js&#x27;
+books.delete(&#x27;js&#x27;);</code></pre></details></li></ul><ul id="28441dda-0cc3-456f-b3ff-d5acf0e060d4" class="toggle"><li><details open=""><summary>Por campo</summary><blockquote id="d9b66196-dc29-4af8-93e5-244e5490f492" class="block-color-pink"><mark class="highlight-default">Para borrar libros basados en un precio u otro campo → encontrar la clave en el índice, luego llamar a </mark><mark class="highlight-red"><code>delete</code></mark><mark class="highlight-red"> </mark><mark class="highlight-default">con dicha clave.</mark></blockquote><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="41827a8e-141e-4dda-9f85-038d80cb13d6" class="code"><code class="language-JavaScript">// encuentra la clave donde price = 5
+let request = priceIndex.getKey(5);
+
+request.onsuccess = function() {
+  let id = request.result;
+  let deleteRequest = books.delete(id);
+};</code></pre></details></li></ul><ul id="20292e51-ced4-40ff-95ec-c234de614f6a" class="toggle"><li><details open=""><summary>Todo</summary><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="5c0c162d-4dd0-48b8-b921-638f8f517457" class="code"><code class="language-JavaScript">books.clear(); // clear &quot;limpia&quot; el almacén.</code></pre><p id="b7e7b3cc-0423-4675-9065-0be99ec1bc72" class="">
+</p></details></li></ul></details></li></ul></details></li></ul><figure class="block-color-pink callout" style="white-space:pre-wrap;display:flex" id="c7741579-0bcc-4c86-999d-075575c3d459"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">Resumen:<ol type="1" id="4617f0d4-5989-4133-8316-286d30d1bf66" class="numbered-list" start="1"><li><mark class="highlight-default">Obtenga un contenedor promisificador como </mark><mark class="highlight-default"><a href="https://github.com/jakearchibald/idb">idb</a></mark><mark class="highlight-default">.</mark></li></ol><ol type="1" id="caac46c0-a435-4354-bf49-a0369934e3a1" class="numbered-list" start="2"><li><mark class="highlight-default">Abra la base de datos: </mark><mark class="highlight-red"><code>idb.openDb(name, version, onupgradeneeded)</code></mark><ul id="b4cf1451-b7e2-4624-99f2-81abbaa7999a" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-default">Cree almacenes de objetos e índices en el manejador </mark><code>onupgradeneeded</code> <mark class="highlight-default">o ejecute la actualización de versión cuando sea necesario.</mark></li></ul></li></ol><ol type="1" id="f68629a1-81c3-41f6-8d0e-b225f0e935c7" class="numbered-list" start="3"><li><mark class="highlight-default">Para peticiones:</mark><ul id="6a320a1a-b848-4809-b777-61a902d1eb8d" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-default">Cree una transacción </mark><code>db.transaction(&#x27;books&#x27;)</code><mark class="highlight-default"> (</mark><mark class="highlight-teal">readwrite </mark><mark class="highlight-default">si es necesario).</mark></li></ul><ul id="64ee7861-5638-4e86-b27f-82a3fdfdb1e4" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-default">Obtenga el almacén de objetos </mark><code>transaction.objectStore(&#x27;books&#x27;)</code><mark class="highlight-default">.</mark></li></ul></li></ol><ol type="1" id="1ed439f6-2974-46dd-bf04-d8be13384535" class="numbered-list" start="4"><li><mark class="highlight-default">Entonces, para buscar por clave, llame métodos sobre el almacén directamente.</mark><ul id="d917f394-7d97-4570-a9b8-92366d43f424" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-default">Para buscar por un campo de objeto, cree un índice.</mark></li></ul></li></ol><ol type="1" id="2b7b873d-f4a8-4bce-99af-ad124a4c6556" class="numbered-list" start="5"><li><mark class="highlight-default">Si los datos son demasiados para la memoria, use un cursor.</mark></li></ol></div></figure><p id="edfd983d-9bf3-4f8b-97d0-6f50ff6dae7a" class="">
+</p></details></li></ul></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
