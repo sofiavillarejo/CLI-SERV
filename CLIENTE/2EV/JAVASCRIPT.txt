@@ -4,11 +4,12 @@ JAVASCRIPT
 	-obtener elementos, crear elementos, borrar elementos (no recargar la pagina cada vez que creemos cosas)
 	-modificar estilos/atributos de elemntos
 	-ajax con JSON
+	
 2. Gráficos- representacion gráfica de información (Chart.js--> descargar libreria): (1 ejercicio - 1.5)
 	-Barras --> uno o varios conjuntos de datos
 	-Scatter o puntos --> uno o varios conjuntos de datos
 	-Lineas --> uno o varios conjuntos de datos
-	-Tarta (PieChart) --> uno o solo un conjunto de datos
+	-Tarta (PieChart) --> solo un conjunto de datos
 
 3. IndexedDB - almacenamiento en cliente (2 ejercicios - 1.7)
 	-Crear BD, almacenes e indices

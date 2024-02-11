@@ -1,10 +1,11 @@
-#!C:\Users\zx22student3329\AppData\Local\Programs\Python\Python311\python.exe
+#!C:\Users\Sofía\AppData\Local\Programs\Python\Python312\python.exe
 import cgi
 import json
 
 
 # Obtener los parámetros de la solicitud GET
 form = cgi.FieldStorage()
+#este es el nombre que hay que poner en la ruta al pedir los datos (?equipo=)
 equipo_solicitado = form.getvalue("equipo")
 
 # Datos de todos los equipos

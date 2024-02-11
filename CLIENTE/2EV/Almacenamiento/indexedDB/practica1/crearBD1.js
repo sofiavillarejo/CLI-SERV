@@ -1,15 +1,16 @@
+let db;
+
 $(inicio); //onload
 
-let db;
 // esta funcion se lanza con el eveto onload
 function inicio(){
     let openRequest = indexedDB.open("miBaseDeDatos", 1);
 
     //se ejecuta solo si hay un cambio de version o si no existe la BBDD
     openRequest.onupgradeneeded = function(){
-        let db1 = openRequest.result;
+        let db = openRequest.result;
         //crear almacenes, claves, indices (solo se puede aqui)
-        let libros = db1.createObjectStore('libros', {keyPath: 'id'});
+        let libros = db.createObjectStore('libros', {keyPath: 'id'});
         //crear indice--> se debe borrar la base de datos en la consola para cualquier cambio que se haga --> se usa en listarBD
         let indTitulo = libros.createIndex('titulo_ind', 'titulo');//me permite buscar por el campo titulo
     };
@@ -52,10 +53,10 @@ function guardaBD() {
     //4. gestionar los eventos (exito y error) con el resultado de la operacion (insercion)
     resultado.onsuccess = function() { 
         console.log("Libro agregado al almacen", resultado.result);
-      };
-      resultado.onerror = function() {
+    };
+    resultado.onerror = function() {
         console.log("Error", resultado.error);
-      };
+    };
 
       //RECARGAR LA BASE DE DATOS SIEMPRE!!!!! DESDE LA CONSOLA EN LA RUEDECITA DE REFRESCAR QUE HAY!!!!
 }

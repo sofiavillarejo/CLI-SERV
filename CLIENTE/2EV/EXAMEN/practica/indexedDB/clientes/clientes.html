@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>indexedDB</title>
+    <script type="text/javascript" src="jquery-3.7.1.min.js"></script>
+    <script type="text/javascript" src="clientes.js"></script>
+
+</head>
+<body>
+    <form>
+        id: <input type="number" id="id"><br>
+        nombre:<input type="text" id="nombre" value="Sofia"><br>
+        apellido:<input type="text" id="ape" value="Villarejo"><br>
+        edad:<input type="number" id="edad" value="22"><br>
+
+    <input type="button" value="guardar" onclick="guardarCliente()">
+    </form>
+
+    <button onclick="limpiarCliente()">Limpiar cliente</button>
+    <button onclick="modificarCliente()">Modificar cliente</button>
+    <button onclick="borrarCliente()">Borrar cliente</button>
+
+    <p>Lista de clientes:</p>
+
+    <ul id="lista"></ul>
+</body>
+</html>

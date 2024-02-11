@@ -45,7 +45,8 @@ type: 'bar',
   const cnv2 = $("#miScatter");
   const datos2 = {
     datasets: [{
-      label: 'Grafico Scatter',
+      label: 'Lunes',
+      //para el scatter es importante meter los ejes x e y
       data: [{
         x: -10,
         y: 0
@@ -63,6 +64,27 @@ type: 'bar',
         y: 5.5
       }],
       backgroundColor: 'blue'
+    },
+    {
+      label: 'Martes',
+      //para el scatter es importante meter los ejes x e y
+      data: [{
+        x: 5,
+        y: 0
+      }, 
+      {
+        x: 0,
+        y: 8
+      }, 
+      {
+        x: 3,
+        y: 10
+      }, 
+      {
+        x: 1,
+        y: 6
+      }],
+      backgroundColor: 'red'
     }],
   };
 
@@ -74,9 +96,9 @@ type: 'bar',
   const cnv3 = $("#miPie");
   const datos3 = {
     labels: [
-      'Red',
-      'Blue',
-      'Yellow'
+      'Lunes',
+      'Martes',
+      'Miércoles'
     ],
     datasets: [{
       label: 'Grafico de tarta',

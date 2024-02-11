@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>indexedDB</title>
+    <script type="text/javascript" src="jquery-3.7.1.min.js"></script>
+    <script type="text/javascript" src="libros.js"></script>
+
+</head>
+<body>
+    <form>
+        id:<input type="text" id="id" value="1"><br>
+        título:<input type="text" id="titulo" value="Don quijote"><br>
+        precio:<input type="number" id="precio" value="30"><br>
+
+    <input type="button" value="guardar" onclick="registrarLibro()">
+    </form>
+    <button onclick="añadirLibroAlista()">Añadir libro a lista</button>
+    <button onclick="añadirLibroAtabla()">Añadir libro a tabla</button>
+
+    <button onclick="limpiarAlmacen()">Limpiar libro</button>
+    <button onclick="modificarLibro()">Modificar libro</button>
+    <button onclick="borrarLibro()">Borrar libro</button>
+
+    <p>Lista de libros:</p>
+
+    <ul id="lista"></ul>
+</body>
+</html>

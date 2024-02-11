@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>indexedDB</title>
+    <script type="text/javascript" src="jquery-3.7.1.min.js"></script>
+    <script type="text/javascript" src="index.js"></script>
+
+</head>
+<body>
+    <form>
+        producto:<input type="text" id="prod" value="Berenjenas"><br>
+        cantidad:<input type="number" id="cant" value="4"><br>
+        <div id="contenedor"></div>
+
+    <input type="button" value="guardar" onclick="añadirAbd()">
+    </form>
+    Filtrar por nombre de producto: <input id="nombre" type="text"><input type="button" value="filtrar" onclick="buscarPorNombre()">
+    <table id="prodFiltrados">
+
+    </table>
+    <button onclick="añadirProdAtabla()">Añadir producto a tabla</button>
+
+    <button onclick="limpiarAlmacen()">Limpiar almacén</button>
+    <button onclick="buscarporNombre()">Buscar</button>
+
+</body>
+</html>

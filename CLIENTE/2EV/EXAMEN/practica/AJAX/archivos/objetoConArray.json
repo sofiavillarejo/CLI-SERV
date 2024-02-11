@@ -1,0 +1,36 @@
+{
+    "empleados": [
+        {
+            "nombre": "Sofia",
+            "puesto": "progamadora",
+            "edad": 22
+        },
+        {
+            "nombre": "Iván",
+            "puesto": "electricista",
+            "edad": 40
+        },
+        {
+            "nombre": "Elena",
+            "puesto": "directora de ventas",
+            "edad": 35
+        }
+    ],
+    "temporales": [
+        {
+            "nombre": "Luciana ",
+            "puesto": "medica",
+            "edad": 19
+        },
+        {
+            "nombre": "Silvia",
+            "puesto": "lead",
+            "edad": 30
+        },
+        {
+            "nombre": "David",
+            "puesto": "Influencer",
+            "edad": 35
+        }
+    ]
+}

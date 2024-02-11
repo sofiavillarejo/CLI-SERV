@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario jQuery</title>
+    <script type="text/javascript" src="jquery-3.7.1.min.js"></script>
+    <script type="text/javascript" src="index.js"></script>
+
+</head>
+<body>
+    <h1>Formulario de registro de datos</h1>
+    <form action="">
+        <label for="id">Id:</label>        
+        <input type="text" name="fila" id="fila" value="2"><br><br>
+        <label for="nombre">Nombre:</label>
+        <input type="text" name="nombre" id="nombre" value="Sofia"><br><br>
+        <label for="apellido">Apellido:</label>
+        <input type="text" name="apellido" id="apellido" value="Villarejo"><br><br>
+        <label for="edad">Edad:</label>
+        <input type="number" name="edad" id="edad" value="23">
+    </form>
+    <br>
+    <button id="btn">Enviar</button><button id="modificar" onclick="modificarFila()">Modificar</button>
+    <br><br>
+    <table id="tabla" border="1px">
+        <tr>
+            <th>Nombre</th><th>Apellidos</th><th>Edad</th><th>Borrar</th>
+        </tr>
+    </table>
+
+    <p id="parrafo" class="parraf1">Este es mi parrafo para modificar su atributo</p>
+    <button id="cambiarAtrr">Cambiar atributo al parrafo</button>
+</body>
+</html>

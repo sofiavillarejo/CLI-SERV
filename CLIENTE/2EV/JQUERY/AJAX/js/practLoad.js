@@ -11,17 +11,24 @@ function inicio(){
 
     // }
     // );
-    $("button").click(function (){
-        $("#divisor1").load("datos/texto.dat", function(responseTxt, statusTxt, xhr){
-            if(statusTxt == "success"){
-                console.log(responseTxt);
-                alert("Datos recuperados con éxito!!")
-            } 
-            if(statusTxt == "error"){
-                alert("Error: " + xhr.status + ":" + xhr.statusText);
-            }
-        });
-    }
-    );
+    // $("button").click(function (){
+    //     $("#divisor1").load("datos/texto.dat", function(responseTxt, statusTxt, xhr){
+    //         if(statusTxt == "success"){
+    //             console.log(responseTxt);
+    //             alert("Datos recuperados con éxito!!")
+    //         } 
+    //         if(statusTxt == "error"){
+    //             alert("Error: " + xhr.status + ":" + xhr.statusText);
+    //         }
+    //     });
+    // }
+    // );
+
+    //NOS TRAE SOLO EL P CON EL ID=1 DENTRO DEL .DAT
+    // $("button").click(function (){
+    //     $("#divisor1").load("datos/texto.dat #p1");
+    // }
+    // )
 }
+
 

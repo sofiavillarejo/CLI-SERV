@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+</head>
+<body>
+    Nombre Producto:
+    <input type="text" id="prod"><br>
+    Ventas
+    <ul>    
+        <li>Triunfo:<input type="number" id="tri"></li>
+        <li>Puca:<input type="number" id="puc"></li>
+        <li>Arcoiris:<input type="number" id="arc"></li>
+    </ul>
+    Color:<input type="color" id="color"><br>
+    <input type="button" onclick="anadirProducto()" value="Añadir"><br>
+
+    <canvas id="myChart" style="width:100%;max-width:600px"></canvas>
+
+    <script type="text/javascript" src="chart.js"></script>
+    <script type="text/javascript" src="grafico.js"></script>
+    <script type="text/javascript" src="jquery-3.7.1.min.js"></script>
+</body>
+</html>

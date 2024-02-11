@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manipulacion DOM</title>
+    <style>
+        .titulos{
+            color: pink;
+        }
+    </style>
+    <script src="jquery-3.7.1.min.js"></script>
+    <script type="text/javascript" src="index.js"></script>
+</head>
+<body>
+    <div id="container">
+        <h1 id="titulo">Manipulando el DOM con Jquery</h1>
+        <div id="contenido">
+            <p>Este es un párrafo dentro del contenedor.</p>
+        </div>
+    </div>
+    <h2>Formulario Sencillo</h2>
+
+    <form action="">
+    <label for="nombre">Nombre:</label><br>
+    <input type="text" id="nombre" name="nombre" required><br>
+    
+    <label for="apellido">Apellido:</label><br>
+    <input type="apellido" id="apellido" name="apellido" required><br>
+    
+    <label for="mensaje">Mensaje:</label><br>
+    <textarea id="mensaje" name="mensaje"required></textarea><br>
+    
+    <button id="send">Enviar</button>
+    </form>
+
+    <p id="p1">
+		Nombre: Juan <br>
+		Apellidos: Garcia  Garcia<br>
+		Dirección: Calle Pastrana, 12, 6-1<br>
+		CP: 30123 <br>
+	</p>
+    <p id="p2">
+		Nombre: Carlos <br>
+		Apellidos: Lopez Lopez<br>
+		Dirección: Calle Romero, 2, SN<br>
+		CP: 21456<br>
+	</p>
+<button id="ocultar">Ocultar Contenido</button>
+<button id="mostrar">Mostrar Contenido</button>
+<button id="agregarClase">Añadir clase "titulos"</button>
+<button id="agregar">Agregar Párrafo</button>
+<button id="borrarTodo">Borrar todo</button>
+<button id="imagen">Agregar atriutos a imagen</button>
+<button onclick="cambiaColor('p1')">Cambiar color</button>
+<button onclick="cambiaBackground('p2')">Cambiar fondo</button>
+<button onclick="apareceDesaparece('p2')">Aparecer/Desaparecer</button>
+
+</body>
+</html>
